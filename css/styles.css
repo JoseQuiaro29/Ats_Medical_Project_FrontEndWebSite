@@ -1,0 +1,158 @@
+/* styles.css */
+
+/* Paleta de colores */
+:root {
+  --primary-color: #3498db; /* Azul moderno */
+  --secondary-color: #2980b9; /* Azul más oscuro */
+  --text-color: #333; /* Gris oscuro para textos */
+  --background-color: #ecf0f1; /* Gris muy claro para fondos */
+  --accent-color: #f39c12; /* Naranja para acentos */
+  --header-footer-color: #2c3e50; /* Azul oscuro para header y footer */
+}
+
+/* Ajustes generales */
+body {
+  font-family: 'Roboto', sans-serif; /* Fuente moderna */
+  color: var(--text-color);
+  background-color: var(--background-color);
+  line-height: 1.7;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilos para la barra de navegación */
+.navbar {
+  background-color: var(--header-footer-color);
+  border: none; /* Elimina el borde */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav>li>a {
+  color: #fff;
+  transition: color 0.3s ease; /* Transición suave */
+  padding: 15px 20px; /* Aumenta el padding */
+}
+
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-brand:hover {
+  color: var(--accent-color); /* Color de acento al pasar el cursor */
+}
+
+/* Carrusel */
+.carousel {
+  margin-bottom: 50px;
+}
+
+.carousel .item img {
+  margin: 0 auto;
+  max-height: 500px;
+  transition: transform 0.5s ease-in-out; /* Efecto zoom en las imágenes */
+  border-radius: 10px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.carousel .item img:hover {
+  transform: scale(1.03);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--header-footer-color);
+  color: #fff;
+  padding: 30px 0;
+  margin-top: 50px;
+  text-align: center;
+  transition: background-color 0.3s ease; /* Transición suave */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: none; /* Elimina el subrayado */
+  transition: color 0.3s ease; /* Transición suave */
+}
+
+.footer a:hover {
+  color: var(--accent-color);
+  text-decoration: underline; /* Subrayado al pasar el cursor */
+}
+
+/* Ajuste para imágenes de especialidades */
+.specialty-img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+  border-radius: 15px; /* Bordes redondeados */
+  transition: transform 0.3s ease; /* Transición suave */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+}
+
+.specialty-img:hover {
+  transform: scale(1.1); /* Escala la imagen al pasar el cursor */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el cursor */
+}
+
+/* Estilos para botones */
+.btn {
+  border-radius: 8px; /* Bordes redondeados */
+  padding: 12px 24px; /* Aumenta el padding */
+  font-size: 16px;
+  font-weight: 500;
+  transition: all 0.3s ease; /* Transición suave */
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--secondary-color);
+  border-color: var(--secondary-color);
+  transform: translateY(-2px); /* Desplaza el botón ligeramente hacia arriba al pasar el cursor */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra al pasar el cursor */
+}
+
+/* Estilos para secciones */
+section {
+  padding: 80px 0; /* Aumenta el padding */
+}
+
+/* Estilos para tarjetas (cards) */
+.card {
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transición suave */
+  border-radius: 15px; /* Bordes redondeados */
+  padding: 20px;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px); /* Desplaza la tarjeta ligeramente hacia arriba al pasar el cursor */
+}
+
+.card-body {
+  padding: 20px;
+}
+
+h2 {
+  font-size: 2.5em;
+  font-weight: 600;
+  margin-bottom: 30px;
+  text-transform: capitalize;
+}
+
+h3 {
+  font-size: 1.8em;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.1em;
+  color: var(--text-color);
+}
