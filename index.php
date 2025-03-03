@@ -1,7 +1,7 @@
 <?php include 'header.php'; ?>
 
 <!-- Carousel with specialties overlay removed -->
-<div id="homeCarousel" class="carousel slide" data-ride="carousel" style="position: relative; max-height: 500px; overflow:hidden; background: url('images/background/carousel-bg.jpg') no-repeat center center; background-size:cover;">
+<div id="homeCarousel" class="carousel slide" data-ride="carousel" style="position: relative; max-height: 500px; overflow:hidden;">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
@@ -33,22 +33,37 @@
   <a class="right carousel-control" href="#homeCarousel" role="button" data-slide="next">
     <span class="glyphicon glyphicon-chevron-right" aria-hidden="true" style="margin-top:200px;"></span>
   </a>
+  
+  <?php
+  // Old overlay (commented out):
+  // <div class="overlay" style="position: absolute; bottom: 5%; left: 0; width: 100%; z-index: 100;">
+  //   ... specialities cards ...
+  // </div>
+  ?>
 </div>
 
 <!-- New Specialties Section below the carousel -->
+<style>
+  .specialty-card {
+    transition: transform 0.3s ease;
+  }
+  .specialty-card:hover {
+    transform: scale(1.05);
+  }
+</style>
 <section class="specialties" style="padding: 40px 0; background-color: #f5f5f5;">
   <div class="container">
     <div class="row">
       <div class="col-md-6 text-center specialty-card">
-        <img src="images/specialty/Internal-Medicine.jpg" alt="Internal Medicine" class="specialty-img">
+        <img src="images/specialty/Internal-Medicine.jpg" alt="Internal Medicine" style="width:60px; height:60px; margin-bottom:10px;">
         <h4>Internal Medicine</h4>
-        <p>Provides comprehensive internal medicine services, focusing on the diagnosis and treatment of adult diseases.</p>
+        <p>Dr. Manuel Garcia Estrada provides comprehensive internal medicine services, focusing on the diagnosis and treatment of adult diseases.</p>
         <a href="https://baptisthealth.net/es/doctors/manuel-garcia-estrada/869130" class="btn btn-primary btn-sm">Read more</a>
       </div>
       <div class="col-md-6 text-center specialty-card">
-        <img src="images/specialty/nephrology.jpg" alt="Nephrology" class="specialty-img">
+        <img src="images/specialty/nephrology.jpg" alt="Nephrology" style="width:60px; height:60px; margin-bottom:10px;">
         <h4>Nephrology</h4>
-        <p>Provides comprehensive nephrology services, focusing on the diagnosis and treatment of kidney diseases.</p>
+        <p>Dr. Manuel Garcia Estrada provides comprehensive nephrology services, focusing on the diagnosis and treatment of kidney diseases.</p>
         <a href="https://baptisthealth.net/es/doctors/manuel-garcia-estrada/869130" class="btn btn-primary btn-sm">Read more</a>
       </div>
     </div>
@@ -67,17 +82,23 @@
   <div class="container">
     <h2>Taking care of your well-being</h2>
     <div class="row" style="margin-top: 30px;">
-      <div class="col-md-6">
-        <img src="images/icon-1.png" alt="Accepted Health Plans" class="specialty-img">
-        <h4>Affordable Options</h4>
-        <p>We strive to offer solutions that fit your budget. Check if your insurance is accepted for our services.</p>
-        <a href="sure.php" class="btn btn-default">Learn More</a>
+      <div class="col-md-4">
+        <img src="images/icon-1.png" alt="Accepted Health Plans" style="width:60px; height:60px; margin-bottom:10px;">
+        <h4>Accepted Health Plans</h4>
+        <p>We accept a wide range of health insurance providers to ensure comprehensive coverage for our patients.</p>
+        <a href="#" class="btn btn-default">Read more</a>
       </div>
-      <div class="col-md-6">
-        <img src="images/icon-2.png" alt="Leaders and Medical Specialists" class="specialty-img">
-        <h4>Leaders & Medical Specialists</h4>
-        <p>Our specialized physicians deliver exceptional care and personalized treatment plans, ensuring your health and well-being.</p>
-        <a href="about.php" class="btn btn-default">Read more</a>
+      <div class="col-md-4">
+        <img src="images/icon-2.png" alt="Leaders in Specialized Medical Care" style="width:60px; height:60px; margin-bottom:10px;">
+        <h4>Leaders in Specialized Medical Care</h4>
+        <p>Our specialized physicians deliver exceptional care and outstanding results in their respective fields.</p>
+        <a href="#" class="btn btn-default">Read more</a>
+      </div>
+      <div class="col-md-4">
+        <img src="images/icon-3.png" alt="Medical Specialists" style="width:60px; height:60px; margin-bottom:10px;">
+        <h4>Medical Specialists</h4>
+        <p>Our medical specialists provide personalized treatment plans, ensuring your health and well-being.</p>
+        <a href="#" class="btn btn-default">Read more</a>
       </div>
     </div>
   </div>
@@ -97,16 +118,5 @@
     </form>
   </div>
 </section>
-
-<script>
-  (function($) {
-    $(document).ready(function() {
-      $('#homeCarousel').carousel({
-        interval: 5000,
-        pause: 'hover'
-      });
-    });
-  })(jQuery);
-</script>
 
 <?php include 'footer.php'; ?>

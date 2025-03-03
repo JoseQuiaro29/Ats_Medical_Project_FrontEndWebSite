@@ -12,7 +12,7 @@
   <div class="row">
     <!-- Left column with image -->
     <div class="col-md-6 text-center">
-      <img src="images/about/teleconsul.jpg" alt="About TeleConsultations" class="img-responsive" style="margin: 0 auto; max-width: 400px;">
+      <img src="images/about/about-tele.png" alt="About TeleConsultations" class="img-responsive" style="margin: 0 auto; max-width: 400px;">
     </div>
     <!-- Right column with text -->
     <div class="col-md-6">
@@ -42,7 +42,7 @@
     
     <div class="row">
       <div class="col-md-12 text-center">
-        <img src="images/about/doctor.jpg" alt="Dr. Manuel Garcia Estrada" class="img-responsive" style="margin: 0 auto; max-width: 200px; border-radius: 50%;">
+        <img src="images/about/doctor4.png" alt="Dr. Manuel Garcia Estrada" class="img-responsive" style="margin: 0 auto; max-width: 200px; border-radius: 50%;">
         <h4 style="color: #62c6a8; margin-top: 20px;">Dr. Manuel Garcia Estrada</h4>
         <p>Dr. Garcia Estrada is a board-certified internist and nephrologist with extensive experience in diagnosing and treating adult diseases. He is dedicated to providing high-quality care to his patients.</p>
       </div>

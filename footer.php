@@ -1,6 +1,6 @@
 <!-- footer.php -->
   <!-- Footer Section -->
-  <footer class="footer" style="background-color: #4AB19D; color: #fff; padding: 20px 0; margin-top: 40px; position: relative;">
+  <footer class="footer" style="background-color: #20a967; color: #fff; padding: 20px 0; margin-top: 40px;">
     <div class="container">
       <div class="row">
         <div class="col-md-4 text-center">
@@ -32,9 +32,6 @@
           <p>Phone +1 305 477 3052</p>
         </div>
       </div>
-    </div>
-    <div style="position: absolute; bottom: 10px; right: 10px; font-size: 10px; color: rgba(255,255,255,0.8);">
-      Imágenes de <a href="https://www.freepik.es" target="_blank" style="color: rgba(255,255,255,0.8); text-decoration: underline;">Freepik</a>
     </div>
   </footer>
 

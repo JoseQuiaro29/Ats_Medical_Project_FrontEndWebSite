@@ -7,51 +7,47 @@
   </div>
 </section>
 
-<!-- Book Consultation Grid with services for Internal Medicine and Nephrology -->
+<!-- Book Consultation Grid -->
 <section class="container" style="padding: 40px 0;">
   <div class="row">
-    <!-- Item 1: General Check-Up -->
+    <!-- Item 1 -->
     <div class="col-md-6" style="margin-bottom: 30px;">
-      <div class="card">
-        <img src="images/book/examenmedico.jpg" alt="General Check-Up" class="img-responsive" style="width:100%; height:200px; object-fit: contain; margin-bottom:10px;">
-        <div class="card-body">
-          <h4>General Check-Up</h4>
-          <p>Comprehensive review of your overall health.</p>
-          <a href="#" class="btn btn-primary">Book Now</a>
-        </div>
+      <div style="border: 1px solid #ddd; padding: 20px; text-align: center;">
+        <img src="images/book/examen-medico.jpg" alt="Medical Examination" 
+             style="width:100%; height:200px; object-fit: cover; margin-bottom:10px;">
+        <h4>Medical Examination</h4>
+        <p>1 hr | ARS 1</p>
+        <a href="#" class="btn btn-primary">Book Now</a>
       </div>
     </div>
-    <!-- Item 2: Chronic Disease Management -->
+    <!-- Item 2 -->
     <div class="col-md-6" style="margin-bottom: 30px;">
-      <div class="card">
-        <img src="images/book/manejo.jpg" alt="Chronic Disease Management" class="img-responsive" style="width:100%; height:200px; object-fit: contain; margin-bottom:10px;">
-        <div class="card-body">
-          <h4>Chronic Disease Management</h4>
-          <p>Ongoing care for conditions such as hypertension and diabetes.</p>
-          <a href="#" class="btn btn-primary">Book Now</a>
-        </div>
+      <div style="border: 1px solid #ddd; padding: 20px; text-align: center;">
+        <img src="images/book/pruebas-lab.jpg" alt="Laboratory Tests" 
+             style="width:100%; height:200px; object-fit: cover; margin-bottom:10px;">
+        <h4>Laboratory Tests</h4>
+        <p>1 hr | ARS 1</p>
+        <a href="#" class="btn btn-primary">Book Now</a>
       </div>
     </div>
-    <!-- Item 3: Kidney Function Evaluation -->
+    <!-- Item 3 -->
     <div class="col-md-6" style="margin-bottom: 30px;">
-      <div class="card">
-        <img src="images/book/kidney-evaluation.jpg" alt="Kidney Function Evaluation" class="img-responsive" style="width:100%; height:200px; object-fit: contain; margin-bottom:10px;">
-        <div class="card-body">
-          <h4>Kidney Function Evaluation</h4>
-          <p>Assessment and monitoring of kidney health.</p>
-          <a href="#" class="btn btn-primary">Book Now</a>
-        </div>
+      <div style="border: 1px solid #ddd; padding: 20px; text-align: center;">
+        <img src="images/book/terapia-virtual.jpg" alt="Virtual Therapy Session" 
+             style="width:100%; height:200px; object-fit: cover; margin-bottom:10px;">
+        <h4>Virtual Therapy Session</h4>
+        <p>1 hr | ARS 1</p>
+        <a href="#" class="btn btn-primary">Book Now</a>
       </div>
     </div>
-    <!-- Item 4: Dialysis Consultation -->
+    <!-- Item 4 -->
     <div class="col-md-6" style="margin-bottom: 30px;">
-      <div class="card">
-        <img src="images/book/dialysis.jpg" alt="Dialysis Consultation" class="img-responsive" style="width:100%; height:200px; object-fit: contain; margin-bottom:10px;">
-        <div class="card-body">
-          <h4>Dialysis Consultation</h4>
-          <p>Expert advice for patients undergoing dialysis treatments.</p>
-          <a href="#" class="btn btn-primary">Book Now</a>
-        </div>
+      <div style="border: 1px solid #ddd; padding: 20px; text-align: center;">
+        <img src="images/book/psicoterapia.jpg" alt="Psychotherapy" 
+             style="width:100%; height:200px; object-fit: cover; margin-bottom:10px;">
+        <h4>Psychotherapy</h4>
+        <p>1 hr | ARS 1</p>
+        <a href="#" class="btn btn-primary">Book Now</a>
       </div>
     </div>
   </div>

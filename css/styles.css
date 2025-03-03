@@ -1,158 +1,184 @@
 /* styles.css */
 
-/* Paleta de colores */
-:root {
-  --primary-color: #3498db; /* Azul moderno */
-  --secondary-color: #2980b9; /* Azul más oscuro */
-  --text-color: #333; /* Gris oscuro para textos */
-  --background-color: #ecf0f1; /* Gris muy claro para fondos */
-  --accent-color: #f39c12; /* Naranja para acentos */
-  --header-footer-color: #2c3e50; /* Azul oscuro para header y footer */
-}
-
 /* Ajustes generales */
 body {
-  font-family: 'Roboto', sans-serif; /* Fuente moderna */
-  color: var(--text-color);
-  background-color: var(--background-color);
-  line-height: 1.7;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0; /* Fondo gris claro */
   margin: 0;
   padding: 0;
 }
 
 /* Estilos para la barra de navegación */
 .navbar {
-  background-color: var(--header-footer-color);
-  border: none; /* Elimina el borde */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  transition: background-color 0.3s ease; /* Transición suave */
+  background-color: #20a967; /* ocean-green 500 */
+  border-color: #0f6d44;     /* ocean-green 700 */
 }
-
 .navbar-default .navbar-brand,
 .navbar-default .navbar-nav>li>a {
   color: #fff;
-  transition: color 0.3s ease; /* Transición suave */
-  padding: 15px 20px; /* Aumenta el padding */
-}
-
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-brand:hover {
-  color: var(--accent-color); /* Color de acento al pasar el cursor */
 }
 
 /* Carrusel */
-.carousel {
-  margin-bottom: 50px;
-}
-
 .carousel .item img {
   margin: 0 auto;
   max-height: 500px;
-  transition: transform 0.5s ease-in-out; /* Efecto zoom en las imágenes */
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-}
-
-.carousel .item img:hover {
-  transform: scale(1.03);
 }
 
 /* Footer */
 .footer {
-  background-color: var(--header-footer-color);
+  background-color: #20a967; /* ocean-green 500 */
   color: #fff;
-  padding: 30px 0;
-  margin-top: 50px;
+  padding: 20px 0;
+  margin-top: 40px;
   text-align: center;
-  transition: background-color 0.3s ease; /* Transición suave */
-  border-radius: 10px; /* Bordes redondeados */
-}
-
-.footer a {
-  color: #fff;
-  text-decoration: none; /* Elimina el subrayado */
-  transition: color 0.3s ease; /* Transición suave */
-}
-
-.footer a:hover {
-  color: var(--accent-color);
-  text-decoration: underline; /* Subrayado al pasar el cursor */
 }
 
 /* Ajuste para imágenes de especialidades */
 .specialty-img {
-  width: 120px;
-  height: 120px;
-  margin-bottom: 20px;
-  border-radius: 15px; /* Bordes redondeados */
-  transition: transform 0.3s ease; /* Transición suave */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
 }
 
-.specialty-img:hover {
-  transform: scale(1.1); /* Escala la imagen al pasar el cursor */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada al pasar el cursor */
+/* Estilos para el formulario de inicio de sesión */
+.login-container {
+  /* Margen superior para que no quede pegado al navbar */
+  margin-top: 100px;
 }
 
-/* Estilos para botones */
-.btn {
-  border-radius: 8px; /* Bordes redondeados */
-  padding: 12px 24px; /* Aumenta el padding */
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.3s ease; /* Transición suave */
-}
-
-.btn-primary {
-  background-color: var(--primary-color);
-  border-color: var(--primary-color);
-  color: #fff;
-}
-
-.btn-primary:hover {
-  background-color: var(--secondary-color);
-  border-color: var(--secondary-color);
-  transform: translateY(-2px); /* Desplaza el botón ligeramente hacia arriba al pasar el cursor */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra al pasar el cursor */
-}
-
-/* Estilos para secciones */
-section {
-  padding: 80px 0; /* Aumenta el padding */
-}
-
-/* Estilos para tarjetas (cards) */
-.card {
-  border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease, transform 0.3s ease; /* Transición suave */
-  border-radius: 15px; /* Bordes redondeados */
-  padding: 20px;
-}
-
-.card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transform: translateY(-5px); /* Desplaza la tarjeta ligeramente hacia arriba al pasar el cursor */
-}
-
-.card-body {
-  padding: 20px;
-}
-
-h2 {
-  font-size: 2.5em;
-  font-weight: 600;
+/* Logo del login (puedes ajustar el margen si lo deseas) */
+.login-logo {
   margin-bottom: 30px;
-  text-transform: capitalize;
 }
 
-h3 {
-  font-size: 1.8em;
-  font-weight: 500;
-  margin-bottom: 20px;
+/* Estilo general de la caja del formulario */
+.login-form {
+  background-color: #f8f9fa;  /* Fondo gris claro */
+  padding: 30px;              /* Espacio interno */
+  border-radius: 10px;        /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
 }
 
-p {
-  font-size: 1.1em;
-  color: var(--text-color);
+/* Bordes redondeados para los inputs */
+.login-form .form-control {
+  border-radius: 5px;
+}
+
+/* Botón con color ocean-green */
+.login-form .btn-primary {
+  background-color: #138852;  /* ocean-green 600 */
+  border-color: #0f6d44;      /* ocean-green 700 */
+}
+
+/* Hover del botón */
+.login-form .btn-primary:hover {
+  background-color: #0f6d44;  /* ocean-green 700 */
+  border-color: #0c5635;      /* ocean-green 800 */
+}
+
+/* ----------------------------------------------------------------- */
+/* NUEVAS CLASES PARA FLEXBOX (logo a la izquierda, formulario a la derecha) */
+/* ----------------------------------------------------------------- */
+
+/* Contenedor interno que mostrará logo y formulario en dos columnas */
+.login-flex-container {
+  display: flex;             /* Activa Flexbox */
+  flex-direction: row;       /* Logo y formulario en fila (lado a lado) */
+  background-color: #fff;    /* Fondo blanco */
+  border-radius: 8px;        /* Bordes redondeados */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave */
+  padding: 20px;             /* Espacio interno */
+  max-width: 800px;          /* Ancho máximo de la caja */
+  margin: 0 auto;            /* Centra horizontalmente si es menor a 100% */
+}
+
+/* Columna izquierda (donde irá el logo) */
+.login-flex-left {
+  flex: 1;                   /* Ocupa 1 parte del espacio */
+  display: flex;             /* Para centrar el logo vertical/horizontal */
+  align-items: center; 
+  justify-content: center;
+}
+
+/* Columna derecha (donde irá el formulario) */
+.login-flex-right {
+  flex: 2;                   /* Ocupa 2 partes del espacio */
+  display: flex;             /* Para centrar el formulario */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Línea vertical que separa las dos columnas */
+.login-separator {
+  width: 1px;
+  background-color: #ccc;
+  margin: 0 20px;            /* Espacio horizontal a ambos lados */
+  height: 200px;             /* Ajusta la altura que necesites */
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 200px;
+  background-color: #79dca6; /* ocean-green 300 */
+  padding: 15px;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  transition: transform 0.3s ease;
+}
+
+.sidebar.collapsed {
+  transform: translateX(-100%);
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+}
+
+/* Content styles */
+.content {
+  margin-left: 200px;
+  transition: margin-left 0.3s ease;
+}
+
+.content.collapsed {
+  margin-left: 0;
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4f4f4;
+  padding: 10px;
+}
+
+.header img {
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+/* Toggle button styles */
+.toggle-btn {
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: none; /* Hidden by default, shown on smaller screens */
+}
+
+@media (max-width: 768px) {
+  .toggle-btn {
+    display: block;
+  }
 }

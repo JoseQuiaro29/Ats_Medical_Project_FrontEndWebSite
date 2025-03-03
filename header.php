@@ -11,11 +11,11 @@
 
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/styles.css">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/tailwind-output.css"> <!-- Agrega esta línea -->
 </head>
 <body>
   <!-- Navigation Bar -->
-  <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #4AB19D; border-color: #3a8a7e;">
+  <nav class="navbar navbar-default navbar-fixed-top" style="background-color: #20a967; border-color: #3a8a7e;">
     <div class="container">
       <div class="navbar-header">
         <!-- Mobile menu toggle button -->
@@ -25,7 +25,7 @@
           <span class="icon-bar" style="background-color:#fff;"></span>
         </button>
         <a class="navbar-brand" href="index.php" style="color:#fff; display: flex; align-items: center;">
-          <img src="images/logoG.png" alt="Logo" style="width: 40px; height: 40px; margin-right: 10px;">
+          <img src="images/logo.png" alt="Logo" style="width: 40px; height: 40px; margin-right: 10px;">
           <strong>TeleConsultations</strong>
         </a>
       </div>
@@ -42,7 +42,7 @@
 
   <li><a href="about.php" style="color:#fff;">About</a></li>
   <li><a href="contact.php" style="color:#fff;">Contact</a></li>
-  <li><a href="#" style="color:#fff;">Sign in</a></li>
+  <li><a href="login.php" style="color:#fff;">Sign in</a></li>
 </ul>
 
       </div>
