@@ -25,7 +25,7 @@
           <span class="icon-bar" style="background-color:#fff;"></span>
         </button>
         <a class="navbar-brand" href="index.php" style="color:#fff; display: flex; align-items: center;">
-          <img src="images/logo.png" alt="Logo" style="width: 40px; height: 40px; margin-right: 10px;">
+          <img src="images/logo1.png" alt="Logo" style="width: 40px; height: 40px; margin-right: 10px;">
           <strong>TeleConsultations</strong>
         </a>
       </div>

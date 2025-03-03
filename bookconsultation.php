@@ -13,40 +13,40 @@
     <!-- Item 1 -->
     <div class="col-md-6" style="margin-bottom: 30px;">
       <div style="border: 1px solid #ddd; padding: 20px; text-align: center;">
-        <img src="images/book/examen-medico.jpg" alt="Medical Examination" 
+        <img src="images/book/kidney-evaluation.jpg" alt="Nephrology Consultation" 
              style="width:100%; height:200px; object-fit: cover; margin-bottom:10px;">
-        <h4>Medical Examination</h4>
-        <p>1 hr | ARS 1</p>
+        <h4>Nephrology Consultation</h4>
+        <p>1 hr </p>
         <a href="#" class="btn btn-primary">Book Now</a>
       </div>
     </div>
     <!-- Item 2 -->
     <div class="col-md-6" style="margin-bottom: 30px;">
       <div style="border: 1px solid #ddd; padding: 20px; text-align: center;">
-        <img src="images/book/pruebas-lab.jpg" alt="Laboratory Tests" 
+        <img src="images/book/examenmedico.jpg" alt="General Medicine Consultation" 
              style="width:100%; height:200px; object-fit: cover; margin-bottom:10px;">
-        <h4>Laboratory Tests</h4>
-        <p>1 hr | ARS 1</p>
+        <h4>General Medicine Consultation</h4>
+        <p>1 hr </p>
         <a href="#" class="btn btn-primary">Book Now</a>
       </div>
     </div>
     <!-- Item 3 -->
     <div class="col-md-6" style="margin-bottom: 30px;">
       <div style="border: 1px solid #ddd; padding: 20px; text-align: center;">
-        <img src="images/book/terapia-virtual.jpg" alt="Virtual Therapy Session" 
+        <img src="images/book/hiper.jpg" alt="Diabetes and Hypertension Management" 
              style="width:100%; height:200px; object-fit: cover; margin-bottom:10px;">
-        <h4>Virtual Therapy Session</h4>
-        <p>1 hr | ARS 1</p>
+        <h4>Diabetes and Hypertension Management</h4>
+        <p>1 hr </p>
         <a href="#" class="btn btn-primary">Book Now</a>
       </div>
     </div>
     <!-- Item 4 -->
     <div class="col-md-6" style="margin-bottom: 30px;">
       <div style="border: 1px solid #ddd; padding: 20px; text-align: center;">
-        <img src="images/book/psicoterapia.jpg" alt="Psychotherapy" 
+        <img src="images/book/dialysis.jpg" alt="Renal Function Monitoring" 
              style="width:100%; height:200px; object-fit: cover; margin-bottom:10px;">
-        <h4>Psychotherapy</h4>
-        <p>1 hr | ARS 1</p>
+        <h4>Renal Function Monitoring</h4>
+        <p>1 hr </p>
         <a href="#" class="btn btn-primary">Book Now</a>
       </div>
     </div>

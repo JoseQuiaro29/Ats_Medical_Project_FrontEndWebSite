@@ -1,7 +1,60 @@
 <?php include 'header.php'; ?>
 
-<!-- Carousel with specialties overlay removed -->
-<div id="homeCarousel" class="carousel slide" data-ride="carousel" style="position: relative; max-height: 500px; overflow:hidden;">
+<!-- Introductory Section -->
+<section class="intro-section" style="
+  padding: 40px 0;                      /* Vertical padding for spacing */
+  background-color: #ffffff;            /* White background for clarity */
+  transition: transform 0.3s ease;      /* Smooth hover transition */
+" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+  <div class="container" style="
+    display: flex;                      /* Use flexbox for layout */
+    align-items: center;                /* Vertically center items */
+    justify-content: center;            /* Center items horizontally */
+    flex-wrap: wrap;                    /* Wrap content on smaller screens */
+  ">
+    <!-- Logo Column -->
+    <div class="intro-logo" style="
+      flex: 0 0 auto;                    /* Maintain natural width */
+      text-align: center;                /* Center the logo */
+      margin: 10px;                      /* Spacing around logo */
+      transition: transform 0.3s ease;   /* Smooth hover transition */
+    " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+      <img src="images/logoG.png" alt="Company Logo" style="
+        max-width: 200px;                /* Maximum width for the logo */
+        width: 100%;                     /* Responsive width */
+        height: auto;                    /* Maintain aspect ratio */
+      ">
+    </div>
+    <!-- Introductory Text Column -->
+    <div class="intro-text" style="
+      flex: 1 1 400px;                   /* Allow growth with a minimum width */
+      margin: 10px;                      /* Spacing around text */
+      text-align: left;                  /* Align text to the left */
+      transition: transform 0.3s ease;   /* Smooth hover transition */
+    " onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+      <h1 style="
+        color: #2c3e50;                  /* Dark blue for the heading */
+        font-size: 2.5rem;               /* Large heading for impact */
+        margin-bottom: 20px;             /* Space below the heading */
+      ">Welcome to TeleConsultations</h1>
+      <p style="
+        color: #666;                     /* Gray text for readability */
+        font-size: 1.2rem;               /* Comfortable font size */
+        line-height: 1.6;                /* Adequate line spacing */
+      ">
+        Experience top-quality teleconsultations with leading doctors from the comfort of your home. Our innovative platform connects you with expert medical professionals quickly and securely, ensuring personalized care at your fingertips.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Carousel Section -->
+<div id="homeCarousel" class="carousel slide hover:shadow-ocean-green-300" data-ride="carousel" style="
+  position: relative; 
+  max-height: 500px; 
+  overflow: hidden;
+  transition: transform 0.3s ease;
+" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
   <!-- Indicators -->
   <ol class="carousel-indicators">
     <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
@@ -22,11 +75,11 @@
       <img src="images/carousel/carousel3.jpg" alt="Slide 3" class="img-responsive" style="margin: 0 auto; max-height: 500px;">
     </div>
     <div class="item">
-      <img src="images/carousel/carousel4.jpg" alt="Slide 3" class="img-responsive" style="margin: 0 auto; max-height: 500px;">
+      <img src="images/carousel/carousel4.jpg" alt="Slide 4" class="img-responsive" style="margin: 0 auto; max-height: 500px;">
     </div>
   </div>
 
-  <!-- Controls -->
+  <!-- Carousel Controls -->
   <a class="left carousel-control" href="#homeCarousel" role="button" data-slide="prev">
     <span class="glyphicon glyphicon-chevron-left" aria-hidden="true" style="margin-top:200px;"></span>
   </a>
@@ -35,80 +88,76 @@
   </a>
   
   <?php
-  // Old overlay (commented out):
-  // <div class="overlay" style="position: absolute; bottom: 5%; left: 0; width: 100%; z-index: 100;">
-  //   ... specialities cards ...
-  // </div>
+  // Previously used overlay removed for a cleaner design
   ?>
 </div>
 
-<!-- New Specialties Section below the carousel -->
+<!-- Specialties Section -->
 <style>
   .specialty-card {
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth scale and shadow transition */
   }
   .specialty-card:hover {
-    transform: scale(1.05);
+    transform: scale(1.05);          /* Slight zoom on hover */
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15); /* Enhanced shadow on hover */
   }
 </style>
-<section class="specialties" style="padding: 40px 0; background-color: #f5f5f5;">
+<section class="specialties hover:shadow-ocean-green-300" style="padding: 40px 0; background-color: #f5f5f5; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#eaeaea'" onmouseout="this.style.backgroundColor='#f5f5f5'">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 text-center specialty-card">
-        <img src="images/specialty/Internal-Medicine.jpg" alt="Internal Medicine" style="width:60px; height:60px; margin-bottom:10px;">
+      <!-- Specialty Card 1: Internal Medicine -->
+      <div class="col-md-6 text-center specialty-card" style="margin-bottom: 20px;">
+        <img src="images/specialty/Internal-Medicine.jpg" alt="Internal Medicine" style="width:60px; height:60px; margin-bottom:10px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
         <h4>Internal Medicine</h4>
-        <p>Dr. Manuel Garcia Estrada provides comprehensive internal medicine services, focusing on the diagnosis and treatment of adult diseases.</p>
-        <a href="https://baptisthealth.net/es/doctors/manuel-garcia-estrada/869130" class="btn btn-primary btn-sm">Read more</a>
+        <p>Our experienced physicians provide comprehensive consultations in internal medicine, ensuring precise diagnosis and effective treatment for adult health concerns.</p>
+        <a href="#" class="btn btn-primary btn-sm">Read more</a>
       </div>
-      <div class="col-md-6 text-center specialty-card">
-        <img src="images/specialty/nephrology.jpg" alt="Nephrology" style="width:60px; height:60px; margin-bottom:10px;">
+      <!-- Specialty Card 2: Nephrology -->
+      <div class="col-md-6 text-center specialty-card" style="margin-bottom: 20px;">
+        <img src="images/specialty/nephrology.jpg" alt="Nephrology" style="width:60px; height:60px; margin-bottom:10px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
         <h4>Nephrology</h4>
-        <p>Dr. Manuel Garcia Estrada provides comprehensive nephrology services, focusing on the diagnosis and treatment of kidney diseases.</p>
-        <a href="https://baptisthealth.net/es/doctors/manuel-garcia-estrada/869130" class="btn btn-primary btn-sm">Read more</a>
+        <p>Receive expert consultations in nephrology focused on diagnosing and managing kidney conditions to help you maintain optimal renal health.</p>
+        <a href="#" class="btn btn-primary btn-sm">Read more</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Schedule your online consultation Section -->
-<section class="text-center" style="padding: 40px 0; background-color: #f5f5f5; margin-top: 40px;">
-  <h2>Schedule your online consultation</h2>
-  <p>Get expert medical advice from the comfort of your home.</p>
-  <a href="bookconsultation.php" class="btn btn-success btn-lg">Book a consultation</a>
-</section>
-
-<!-- Taking care of your well-being Section -->
-<section class="text-center" style="padding: 40px 0;">
+<!-- Taking Care of Your Well-Being Section -->
+<section class="text-center hover:shadow-ocean-green-300" style="padding: 40px 0; background-color: #f5f5f5; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
   <div class="container">
-    <h2>Taking care of your well-being</h2>
-    <div class="row" style="margin-top: 30px;">
-      <div class="col-md-4">
-        <img src="images/icon-1.png" alt="Accepted Health Plans" style="width:60px; height:60px; margin-bottom:10px;">
-        <h4>Accepted Health Plans</h4>
-        <p>We accept a wide range of health insurance providers to ensure comprehensive coverage for our patients.</p>
+    <h2>Taking Care of Your Well-Being</h2>
+    <div class="row" style="margin-top: 30px; justify-content: center;">
+      <!-- Well-Being Card 1: Tailored Health Plans -->
+      <div class="col-md-6" style="transition: transform 0.3s ease; margin-bottom: 20px;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="images/icon-1.png" alt="Tailored Health Plans" style="width:60px; height:60px; margin-bottom:10px;">
+        <h4>Tailored Health Plans</h4>
+        <p>We adapt to your unique needs by partnering with a diverse range of insurance providers, ensuring you get the coverage that fits you best.</p>
         <a href="#" class="btn btn-default">Read more</a>
       </div>
-      <div class="col-md-4">
-        <img src="images/icon-2.png" alt="Leaders in Specialized Medical Care" style="width:60px; height:60px; margin-bottom:10px;">
-        <h4>Leaders in Specialized Medical Care</h4>
-        <p>Our specialized physicians deliver exceptional care and outstanding results in their respective fields.</p>
-        <a href="#" class="btn btn-default">Read more</a>
-      </div>
-      <div class="col-md-4">
-        <img src="images/icon-3.png" alt="Medical Specialists" style="width:60px; height:60px; margin-bottom:10px;">
-        <h4>Medical Specialists</h4>
-        <p>Our medical specialists provide personalized treatment plans, ensuring your health and well-being.</p>
+      <!-- Well-Being Card 2: Expert Medical Care -->
+      <div class="col-md-6" style="transition: transform 0.3s ease; margin-bottom: 20px;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="images/icon-2.png" alt="Expert Medical Care" style="width:60px; height:60px; margin-bottom:10px;">
+        <h4>Expert Medical Care</h4>
+        <p>Our board-certified specialists provide comprehensive, personalized treatment plans to ensure exceptional care and positive health outcomes for you.</p>
         <a href="#" class="btn btn-default">Read more</a>
       </div>
     </div>
   </div>
+</section>
+
+<!-- Schedule Your Online Consultation Section -->
+<section class="text-center hover:shadow-ocean-green-300" style="padding: 40px 0; background-color: #f5f5f5; margin-top: 40px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+  <h2>Schedule Your Online Consultation</h2>
+  <p>Connect with top medical professionals from the comfort of your home.</p>
+  <a href="bookconsultation.php" class="btn btn-success btn-lg">Book a Consultation</a>
 </section>
 
 <!-- Subscription Section -->
-<section style="padding: 40px 0; background-color: #eeeeee;">
+<section class="hover:shadow-ocean-green-300" style="padding: 40px 0; background-color: #eeeeee; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
   <div class="container text-center">
-    <h2>Receive our latest news</h2>
-    <p>Sign up to receive updates on our services, events, and wellness tips. Stay informed to build a healthy lifestyle.</p>
+    <h2>Get Our Latest News</h2>
+    <p>Subscribe to receive updates on our services, events, and wellness tips to help you live a healthier life.</p>
     <form class="form-inline" style="margin-top: 20px;">
       <div class="form-group">
         <label class="sr-only" for="emailAddress">Email address</label>

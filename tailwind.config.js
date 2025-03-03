@@ -16,6 +16,9 @@ module.exports = {
           '950': '#06281b',
         },
       },
+      boxShadow: {
+        'ocean-green-300': '0 4px 6px -1px rgba(121, 220, 166, 0.3), 0 2px 4px -1px rgba(121, 220, 166, 0.15)',
+      },
     },
   },
   // Update the color references in the header and footer to use the 'ocean-green' 500 color.

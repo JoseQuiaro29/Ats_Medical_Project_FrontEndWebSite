@@ -141,11 +141,11 @@ include 'sidebar.php';   // Dashboard sidebar
         <h3>Pending Reports</h3>
         <p>3 Reports to Review</p>
       </div>
-      <div class="card" onclick="window.location.href='mensajes.php'">
+      <div class="card" onclick="window.location.href='#'">
         <h3>New Messages</h3>
         <p>8 Unread Messages</p>
       </div>
-      <div class="card" onclick="window.location.href='pacientes.php'">
+      <div class="card" onclick="window.location.href='paciente.php'">
         <h3>Active Patients</h3>
         <p>24 Registered Patients</p>
       </div>
