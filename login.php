@@ -1,14 +1,14 @@
 <?php
-// Activar reporte de errores (opcional, para depuración)
+// Enable error reporting (optional for debugging)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// ========== Lógica de login (antes de generar HTML) ==========
+// ========== Login logic (before generating HTML) ==========
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Password por defecto = '123456'
+    // Default password = '123456'
     if ($password === '123456') {
         if ($username === 'client') {
             header('Location: src/cliente/cliente_dashboard.php');
@@ -17,10 +17,10 @@ if (isset($_POST['login'])) {
             header('Location: src/doctor/doctor_dashboard.php');
             exit();
         } else {
-            $error_message = "Usuario no reconocido";
+            $error_message = "Unrecognized user";
         }
     } else {
-        $error_message = "Contraseña incorrecta";
+        $error_message = "Incorrect password";
     }
 }
 ?>
@@ -34,13 +34,13 @@ if (isset($_POST['login'])) {
   <!-- Bootstrap CSS (CDN) -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-  <!-- Tu hoja de estilos principal -->
+  <!-- Your main stylesheet -->
   <link rel="stylesheet" href="styles.css">
 
   <style>
-    /* Barra superior fija */
+    /* Fixed top navbar */
     .custom-navbar {
-      background-color: #20a967; /* Verde ocean-green */
+      background-color: #20a967; /* ocean-green */
       border-color: #3a8a7e;
     }
     .custom-navbar .navbar-brand {
@@ -58,53 +58,59 @@ if (isset($_POST['login'])) {
       color: #fff !important;
     }
 
-    /* Espacio para que el contenido no quede debajo del navbar fijo */
+    /* Spacing so the content is not hidden under the fixed navbar */
     .top-spacing {
-      margin-top: 80px; /* Ajusta según la altura de tu navbar */
+      margin-top: 80px; /* Adjust based on your navbar height */
     }
 
-    /* Contenedor "tarjeta" centrado para el login */
+    /* Centered "card" container for login */
     .login-card {
-      max-width: 800px;      /* Ancho máximo */
-      margin: 0 auto;        /* Centrado horizontal */
-      background: #fff;      /* Fondo blanco */
-      padding: 30px;         /* Espaciado interno */
-      border-radius: 8px;    /* Bordes redondeados */
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Sombra suave */
+      max-width: 800px;        /* Max width */
+      margin: 0 auto;          /* Center horizontally */
+      background: #fff;        /* White background */
+      padding: 30px;           /* Inner spacing */
+      border-radius: 8px;      /* Rounded corners */
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
     }
 
-    /* Flex container para dividir logo y formulario */
+    /* Flex container to split logo and form */
     .login-flex-container {
       display: flex;
-      flex-wrap: wrap;             /* Permite que en pantallas pequeñas se acomode en una columna */
-      justify-content: center;     /* Centra horizontalmente */
-      align-items: center;         /* Centra verticalmente dentro del contenedor */
+      flex-wrap: wrap;         /* Allows columns to stack on small screens */
+      justify-content: center; /* Center horizontally */
+      align-items: center;     /* Center vertically inside the container */
     }
 
-    /* Columnas */
+    /* Columns */
     .login-flex-left,
     .login-flex-right {
-      flex: 1 1 300px; /* Crece/encoge con un ancho mínimo de 300px */
+      flex: 1 1 300px; /* Grows/Shrinks with a minimum width of 300px */
       text-align: center;
-      margin: 10px;    /* Separación horizontal y vertical */
+      margin: 10px;    /* Horizontal and vertical gap */
     }
 
-    /* Logo */
+    /* Logo effect: grayscale + hover zoom */
     .login-logo {
       width: 150px; 
       height: auto; 
       margin-bottom: 20px;
+      filter: grayscale(80%);
+      transition: filter 0.3s ease, transform 0.3s ease;
+    }
+    .login-logo:hover {
+      filter: grayscale(0%);
+      transform: scale(1.05);
     }
 
-    /* Separador vertical */
+    /* Vertical separator */
     .login-separator {
       width: 2px;
       background-color: #eee;
-      height: 200px; /* Ajusta la altura */
+      height: 200px; /* Adjust height */
       margin: 0 20px;
     }
 
-    /* Estilos para el formulario */
+    /* Form styles */
     .login-form h2 {
       margin-bottom: 20px;
     }
@@ -120,50 +126,50 @@ if (isset($_POST['login'])) {
 </head>
 <body>
 
-  <!-- NAVBAR SUPERIOR -->
+  <!-- TOP NAVBAR -->
   <nav class="navbar navbar-default navbar-fixed-top custom-navbar">
     <div class="container">
       <div class="navbar-header">
-        <!-- Botón de menú para móvil -->
+        <!-- Mobile menu toggle button -->
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
           <span class="icon-bar" style="background-color:#fff;"></span>
           <span class="icon-bar" style="background-color:#fff;"></span>
           <span class="icon-bar" style="background-color:#fff;"></span>
         </button>
-        <!-- Logo y texto -->
+        <!-- Logo and title -->
         <a class="navbar-brand" href="index.php">
           <img src="images/logo1.png" alt="Logo">
           TeleConsultations
         </a>
       </div>
 
-      <!-- Links de la derecha -->
+      <!-- Right-side links -->
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="index.php" style="color:#fff;">&larr; Volver al Inicio</a>
+            <a href="index.php" style="color:#fff;">&larr; Back to Home</a>
           </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Espacio para que el contenido no quede oculto tras el navbar -->
+  <!-- Space so content isn't hidden under the navbar -->
   <div class="top-spacing"></div>
 
-  <!-- Contenedor principal en forma de "tarjeta" centrada -->
+  <!-- Main centered "card" container -->
   <div class="login-card">
     <div class="login-flex-container">
       
-      <!-- Columna izquierda: Logo -->
+      <!-- Left column: Logo -->
       <div class="login-flex-left">
         <img src="images/logo2.png" alt="Logo" class="login-logo">
       </div>
       
-      <!-- Separador vertical (se oculta en pantallas pequeñas si deseas) -->
+      <!-- Vertical separator (hidden on extra-small screens) -->
       <div class="login-separator hidden-xs"></div>
       
-      <!-- Columna derecha: Formulario -->
+      <!-- Right column: Form -->
       <div class="login-flex-right">
         <div class="login-form">
           <h2>Login</h2>
@@ -189,7 +195,7 @@ if (isset($_POST['login'])) {
               >
             </div>
             <button type="submit" name="login" class="btn btn-primary">
-              Iniciar Sesión
+              Log In
             </button>
           </form>
 
@@ -202,10 +208,10 @@ if (isset($_POST['login'])) {
     </div><!-- .login-flex-container -->
   </div><!-- .login-card -->
 
-  <!-- Footer al final -->
+  <!-- Footer -->
   <?php include 'footer.php'; ?>
 
-  <!-- jQuery y Bootstrap JS (CDN) -->
+  <!-- jQuery & Bootstrap JS (CDN) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
