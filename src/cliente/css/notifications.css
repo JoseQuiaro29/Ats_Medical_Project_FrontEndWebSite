@@ -1,0 +1,79 @@
+:root {
+  --primary-color: #20a967;
+  --secondary-color: #2c3e50;
+  --bg-color: #f4f7f9;
+  --card-bg: #ffffff;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+}
+.content {
+  margin-left: 220px; /* Espacio para el sidebar expandido */
+  padding: 80px 40px; /* Espacio superior para no tapar el header fijo */
+  transition: margin-left 0.3s ease;
+}
+.content.collapsed {
+  margin-left: 70px;
+}
+/* Contenedor principal para las notificaciones */
+.notifications-container {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+.notifications-container h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  color: var(--secondary-color);
+}
+.notifications-container p {
+  margin-bottom: 20px;
+  color: #666;
+}
+/* Lista de notificaciones */
+.notification-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espacio entre notificaciones */
+}
+.notification-item {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  transition: background 0.3s ease;
+}
+/* Si deseas resaltar notificaciones no leídas */
+.notification-item.unread {
+  border-left: 4px solid var(--primary-color);
+}
+.notification-item h4 {
+  margin: 0 0 5px;
+  font-size: 1.2rem;
+  color: var(--secondary-color);
+}
+.notification-item p {
+  margin: 0 0 5px;
+  color: #333;
+}
+.notification-time {
+  font-size: 0.8rem;
+  color: #999;
+}
+/* Hover */
+.notification-item:hover {
+  background: #f0f0f0;
+}
+/* Ajustes responsive */
+@media (max-width: 768px) {
+  .content {
+    margin-left: 70px;
+    padding: 60px 20px;
+  }
+}

@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="../../css/clientDash.ccs">
+
   <!-- Bootstrap (opcional si no lo tienes cargado en otro lugar) -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
@@ -96,3 +98,5 @@
       }
     });
   </script>
+</body>
+</html>

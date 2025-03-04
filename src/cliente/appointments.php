@@ -1,15 +1,15 @@
 <?php
 session_start();
-// Incluir el header (abre el documento) y el sidebar (con sus estilos propios)
+// Incluir el header (que abre el documento) y el sidebar (con sus estilos propios)
 include 'cliheader.php';
 include 'sidebar.php';
 ?>
 
-<!-- Contenedor principal del contenido -->
 <div class="content" id="content" style="
-  margin-left: 220px; /* Deja espacio para el sidebar fijo */
+  margin-left: 220px; /* Espacio para el sidebar fijo */
   margin-top: 60px;   /* Para que el contenido no se oculte detrás del header */
   padding: 40px;
+  transition: margin-left 0.3s ease;
 ">
   <!-- Encabezado y filtros -->
   <div class="appointments-header" style="display: flex; flex-direction: column; margin-bottom: 30px;">

@@ -1,0 +1,55 @@
+.content {
+  margin-left: 220px;  /* Espacio para el sidebar fijo */
+  margin-top: 60px;    /* Evita que quede detrás del header de 60px */
+  padding: 40px;       /* Espaciado interno */
+  transition: margin-left 0.3s ease;
+}
+
+.prescriptions-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-bottom: 30px;
+}
+
+.prescriptions-container h2 {
+  margin-top: 0;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.prescriptions-container p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+thead tr {
+  background: #20a967;
+  color: #fff;
+}
+
+th {
+  padding: 15px 10px;
+  text-align: left;
+}
+
+tbody tr {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+td {
+  padding: 15px 10px;
+}
+
+td a {
+  color: #20a967;
+  text-decoration: none;
+  font-weight: bold;
+}
