@@ -57,7 +57,7 @@
             <a href="logout.php">Cerrar Sesión</a>
         </div>
         <h2>Bienvenido al Dashboard del Cliente</h2>
-        <?php include '../../footer.php'; ?>
+        <?php include '../doctor/footer.php'; ?>
     </div>
 </body>
 </html>
