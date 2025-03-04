@@ -66,16 +66,16 @@
   <!-- Slides -->
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <img src="images/carousel/carousel1.jpg" alt="Slide 1" class="img-responsive" style="margin: 0 auto; max-height: 500px;">
+      <img src="images/carousel/carousel1.webp" alt="Slide 1" class="img-responsive" style="margin: 0 auto; max-height: 500px;">
     </div>
     <div class="item">
-      <img src="images/carousel/carousel2.jpg" alt="Slide 2" class="img-responsive" style="margin: 0 auto; max-height: 500px;">
+      <img src="images/carousel/carousel2.webp" alt="Slide 2" class="img-responsive" style="margin: 0 auto; max-height: 500px;">
     </div>
     <div class="item">
-      <img src="images/carousel/carousel3.jpg" alt="Slide 3" class="img-responsive" style="margin: 0 auto; max-height: 500px;">
+      <img src="images/carousel/carousel3.webp" alt="Slide 3" class="img-responsive" style="margin: 0 auto; max-height: 500px;">
     </div>
     <div class="item">
-      <img src="images/carousel/carousel4.jpg" alt="Slide 4" class="img-responsive" style="margin: 0 auto; max-height: 500px;">
+      <img src="images/carousel/carousel4.webp" alt="Slide 4" class="img-responsive" style="margin: 0 auto; max-height: 500px;">
     </div>
   </div>
 
@@ -107,14 +107,14 @@
     <div class="row">
       <!-- Specialty Card 1: Internal Medicine -->
       <div class="col-md-6 text-center specialty-card" style="margin-bottom: 20px;">
-        <img src="images/specialty/Internal-Medicine.jpg" alt="Internal Medicine" style="width:60px; height:60px; margin-bottom:10px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="images/specialty/Internal-Medicine.webp" alt="Internal Medicine" style="width:60px; height:60px; margin-bottom:10px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
         <h4>Internal Medicine</h4>
         <p>Our experienced physicians provide comprehensive consultations in internal medicine, ensuring precise diagnosis and effective treatment for adult health concerns.</p>
         <a href="#" class="btn btn-primary btn-sm">Read more</a>
       </div>
       <!-- Specialty Card 2: Nephrology -->
       <div class="col-md-6 text-center specialty-card" style="margin-bottom: 20px;">
-        <img src="images/specialty/nephrology.jpg" alt="Nephrology" style="width:60px; height:60px; margin-bottom:10px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        <img src="images/specialty/nephrology.webp" alt="Nephrology" style="width:60px; height:60px; margin-bottom:10px; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
         <h4>Nephrology</h4>
         <p>Receive expert consultations in nephrology focused on diagnosing and managing kidney conditions to help you maintain optimal renal health.</p>
         <a href="#" class="btn btn-primary btn-sm">Read more</a>

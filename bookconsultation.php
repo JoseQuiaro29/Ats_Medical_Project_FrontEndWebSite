@@ -13,7 +13,7 @@
     <!-- Item 1 -->
     <div class="col-md-6" style="margin-bottom: 30px;">
       <div style="border: 1px solid #ddd; padding: 20px; text-align: center;">
-        <img src="images/book/kidney-evaluation.jpg" alt="Nephrology Consultation" 
+        <img src="images/book/kidney-evaluation.webp" alt="Nephrology Consultation" 
              style="width:100%; height:200px; object-fit: cover; margin-bottom:10px;">
         <h4>Nephrology Consultation</h4>
         <p>1 hr </p>
@@ -23,7 +23,7 @@
     <!-- Item 2 -->
     <div class="col-md-6" style="margin-bottom: 30px;">
       <div style="border: 1px solid #ddd; padding: 20px; text-align: center;">
-        <img src="images/book/examenmedico.jpg" alt="General Medicine Consultation" 
+        <img src="images/book/examenmedico.webp" alt="General Medicine Consultation" 
              style="width:100%; height:200px; object-fit: cover; margin-bottom:10px;">
         <h4>General Medicine Consultation</h4>
         <p>1 hr </p>
@@ -33,7 +33,7 @@
     <!-- Item 3 -->
     <div class="col-md-6" style="margin-bottom: 30px;">
       <div style="border: 1px solid #ddd; padding: 20px; text-align: center;">
-        <img src="images/book/hiper.jpg" alt="Diabetes and Hypertension Management" 
+        <img src="images/book/hiper.webp" alt="Diabetes and Hypertension Management" 
              style="width:100%; height:200px; object-fit: cover; margin-bottom:10px;">
         <h4>Diabetes and Hypertension Management</h4>
         <p>1 hr </p>
@@ -43,7 +43,7 @@
     <!-- Item 4 -->
     <div class="col-md-6" style="margin-bottom: 30px;">
       <div style="border: 1px solid #ddd; padding: 20px; text-align: center;">
-        <img src="images/book/dialysis.jpg" alt="Renal Function Monitoring" 
+        <img src="images/book/dialysis.webp" alt="Renal Function Monitoring" 
              style="width:100%; height:200px; object-fit: cover; margin-bottom:10px;">
         <h4>Renal Function Monitoring</h4>
         <p>1 hr </p>

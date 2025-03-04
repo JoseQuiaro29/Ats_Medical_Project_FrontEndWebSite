@@ -32,7 +32,7 @@
   <div class="row">
     <!-- Atribución: "Riñones Fotos de Stock por Vecteezy" - <a href="https://es.vecteezy.com/fotos-gratis/ri%C3%B1ones" target="_blank">Fuente</a> -->
     <div class="col-md-6 text-center specialty-card">
-      <img src="images/specialty/nephrology1.jpg" alt="Tele Nephrology">
+      <img src="images/specialty/nephrology1.webp" alt="Tele Nephrology">
       <h3 style="color: #62c6a8;">Tele Nephrology</h3>
       <p>
         Dr. Manuel Garcia Estrada offers remote nephrology services, providing specialized consultations for kidney diseases.
@@ -44,7 +44,7 @@
       ?>
     </div>
     <div class="col-md-6 text-center specialty-card">
-      <img src="images/specialty/InternalMedicine.jpg" alt="Tele Internal Medicine">
+      <img src="images/specialty/InternalMedicine.webp" alt="Tele Internal Medicine">
       <h3 style="color: #62c6a8;">Tele Internal Medicine</h3>
       <p>
         Dr. Manuel Garcia Estrada offers remote internal medicine services, providing specialized consultations for adult diseases.
