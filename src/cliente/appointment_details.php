@@ -20,12 +20,6 @@ $appointmentDetails = [
 ];
 ?>
 
-<head>
-  <meta charset="UTF-8">
-  <title>Appointment Details | TeleConsultations</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Bootstrap CSS (CDN) -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
     :root {
       --primary-color: #20a967;
@@ -60,13 +54,13 @@ $appointmentDetails = [
     }
     .details-container h2 {
       margin-top: 0;
-      font-size: 2rem;
+      font-size: 2.5rem;
       color: var(--secondary-color);
       margin-bottom: 20px;
     }
     .detail-item {
       margin-bottom: 15px;
-      font-size: 1.1rem;
+      font-size: 1.5rem;
     }
     .detail-label {
       font-weight: bold;
@@ -79,7 +73,7 @@ $appointmentDetails = [
       border: none;
       border-radius: 5px;
       padding: 10px 20px;
-      font-size: 1rem;
+      font-size: 1.5rem;
       text-decoration: none;
       transition: background 0.3s ease;
       margin-top: 20px;
@@ -93,12 +87,11 @@ $appointmentDetails = [
         padding: 60px 20px 80px;
       }
       .details-container h2 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
     }
   </style>
-</head>
-<body>
+
   <div class="content" id="content">
     <div class="details-container">
       <h2>Appointment Details</h2>
@@ -128,5 +121,5 @@ $appointmentDetails = [
   <!-- jQuery & Bootstrap JS (CDN) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</body>
+
 
