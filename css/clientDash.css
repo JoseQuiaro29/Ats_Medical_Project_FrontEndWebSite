@@ -131,7 +131,6 @@
 /* Responsive */
 @media (max-width: 768px) {
   .dashboard .content {
-    margin-left: 70px;
     padding: 60px 20px;
   }
   .dashboard .dashboard-main h2 {

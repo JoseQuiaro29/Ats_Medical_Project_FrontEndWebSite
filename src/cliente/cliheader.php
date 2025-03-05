@@ -5,24 +5,34 @@
   <title>Client Dashboard | TeleConsultations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Main Stylesheet -->
-  <link rel="stylesheet" href="../../css/styles.css">
-  <link rel="stylesheet" href="../../css/clientDash.ccs">
+  <link rel="stylesheet" href="../../css/clientDash.css">
+  <link rel="stylesheet" href="../../css/sidebar.css"> <!-- Add this line -->
 
+  
   <!-- Bootstrap (opcional si no lo tienes cargado en otro lugar) -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
-    /* Base header styles for client */
+    /* Reset y estilos base */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f0f0;
+    /* Include Doctor's Dashboard CSS Variables */
+    :root {
+      --primary-color: #20a967;
+      --secondary-color: #2c3e50;
+      --bg-color: #f4f7f9;
+      --card-bg: #ffffff;
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-color);
+    }
+    /* HEADER */
     header {
-      background-color: #20a967; /* ocean-green 500 */
+      background-color: var(--primary-color); /* ocean-green 500 */
       color: #fff;
       padding: 10px 20px;
       display: flex;
@@ -44,7 +54,7 @@
       background: none;
       border: none;
       color: #fff;
-      font-size: 1.5rem;
+      font-size: 2rem; /* Adjusted to match doctor's dashboard */
       cursor: pointer;
       margin-right: 15px;
     }
@@ -54,7 +64,7 @@
       margin-right: 15px;
     }
     .header-left h1 {
-      font-size: 1.5rem;
+      font-size: 2.5rem; /* Adjusted to match doctor's dashboard */
       font-weight: bold;
     }
     .header-right {
@@ -69,7 +79,7 @@
       margin-right: 10px;
     }
     .header-right span {
-      font-size: 1rem;
+      font-size: 1.5rem; /* Adjusted to match doctor's dashboard */
     }
   </style>
 </head>

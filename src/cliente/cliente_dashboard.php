@@ -45,6 +45,82 @@ include 'sidebar.php';
   </div>
 </div>
 
+<style>
+  .dashboard {
+    font-family: var(--font-family);
+  }
+  .content {
+    margin-left: 240px; /* Adjust as needed to match doctor's dashboard */
+    padding: 80px 40px; /* Adjust as needed */
+  }
+  .dashboard-main {
+    background: var(--card-bg);
+    padding: 30px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  .dashboard-main h2 {
+    margin-top: 0;
+    font-size: 2.5rem; /* Adjusted to match doctor's dashboard */
+    color: var(--secondary-color);
+  }
+  .dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+  }
+  .card {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .card h3 {
+    margin: 0 0 10px;
+    font-size: 1.6rem; /* Adjusted to match doctor's dashboard */
+    color: var(--secondary-color);
+  }
+  .card p {
+    font-size: 1.2rem; /* Adjusted to match doctor's dashboard */
+    margin: 0;
+    color: #666;
+  }
+  .dashboard-activity {
+    background: var(--card-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .dashboard-activity h3 {
+    margin-top: 0;
+    font-size: 1.6rem; /* Adjusted to match doctor's dashboard */
+    color: var(--secondary-color);
+  }
+  .dashboard-activity ul {
+    list-style: none;
+    padding: 0;
+  }
+  .dashboard-activity li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .dashboard-activity li:last-child {
+    border-bottom: none;
+  }
+  .dashboard-activity span {
+    color: #777;
+    font-size: 1.1rem; /* Adjusted to match doctor's dashboard */
+  }
+</style>
+
 <?php include '../doctor/footer.php'; ?>
 
 <!-- jQuery & Bootstrap JS -->

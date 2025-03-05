@@ -1,0 +1,82 @@
+:root {
+    --sidebar-width: 220px; /* Full width when expanded */
+    --sidebar-collapsed-width: 70px; /* Width when collapsed */
+    --primary-color: #20a967; /* ocean-green 300 */
+    --hover-color: #138852;   /* ocean-green 600 */
+    --text-color: #333;
+    --transition-speed: 0.3s;
+}
+.sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--primary-color);
+    padding: 15px;
+    /* Position fixed below header of 60px */
+    position: fixed;
+    top: 60px;
+    left: 0;
+    height: calc(100vh - 60px); /* Full height minus header */
+    overflow-y: auto;
+    transition: width var(--transition-speed) ease;
+    border-right: 1px solid #ddd;
+    z-index: 999;
+    font-family: var(--font-family); /* Use the defined font-family */
+}
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
+}
+.sidebar .sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+.sidebar .sidebar-header h3 {
+    color: var(--text-color);
+    margin: 0;
+    font-size: 1.5em; /* Ajustar tamaño de letra del header aquí */
+    transition: opacity var(--transition-speed) ease;
+}
+.sidebar.collapsed .sidebar-header h3 {
+    opacity: 0;
+}
+.sidebar .toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2em;
+    cursor: pointer;
+}
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+.sidebar ul li a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 10px;
+    border-radius: 4px;
+    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
+    font-size: 1.6rem; /* Ajustar tamaño de letra de los links aquí */
+}
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background-color: var(--hover-color);
+    color: #fff;
+}
+.sidebar ul li a i {
+    margin-right: 10px;
+    font-size: 1.2em;
+}
+/* Collapsed: center content and show icons */
+.sidebar.collapsed ul li a {
+    justify-content: center;
+}
+.sidebar.collapsed ul li a span {
+    display: none;
+}

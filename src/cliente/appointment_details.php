@@ -19,8 +19,7 @@ $appointmentDetails = [
   'notes'     => 'Please arrive 15 minutes early and bring your insurance card.'
 ];
 ?>
-<!DOCTYPE html>
-<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Appointment Details | TeleConsultations</title>
@@ -130,4 +129,4 @@ $appointmentDetails = [
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
-</html>
+
