@@ -93,7 +93,7 @@
     </div>
     <div class="header-right">
       <!-- Client profile image and name -->
-      <img src="../../images/logo.png" alt="Client Image">
+      <img src="../../images/user.svg" alt="Client Image">
       <span>Welcome, John Doe</span>
     </div>
   </header>

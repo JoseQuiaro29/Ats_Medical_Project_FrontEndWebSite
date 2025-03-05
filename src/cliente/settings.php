@@ -44,7 +44,7 @@ include 'sidebar.php';
   }
   .settings-section h2 {
     margin-top: 0;
-    font-size: 1.8rem;
+    font-size: 2.5rem;
     color: var(--secondary-color);
     margin-bottom: 15px;
   }
@@ -64,7 +64,7 @@ include 'sidebar.php';
   .form-control {
     width: 100%;
     padding: 10px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     border: 1px solid #ddd;
     border-radius: 5px;
   }
