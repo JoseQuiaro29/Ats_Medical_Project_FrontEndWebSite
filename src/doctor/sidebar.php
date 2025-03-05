@@ -1,12 +1,13 @@
 <!-- sidebar.php -->
 <!-- Incluye Font Awesome para los íconos -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<!-- REMOVE STYLE
 <style>
   :root {
-    --sidebar-width: 220px; /* Full width when expanded */
-    --sidebar-collapsed-width: 70px; /* Width when collapsed */
-    --primary-color: #79dca6; /* ocean-green 300 */
-    --hover-color: #138852;   /* ocean-green 600 */
+    --sidebar-width: 220px; 
+    --sidebar-collapsed-width: 70px; 
+    --primary-color: #79dca6; 
+    --hover-color: #138852;   
     --text-color: #333;
     --transition-speed: 0.3s;
   }
@@ -14,7 +15,7 @@
     width: var(--sidebar-width);
     background-color: var(--primary-color);
     padding: 15px;
-    height: calc(100vh - 60px); /* Full height minus the header (60px) */
+    height: calc(100vh - 60px); 
     position: fixed;
     top: 60px;
     left: 0;
@@ -22,11 +23,9 @@
     transition: width var(--transition-speed) ease;
     border-right: 1px solid #ddd;
   }
-  /* Collapsed state */
   .sidebar.collapsed {
     width: var(--sidebar-collapsed-width);
   }
-  /* Sidebar header with toggle button */
   .sidebar .sidebar-header {
     display: flex;
     align-items: center;
@@ -49,7 +48,6 @@
     font-size: 1.2em;
     cursor: pointer;
   }
-  /* Navigation list */
   .sidebar ul {
     list-style: none;
     padding: 0;
@@ -76,15 +74,13 @@
     margin-right: 10px;
     font-size: 1.2em;
   }
-  /* Collapsed: center content and hide text */
   .sidebar.collapsed ul li a {
     justify-content: center;
   }
   .sidebar.collapsed ul li a span {
     display: none;
   }
-</style>
-
+</style>-->
 <div class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <h3>Menu</h3>

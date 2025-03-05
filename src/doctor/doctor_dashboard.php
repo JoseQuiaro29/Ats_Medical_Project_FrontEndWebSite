@@ -6,12 +6,7 @@ include 'docheader.php'; // Header file, includes meta tags, CSS links, etc.
 include 'sidebar.php';   // Dashboard sidebar
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Doctor Dashboard</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     /* Color and typography variables */
     :root {
@@ -122,7 +117,7 @@ include 'sidebar.php';   // Dashboard sidebar
       }
     }
   </style>
-</head>
+
 <body>
   <div class="content" id="content">
     <!-- Main Dashboard Header -->
@@ -197,4 +192,4 @@ include 'sidebar.php';   // Dashboard sidebar
     document.getElementById('toggleSidebarBtn')?.addEventListener('click', toggleSidebar);
   </script>
 </body>
-</html>
+

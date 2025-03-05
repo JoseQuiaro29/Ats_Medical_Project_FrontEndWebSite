@@ -4,12 +4,7 @@ session_start();
 include 'docheader.php'; // Contains the <head> and external CSS links
 include 'sidebar.php';   // Contains the dashboard sidebar
 ?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Chat - Teleconsulta</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     /* Basic page styles */
     body {
@@ -126,7 +121,7 @@ include 'sidebar.php';   // Contains the dashboard sidebar
       background-color: #e0f7e9; /* Highlight active chat */
     }
   </style>
-</head>
+
 <body>
   <div class="content" id="content">
     <!-- Chat list column (left side) -->
@@ -171,4 +166,4 @@ include 'sidebar.php';   // Contains the dashboard sidebar
   </div>
   <?php include 'footer.php'; ?>
 </body>
-</html>
+

@@ -5,12 +5,7 @@ session_start();
 include 'docheader.php';  // Contains the <head> section and header
 include 'sidebar.php';    // Contains the sidebar navigation
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Settings - Teleconsultation</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     /* Basic Reset */
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -115,7 +110,7 @@ include 'sidebar.php';    // Contains the sidebar navigation
       background-color: #138852; /* Darker green on hover */
     }
   </style>
-</head>
+
 <body>
   <div class="content" id="content">
     <div class="settings-container">
@@ -267,4 +262,3 @@ include 'sidebar.php';    // Contains the sidebar navigation
     });
   </script>
 </body>
-</html>

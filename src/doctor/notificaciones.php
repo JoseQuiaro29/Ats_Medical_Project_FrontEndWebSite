@@ -4,12 +4,7 @@ session_start();
 include 'docheader.php'; // Contains the <head> section and the header
 include 'sidebar.php';   // Contains the sidebar navigation
 ?>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Notificaciones - Teleconsulta</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <style>
     /* Basic page styles */
     body {
@@ -121,7 +116,7 @@ include 'sidebar.php';   // Contains the sidebar navigation
       background-color: #ccc; /* Darker gray on hover for inactive buttons */
     }
   </style>
-</head>
+
 <body>
   <div class="content" id="content">
     <div class="notif-container">
@@ -167,4 +162,4 @@ include 'sidebar.php';   // Contains the sidebar navigation
     <?php include 'footer.php'; ?>
   </div>
 </body>
-</html>
+

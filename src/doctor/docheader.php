@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Enlace a tu CSS general -->
   <link rel="stylesheet" href="../../css/styles.css">
+  <link rel="stylesheet" href="../../css/sidebar.css"> <!-- Add this line -->
   <style>
     /* Reset y estilos base */
     * {
