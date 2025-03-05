@@ -33,9 +33,10 @@ include 'sidebar.php';   // Contains the sidebar navigation
     }
     /* Notifications header */
     .notif-header {
-      font-size: 1.5rem; /* Header font size */
+      font-size: 2.5rem; /* Header font size */
       color: #2c3e50; /* Dark blue text */
       margin-bottom: 20px; /* Space below header */
+
     }
     /* Controls for notifications (search, mark as read, delete all) */
     .notif-controls {
@@ -83,11 +84,11 @@ include 'sidebar.php';   // Contains the sidebar navigation
       border-bottom: none; /* Remove border from the last item */
     }
     .notif-item .notif-text {
-      font-size: 1rem; /* Text font size */
+      font-size: 1.5rem; /* cambiado de 1rem a 1.5rem */
       color: #333; /* Dark gray text */
     }
     .notif-item .notif-time {
-      font-size: 0.8rem; /* Smaller font for timestamp */
+      font-size: 1.2rem; /* actualizado para mejorar la visibilidad */
       color: #999; /* Light gray color */
     }
     .notif-item:hover {

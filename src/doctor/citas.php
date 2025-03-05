@@ -6,96 +6,153 @@ include 'docheader.php';
 // Include the sidebar for navigation
 include 'sidebar.php';
 ?>
-<!-- Main content container -->
-<div class="content" id="content" style="
-  /* Space to prevent content from being hidden behind the fixed header */
-  padding-top: 80px; 
-  /* Left margin according to the sidebar's expanded width (220px) */
-  margin-left: 220px; 
+
+<style>
+/* Main content container */
+.content {
+  padding-top: 80px; /* Space to prevent content from being hidden behind the fixed header */
+  margin-left: 220px; /* Left margin according to the sidebar's expanded width */
   transition: margin-left 0.3s ease;
-">
+}
+
+/* Appointments container */
+.appointments-container {
+  background-color: #fff;
+  padding: 30px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 1200px;
+}
+
+/* Appointments header */
+.appointments-header {
+  margin-bottom: 20px;
+}
+
+.appointments-header h2 {
+  color: #2c3e50;
+}
+
+.appointments-header p {
+  color: #666;
+}
+
+/* Search filter */
+.appointments-filters {
+  margin-bottom: 20px;
+}
+
+.appointments-filters input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.appointments-filters button {
+  padding: 10px 20px;
+  background-color: #20a967;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* Table styling */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead tr {
+  background-color: #20a967;
+  color: #fff;
+}
+
+th, td {
+  padding: 12px 8px;
+  text-align: left;
+  font-size: 1.5rem; /* agregado para aumentar el tamaño de fuente */
+}
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+a {
+  text-decoration: none;
+}
+
+a.view-link {
+  color: #20a967;
+  margin-right: 10px;
+}
+
+a.cancel-link {
+  color: #e74c3c;
+}
+</style>
+
+<!-- Main content container -->
+<div class="content" id="content">
   <!-- Appointments container with card design -->
-  <div class="appointments-container" style="
-    background-color: #fff; /* White background to highlight the content */
-    padding: 30px; /* Internal spacing */
-    margin: 20px auto; /* Vertical margin and horizontal centering */
-    border-radius: 8px; /* Rounded corners */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-    max-width: 1200px; /* Maximum width for large screens */
-  ">
+  <div class="appointments-container">
     <!-- Header for the appointments section -->
-    <div class="appointments-header" style="margin-bottom: 20px;">
-      <h2 style="color: #2c3e50;">Scheduled Appointments</h2>
-      <p style="color: #666;">View and manage your teleconsultation appointments.</p>
+    <div style="font-size: 1.5rem" class="appointments-header">
+      <h2>Scheduled Appointments</h2>
+      <p>View and manage your teleconsultation appointments.</p>
     </div>
 
     <!-- Search filter (optional) -->
-    <div class="appointments-filters" style="margin-bottom: 20px;">
-      <!-- Input to search by patient or specialty -->
-      <input type="text" placeholder="Search by patient, specialty..." style="
-        padding: 10px;                /* Internal spacing */
-        width: 300px;                 /* Fixed width */
-        border: 1px solid #ddd;       /* Subtle border */
-        border-radius: 4px;           /* Rounded corners */
-      ">
-      <!-- Button to perform the search -->
-      <button style="
-        padding: 10px 20px;           /* Vertical & horizontal padding */
-        background-color: #20a967;    /* Background color */
-        border: none;                 /* No border */
-        border-radius: 4px;           /* Rounded corners */
-        color: #fff;                  /* White text */
-        margin-left: 10px;            /* Left margin */
-        cursor: pointer;              /* Pointer cursor on hover */
-      ">Search</button>
+    <div class="appointments-filters">
+      <input type="text" placeholder="Search by patient, specialty...">
+      <button>Search</button>
     </div>
 
     <!-- Appointments table -->
-    <table style="
-      width: 100%;                  /* Table occupies full width of the container */
-      border-collapse: collapse;    /* Removes space between cells */
-    ">
+    <table>
       <!-- Table header -->
       <thead>
-        <tr style="background-color: #20a967; color: #fff;">
-          <th style="padding: 12px 8px; text-align: left;">Time</th>
-          <th style="padding: 12px 8px; text-align: left;">Patient</th>
-          <th style="padding: 12px 8px; text-align: left;">Specialty</th>
-          <th style="padding: 12px 8px; text-align: left;">Status</th>
-          <th style="padding: 12px 8px; text-align: left;">Actions</th>
+        <tr>
+          <th>Time</th>
+          <th>Patient</th>
+          <th>Specialty</th>
+          <th>Status</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <!-- Table body with example appointments -->
       <tbody>
-        <tr style="border-bottom: 1px solid #ddd;">
-          <td style="padding: 12px 8px;">09:00 AM</td>
-          <td style="padding: 12px 8px;">John Perez</td>
-          <td style="padding: 12px 8px;">Nephrology</td>
-          <td style="padding: 12px 8px;">Confirmed</td>
-          <td style="padding: 12px 8px;">
-            <!-- Links for viewing details or canceling the appointment -->
-            <a href="#" style="color: #20a967; text-decoration: none; margin-right: 10px;">View</a>
-            <a href="#" style="color: #e74c3c; text-decoration: none;">Cancel</a>
-          </td>
-        </tr>
-        <tr style="border-bottom: 1px solid #ddd;">
-          <td style="padding: 12px 8px;">10:30 AM</td>
-          <td style="padding: 12px 8px;">Mary Lopez</td>
-          <td style="padding: 12px 8px;">General Medicine</td>
-          <td style="padding: 12px 8px;">Pending</td>
-          <td style="padding: 12px 8px;">
-            <a href="#" style="color: #20a967; text-decoration: none; margin-right: 10px;">View</a>
-            <a href="#" style="color: #e74c3c; text-decoration: none;">Cancel</a>
+        <tr>
+          <td>09:00 AM</td>
+          <td>John Perez</td>
+          <td>Nephrology</td>
+          <td>Confirmed</td>
+          <td>
+            <a href="#" class="view-link">View</a>
+            <a href="#" class="cancel-link">Cancel</a>
           </td>
         </tr>
         <tr>
-          <td style="padding: 12px 8px;">02:00 PM</td>
-          <td style="padding: 12px 8px;">Carlos Martinez</td>
-          <td style="padding: 12px 8px;">Nephrology</td>
-          <td style="padding: 12px 8px;">Confirmed</td>
-          <td style="padding: 12px 8px;">
-            <a href="#" style="color: #20a967; text-decoration: none; margin-right: 10px;">View</a>
-            <a href="#" style="color: #e74c3c; text-decoration: none;">Cancel</a>
+          <td>10:30 AM</td>
+          <td>Mary Lopez</td>
+          <td>General Medicine</td>
+          <td>Pending</td>
+          <td>
+            <a href="#" class="view-link">View</a>
+            <a href="#" class="cancel-link">Cancel</a>
+          </td>
+        </tr>
+        <tr>
+          <td>02:00 PM</td>
+          <td>Carlos Martinez</td>
+          <td>Nephrology</td>
+          <td>Confirmed</td>
+          <td>
+            <a href="#" class="view-link">View</a>
+            <a href="#" class="cancel-link">Cancel</a>
           </td>
         </tr>
       </tbody>

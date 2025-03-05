@@ -44,6 +44,15 @@ include 'sidebar.php';   // Dashboard sidebar
       font-size: 2rem;
       color: var(--secondary-color);
     }
+    /* Asignamos tamaño a los párrafos del dashboard principal */
+    .dashboard-main p {
+      font-size: 1.5rem; // agregado
+    }
+    /* Asignamos tamaño a los subtítulos faltantes */
+    .dashboard-main h3 {
+      font-size: 2rem; // agregado
+      color: var(--secondary-color); // agregado
+    }
     /* Grid for quick info cards */
     .dashboard-grid {
       display: grid;
@@ -65,11 +74,11 @@ include 'sidebar.php';   // Dashboard sidebar
     }
     .card h3 {
       margin: 0 0 10px;
-      font-size: 1.4rem;
+      font-size: 1.6rem; // aumentado de 1.4rem
       color: var(--secondary-color);
     }
     .card p {
-      font-size: 1.1rem;
+      font-size: 1.3rem; // aumentado de 1.1rem
       margin: 0;
       color: #666;
     }
@@ -83,15 +92,19 @@ include 'sidebar.php';   // Dashboard sidebar
       padding: 15px 10px;
       text-align: left;
       border-bottom: 1px solid #e0e0e0;
+      font-size: 1.5rem; // cambiado de 1rem a 1.2rem
     }
     table th {
       background: var(--primary-color);
       color: #fff;
       font-weight: normal;
-      font-size: 1rem;
     }
     table tbody tr:hover {
       background: #f1f1f1;
+    }
+    /* Asignamos tamaño a celdas de tabla sin declarar */
+    table td {
+      font-size: 1rem; // agregado
     }
     /* Footer */
     footer {
@@ -121,9 +134,12 @@ include 'sidebar.php';   // Dashboard sidebar
 <body>
   <div class="content" id="content">
     <!-- Main Dashboard Header -->
-    <div class="dashboard-main">
-      <h2>Welcome, Dr. Manuel Garcia Estrada</h2>
-      <p>Access your appointments, reports, messages, and patients quickly and easily.</p>
+    <div class="dashboard-main" style="display: flex; align-items: center;">
+      <img src="../../images/logoG.png" alt="Logo" style="width: 150px; margin-right: 20px;">
+      <div>
+        <h2>Welcome, Dr. Manuel Garcia Estrada</h2>
+        <p>Access your appointments, reports, messages, and patients quickly and easily.</p>
+      </div>
     </div>
 
     <!-- Quick info cards -->

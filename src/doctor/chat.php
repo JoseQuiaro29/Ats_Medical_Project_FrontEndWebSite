@@ -37,7 +37,7 @@ include 'sidebar.php';   // Contains the dashboard sidebar
     }
     /* Chat header */
     .chat-header {
-      font-size: 1.5rem; /* Header font size */
+      font-size: 2.5rem; /* Header font size increased */
       color: #2c3e50; /* Dark blue color */
       margin-bottom: 20px; /* Space below header */
     }
@@ -58,9 +58,10 @@ include 'sidebar.php';   // Contains the dashboard sidebar
     .chat-message .sender {
       font-weight: bold; /* Bold sender name */
       color: #333; /* Dark gray text */
+      font-size: 1.5rem; /* Font size increased */
     }
     .chat-message .timestamp {
-      font-size: 0.8rem; /* Smaller font for timestamp */
+      font-size: 1.5rem; /* Font size increased */
       color: #999; /* Light gray */
       margin-left: 10px; /* Space to the left */
     }
@@ -74,7 +75,7 @@ include 'sidebar.php';   // Contains the dashboard sidebar
     .chat-form input[type="text"] {
       flex: 1; /* Input expands to fill space */
       padding: 10px; /* Internal spacing */
-      font-size: 1rem; /* Font size */
+      font-size: 1.8rem; /* Font size increased */
       border: 1px solid #ddd; /* Light border */
       border-radius: 5px; /* Rounded corners */
     }
@@ -105,7 +106,7 @@ include 'sidebar.php';   // Contains the dashboard sidebar
     .chat-list h3 {
       margin-bottom: 15px; /* Space below header */
       color: #2c3e50; /* Dark blue text */
-      font-size: 1.2rem; /* Font size */
+      font-size: 2.5rem; /* Font size increased */
     }
     /* Individual chat item in the list */
     .chat-item {
@@ -129,16 +130,16 @@ include 'sidebar.php';   // Contains the dashboard sidebar
       <h3>Chats</h3>
       <!-- Example chat items (can be loaded dynamically) -->
       <div class="chat-item active">
-        <p><strong>Patient Juan</strong></p>
-        <p style="font-size: 0.8rem; color: #666;">Last message: "Hello doctor..."</p>
+        <p style="font-size: 1.5rem"> <strong >Patient Juan</strong></p>
+        <p style="font-size: 1.5rem; color: #666;">Last message: "Hello doctor..."</p> <!-- updated -->
       </div>
       <div class="chat-item">
-        <p><strong>Patient María</strong></p>
-        <p style="font-size: 0.8rem; color: #666;">Last message: "I need help..."</p>
+        <p style="font-size: 1.5rem" ><strong>Patient María</strong></p>
+        <p style="font-size: 1.5rem; color: #666;">Last message: "I need help..."</p> <!-- updated -->
       </div>
       <div class="chat-item">
-        <p><strong>Patient Carlos</strong></p>
-        <p style="font-size: 0.8rem; color: #666;">Last message: "Good morning..."</p>
+        <p style="font-size: 1.5rem" ><strong>Patient Carlos</strong></p>
+        <p style="font-size: 1.5rem; color: #666;">Last message: "Good morning..."</p> <!-- updated -->
       </div>
       <!-- Additional chat items can be added here -->
     </div>
@@ -150,12 +151,12 @@ include 'sidebar.php';   // Contains the dashboard sidebar
         <div class="chat-message">
           <span class="sender">Dr. Garcia</span>
           <span class="timestamp">10:00 AM</span>
-          <div class="message-text">Hello, how can I help you today?</div>
+          <div style="font-size: 1.5rem" class="message-text">Hello, how can I help you today?</div>
         </div>
         <div class="chat-message">
           <span class="sender">Patient Juan</span>
           <span class="timestamp">10:01 AM</span>
-          <div class="message-text">Hi doctor, I have some questions about my treatment.</div>
+          <div style="font-size: 1.5rem" class="message-text">Hi doctor, I have some questions about my treatment.</div>
         </div>
       </div>
       <form class="chat-form" action="send_message.php" method="post">

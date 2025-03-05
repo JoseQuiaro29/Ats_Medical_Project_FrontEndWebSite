@@ -5,7 +5,6 @@
   <title>Doctor Dashboard | TeleConsultations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Enlace a tu CSS general -->
-  <link rel="stylesheet" href="../../css/styles.css">
   <link rel="stylesheet" href="../../css/sidebar.css"> <!-- Add this line -->
   <style>
     /* Reset y estilos base */
@@ -13,6 +12,9 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+    html { 
+      font-size: 10px; /* Talla base para que 1rem = 16px */
     }
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -42,7 +44,7 @@
       background: none;
       border: none;
       color: #fff;
-      font-size: 1.5rem;
+      font-size: 2rem;
       cursor: pointer;
       margin-right: 15px;
     }
@@ -52,7 +54,7 @@
       margin-right: 15px; /* Space between logo and title */
     }
     .header-left h1 {
-      font-size: 1.5rem;
+      font-size: 2.5rem;
       font-weight: bold;
     }
     .header-right {
@@ -67,7 +69,8 @@
       margin-right: 10px;
     }
     .header-right span {
-      font-size: 1rem;
+      font-size: 1.5rem;
+      font-weight: bold;
     }
   </style>
 </head>

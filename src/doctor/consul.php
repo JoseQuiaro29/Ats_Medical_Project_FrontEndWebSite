@@ -5,131 +5,163 @@ session_start();
 include 'docheader.php';  // Contiene el <head> y el header
 include 'sidebar.php';    // Menú lateral
 ?>
-<!-- Contenedor principal del contenido -->
-<div class="content" id="content" style="
-  padding-top: 80px;  /* Espacio superior para evitar superposición con el header */
+
+<style>
+/* Contenedor principal del contenido */
+.content {
+  padding-top: 80px; /* Espacio superior para evitar superposición con el header */
   margin-left: 220px; /* Ajusta según el ancho del sidebar expandido */
   transition: margin-left 0.3s ease;
-">
+}
+
+/* Contenedor de la sección de Tele Consultations */
+.teleconsult-container {
+  background-color: #fff;
+  padding: 30px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+}
+
+/* Encabezado de la sección */
+.teleconsult-header {
+  margin-bottom: 20px;
+}
+
+.teleconsult-header h2 {
+  color: #2c3e50;
+}
+
+.teleconsult-header p {
+  color: #666;
+}
+
+/* Filtros de búsqueda y botón de acción */
+.teleconsult-filters {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.teleconsult-filters input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.teleconsult-filters button {
+  padding: 10px 20px;
+  background-color: #20a967;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+.teleconsult-filters button:last-of-type {
+  background-color: #3498db;
+  margin-left: auto;
+}
+
+/* Tabla de teleconsultas programadas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead tr {
+  background-color: #20a967;
+  color: #fff;
+}
+
+th,
+td {
+  padding: 12px 8px;
+  text-align: left;
+  font-size: 1.5rem; /* agregado para aumentar el tamaño de fuente */
+}
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+tbody button {
+  padding: 8px 12px;
+  background-color: #20a967;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+</style>
+
+<!-- Contenedor principal del contenido -->
+<div class="content" id="content">
   <!-- Contenedor de la sección de Tele Consultations -->
-  <div class="teleconsult-container" style="
-    background-color: #fff; 
-    padding: 30px;
-    margin: 20px auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    max-width: 1200px;
-  ">
+  <div class="teleconsult-container">
     <!-- Encabezado de la sección -->
-    <div class="teleconsult-header" style="margin-bottom: 20px;">
-      <h2 style="color: #2c3e50;">Tele Consultations</h2>
-      <p style="color: #666;">Manage and initiate teleconsultation sessions with your patients.</p>
+    <div style="font-size: 1.5rem" class="teleconsult-header">
+      <h2>Tele Consultations</h2>
+      <p>Manage and initiate teleconsultation sessions with your patients.</p>
     </div>
 
     <!-- Filtros de búsqueda y botón de acción -->
-    <div class="teleconsult-filters" style="
-      margin-bottom: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-    ">
-      <input type="text" placeholder="Search by patient, date..." style="
-        padding: 10px; 
-        width: 300px; 
-        border: 1px solid #ddd; 
-        border-radius: 4px;
-        margin-right: 10px;
-      ">
-      <button style="
-        padding: 10px 20px; 
-        background-color: #20a967; 
-        border: none; 
-        border-radius: 4px; 
-        color: #fff; 
-        margin-right: 10px;
-        cursor: pointer;
-      ">Search</button>
-      <!-- Botón para crear una nueva teleconsulta -->
-      <button style="
-        padding: 10px 20px; 
-        background-color: #3498db; 
-        border: none; 
-        border-radius: 4px; 
-        color: #fff; 
-        cursor: pointer; 
-        margin-left: auto;
-      ">New Teleconsultation</button>
+    <div class="teleconsult-filters">
+      <input type="text" placeholder="Search by patient, date...">
+      <button>Search</button>
+      <button>New Teleconsultation</button>
     </div>
 
     <!-- Tabla de teleconsultas programadas -->
-    <table style="
-      width: 100%; 
-      border-collapse: collapse;
-    ">
+    <table>
       <thead>
-        <tr style="background-color: #20a967; color: #fff;">
-          <th style="padding: 12px 8px; text-align: left;">Time</th>
-          <th style="padding: 12px 8px; text-align: left;">Patient</th>
-          <th style="padding: 12px 8px; text-align: left;">Specialty</th>
-          <th style="padding: 12px 8px; text-align: left;">Status</th>
-          <th style="padding: 12px 8px; text-align: left;">Actions</th>
+        <tr>
+          <th>Time</th>
+          <th>Patient</th>
+          <th>Specialty</th>
+          <th>Status</th>
+          <th>Actions</th>
         </tr>
       </thead>
       <tbody>
         <!-- Ejemplo 1 -->
-        <tr style="border-bottom: 1px solid #ddd;">
-          <td style="padding: 12px 8px;">10:00 AM</td>
-          <td style="padding: 12px 8px;">John Doe</td>
-          <td style="padding: 12px 8px;">Nephrology</td>
-          <td style="padding: 12px 8px;">Confirmed</td>
-          <td style="padding: 12px 8px;">
+        <tr>
+          <td>10:00 AM</td>
+          <td>John Doe</td>
+          <td>Nephrology</td>
+          <td>Confirmed</td>
+          <td>
             <!-- Acción para iniciar la videollamada (ficticio) -->
-            <button style="
-              padding: 8px 12px; 
-              background-color: #20a967; 
-              border: none; 
-              border-radius: 4px; 
-              color: #fff; 
-              cursor: pointer;
-            ">
+            <button>
               <i class="fas fa-video"></i> Start Call
             </button>
           </td>
         </tr>
         <!-- Ejemplo 2 -->
-        <tr style="border-bottom: 1px solid #ddd;">
-          <td style="padding: 12px 8px;">11:30 AM</td>
-          <td style="padding: 12px 8px;">Mary Smith</td>
-          <td style="padding: 12px 8px;">General Medicine</td>
-          <td style="padding: 12px 8px;">Pending</td>
-          <td style="padding: 12px 8px;">
-            <button style="
-              padding: 8px 12px; 
-              background-color: #20a967; 
-              border: none; 
-              border-radius: 4px; 
-              color: #fff; 
-              cursor: pointer;
-            ">
+        <tr>
+          <td>11:30 AM</td>
+          <td>Mary Smith</td>
+          <td>General Medicine</td>
+          <td>Pending</td>
+          <td>
+            <button>
               <i class="fas fa-video"></i> Start Call
             </button>
           </td>
         </tr>
         <!-- Ejemplo 3 -->
         <tr>
-          <td style="padding: 12px 8px;">02:00 PM</td>
-          <td style="padding: 12px 8px;">Carlos Martinez</td>
-          <td style="padding: 12px 8px;">General Medicine</td>
-          <td style="padding: 12px 8px;">Confirmed</td>
-          <td style="padding: 12px 8px;">
-            <button style="
-              padding: 8px 12px; 
-              background-color: #20a967; 
-              border: none; 
-              border-radius: 4px; 
-              color: #fff; 
-              cursor: pointer;
-            ">
+          <td>02:00 PM</td>
+          <td>Carlos Martinez</td>
+          <td>General Medicine</td>
+          <td>Confirmed</td>
+          <td>
+            <button>
               <i class="fas fa-video"></i> Start Call
             </button>
           </td>

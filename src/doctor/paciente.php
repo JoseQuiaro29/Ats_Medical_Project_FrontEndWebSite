@@ -1,160 +1,202 @@
 <?php
 // patients.php
 session_start();
-include 'docheader.php';  // Contains the <head> and header of the page
-include 'sidebar.php';    // Contains the sidebar navigation
+include 'docheader.php';  // Contiene el <head> y el header de la página
+include 'sidebar.php';    // Contiene la navegación lateral
 ?>
-<!-- Main content container -->
-<div class="content" id="content" style="
-  /* Space to prevent content from being hidden behind the fixed header */
+
+<style>
+/* Contenedor principal */
+.content {
   padding-top: 80px;
-  /* Left margin adjusted according to the expanded sidebar width (220px) */
   margin-left: 220px;
   transition: margin-left 0.3s ease;
-">
-  <!-- Patients section container -->
-  <div class="patients-container" style="
-    background-color: #fff; /* White background to highlight the content */
-    padding: 30px;          /* Internal spacing */
-    margin: 20px auto;      /* Vertical margin and horizontal centering */
-    border-radius: 8px;     /* Rounded corners */
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow for depth */
-    max-width: 1200px;      /* Maximum width for large screens */
-  ">
-    <!-- Section header -->
-    <div class="patients-header" style="margin-bottom: 20px;">
-      <h2 style="color: #2c3e50;">Patients List</h2>
-      <p style="color: #666;">Manage the details and appointments of your registered patients.</p>
+}
+
+/* Contenedor de la sección de pacientes */
+.patients-container {
+  background-color: #fff;
+  padding: 30px;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 1200px;
+}
+
+/* Encabezado de la sección */
+.patients-header {
+  margin-bottom: 20px;
+}
+
+.patients-header h2 {
+  color: #2c3e50;
+}
+
+.patients-header p {
+  color: #666;
+}
+
+/* Filtros de búsqueda y botones */
+.patients-filters {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.patients-filters input {
+  padding: 10px;
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+
+.patients-filters button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.patients-filters button:first-of-type {
+  background-color: #20a967;
+}
+
+.patients-filters button:last-of-type {
+  background-color: #3498db;
+  margin-left: auto;
+}
+
+/* Tabla de pacientes */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead tr {
+  background-color: #20a967;
+  color: #fff;
+}
+
+th, td {
+  padding: 12px 8px;
+  text-align: left;
+  font-size: 1.5rem; // agregado para aumentar el tamaño de fuente
+}
+
+tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Imagen de perfil */
+.profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Enlaces de acción */
+.action-links a {
+  text-decoration: none;
+  margin-right: 10px;
+}
+
+.action-links .view {
+  color: #20a967;
+}
+
+.action-links .edit {
+  color: #3498db;
+}
+
+.action-links .delete {
+  color: #e74c3c;
+}
+</style>
+
+<!-- Contenedor principal -->
+<div class="content" id="content">
+  <!-- Contenedor de la sección de pacientes -->
+  <div class="patients-container">
+    <!-- Encabezado de la sección -->
+    <div style="font-size: 1.5rem" class="patients-header">
+      <h2>Patients List</h2>
+      <p>Manage the details and appointments of your registered patients.</p>
     </div>
 
-    <!-- Filters and search -->
-    <div class="patients-filters" style="
-      margin-bottom: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-    ">
-      <!-- Input for search -->
-      <input type="text" placeholder="Search by name, email, or phone..." style="
-        padding: 10px;               /* Internal spacing for the input */
-        width: 300px;                /* Fixed width for the input */
-        border: 1px solid #ddd;      /* Subtle border */
-        border-radius: 4px;          /* Rounded corners */
-        margin-right: 10px;          /* Right margin for separation */
-      ">
-      <!-- Button to perform the search -->
-      <button style="
-        padding: 10px 20px;
-        background-color: #20a967;   /* Green background */
-        border: none;                /* No border */
-        border-radius: 4px;          /* Rounded corners */
-        color: #fff;                 /* White text */
-        cursor: pointer;             /* Pointer cursor on hover */
-      ">Search</button>
-      <!-- Button to add a new patient (aligned to the right) -->
-      <button style="
-        padding: 10px 20px;
-        background-color: #3498db;   /* Blue background */
-        border: none;
-        border-radius: 4px;
-        color: #fff;
-        cursor: pointer;
-        margin-left: auto;           /* Pushes the button to the right */
-      ">Add Patient</button>
+    <!-- Filtros de búsqueda y botón de agregar paciente -->
+    <div class="patients-filters">
+      <input type="text" placeholder="Search by name, email, or phone...">
+      <button>Search</button>
+      <button>Add Patient</button>
     </div>
 
-    <!-- Patients table -->
-    <table style="
-      width: 100%;                 /* Table occupies full width of the container */
-      border-collapse: collapse;   /* Removes space between cells */
-    ">
-      <!-- Table header -->
+    <!-- Tabla de pacientes -->
+    <table>
       <thead>
-        <tr style="background-color: #20a967; color: #fff;">
-          <!-- Each <th> defines a column with padding for better readability -->
-          <th style="padding: 12px 8px; text-align: left;">Photo</th>
-          <th style="padding: 12px 8px; text-align: left;">Name</th>
-          <th style="padding: 12px 8px; text-align: left;">Age</th>
-          <th style="padding: 12px 8px; text-align: left;">Gender</th>
-          <th style="padding: 12px 8px; text-align: left;">Phone</th>
-          <th style="padding: 12px 8px; text-align: left;">Email</th>
-          <th style="padding: 12px 8px; text-align: left;">Last Consultation</th>
-          <th style="padding: 12px 8px; text-align: left;">Actions</th>
+        <tr>
+          <th>Photo</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Gender</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Last Consultation</th>
+          <th>Actions</th>
         </tr>
       </thead>
-      <!-- Table body with example patient data -->
       <tbody>
-        <!-- Row 1: Patient data -->
-        <tr style="border-bottom: 1px solid #ddd;">
-          <td style="padding: 12px 8px;">
-            <!-- Profile image with adjusted size and rounded borders -->
-            <img src="path/to/patient1.jpg" alt="Patient 1" style="
-              width: 40px; 
-              height: 40px; 
-              border-radius: 50%; 
-              object-fit: cover;
-            ">
-          </td>
-          <td style="padding: 12px 8px;">John Perez</td>
-          <td style="padding: 12px 8px;">35</td>
-          <td style="padding: 12px 8px;">Male</td>
-          <td style="padding: 12px 8px;">305-123-4567</td>
-          <td style="padding: 12px 8px;">john@example.com</td>
-          <td style="padding: 12px 8px;">2025-02-10</td>
-          <td style="padding: 12px 8px;">
-            <!-- Action links: View, Edit, Delete -->
-            <a href="#" style="color: #20a967; text-decoration: none; margin-right: 10px;">View</a>
-            <a href="#" style="color: #3498db; text-decoration: none; margin-right: 10px;">Edit</a>
-            <a href="#" style="color: #e74c3c; text-decoration: none;">Delete</a>
-          </td>
-        </tr>
-        <!-- Row 2 -->
-        <tr style="border-bottom: 1px solid #ddd;">
-          <td style="padding: 12px 8px;">
-            <img src="path/to/patient2.jpg" alt="Patient 2" style="
-              width: 40px; 
-              height: 40px; 
-              border-radius: 50%; 
-              object-fit: cover;
-            ">
-          </td>
-          <td style="padding: 12px 8px;">Mary Lopez</td>
-          <td style="padding: 12px 8px;">42</td>
-          <td style="padding: 12px 8px;">Female</td>
-          <td style="padding: 12px 8px;">305-987-6543</td>
-          <td style="padding: 12px 8px;">mary@example.com</td>
-          <td style="padding: 12px 8px;">2025-01-28</td>
-          <td style="padding: 12px 8px;">
-            <a href="#" style="color: #20a967; text-decoration: none; margin-right: 10px;">View</a>
-            <a href="#" style="color: #3498db; text-decoration: none; margin-right: 10px;">Edit</a>
-            <a href="#" style="color: #e74c3c; text-decoration: none;">Delete</a>
-          </td>
-        </tr>
-        <!-- Row 3 -->
+        <!-- Paciente 1 -->
         <tr>
-          <td style="padding: 12px 8px;">
-            <img src="path/to/patient3.jpg" alt="Patient 3" style="
-              width: 40px; 
-              height: 40px; 
-              border-radius: 50%; 
-              object-fit: cover;
-            ">
+          <td><img src="path/to/patient1.jpg" alt="Patient 1" class="profile-img"></td>
+          <td>John Perez</td>
+          <td>35</td>
+          <td>Male</td>
+          <td>305-123-4567</td>
+          <td>john@example.com</td>
+          <td>2025-02-10</td>
+          <td class="action-links">
+            <a href="#" class="view">View</a>
+            <a href="#" class="edit">Edit</a>
+            <a href="#" class="delete">Delete</a>
           </td>
-          <td style="padding: 12px 8px;">Carlos Martinez</td>
-          <td style="padding: 12px 8px;">29</td>
-          <td style="padding: 12px 8px;">Male</td>
-          <td style="padding: 12px 8px;">305-456-7890</td>
-          <td style="padding: 12px 8px;">carlos@example.com</td>
-          <td style="padding: 12px 8px;">2025-03-05</td>
-          <td style="padding: 12px 8px;">
-            <a href="#" style="color: #20a967; text-decoration: none; margin-right: 10px;">View</a>
-            <a href="#" style="color: #3498db; text-decoration: none; margin-right: 10px;">Edit</a>
-            <a href="#" style="color: #e74c3c; text-decoration: none;">Delete</a>
+        </tr>
+        <!-- Paciente 2 -->
+        <tr>
+          <td><img src="path/to/patient2.jpg" alt="Patient 2" class="profile-img"></td>
+          <td>Mary Lopez</td>
+          <td>42</td>
+          <td>Female</td>
+          <td>305-987-6543</td>
+          <td>mary@example.com</td>
+          <td>2025-01-28</td>
+          <td class="action-links">
+            <a href="#" class="view">View</a>
+            <a href="#" class="edit">Edit</a>
+            <a href="#" class="delete">Delete</a>
+          </td>
+        </tr>
+        <!-- Paciente 3 -->
+        <tr>
+          <td><img src="path/to/patient3.jpg" alt="Patient 3" class="profile-img"></td>
+          <td>Carlos Martinez</td>
+          <td>29</td>
+          <td>Male</td>
+          <td>305-456-7890</td>
+          <td>carlos@example.com</td>
+          <td>2025-03-05</td>
+          <td class="action-links">
+            <a href="#" class="view">View</a>
+            <a href="#" class="edit">Edit</a>
+            <a href="#" class="delete">Delete</a>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <!-- Include the footer to maintain design consistency -->
+  <!-- Incluir el footer -->
   <?php include 'footer.php'; ?>
 </div>

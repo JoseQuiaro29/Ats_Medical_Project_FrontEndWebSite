@@ -1,87 +1,89 @@
 <!-- footer.php -->
-<footer class="footer" style="
-  background-color: #20a967; /* Color de fondo del footer (verde ocean-green 500) */
-  color: #fff; /* Color del texto: blanco */
-  padding: 10px 0; /* Espacio interno vertical reducido a 10px arriba y abajo */
-  margin-top: 0; /* Sin margen superior para eliminar espacios extras */
-  position: fixed; /* Posición fija para que el footer siempre esté visible */
-  bottom: 0; /* Se posiciona en la parte inferior de la ventana */
-  left: 0; /* Alineado al borde izquierdo */
-  width: 100%; /* Ocupa todo el ancho de la ventana */
-  z-index: 9999; /* Se muestra sobre otros elementos */
-">
-  <div class="container" style="
-    display: flex; /* Utiliza flexbox para organizar las columnas horizontalmente */
-    justify-content: space-between; /* Distribuye las columnas con espacio entre ellas */
-    flex-wrap: wrap; /* Permite que las columnas se acomoden en varias líneas en pantallas pequeñas */
-    align-items: center; /* Centra verticalmente los elementos dentro del contenedor */
-    max-width: 1200px; /* Ancho máximo del contenedor */
-    margin: 0 auto; /* Centra el contenedor horizontalmente */
-    padding: 0 20px; /* Espacio interno horizontal de 20px para separar los elementos de los bordes */
-  ">
+<style>
+/* Estilos generales del footer */
+.footer {
+  background-color: #20a967;
+  color: #fff;
+  padding: 10px 0;
+  margin-top: 0;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  font-size: 1.5rem; /* agregado para aumentar el tamaño de todas las letras del footer */
+}
+
+/* Contenedor del footer */
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Columnas del footer */
+.footer-column {
+  flex: 1;
+  min-width: 200px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+/* Estilos de los enlaces */
+.footer a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+/* Íconos de redes sociales */
+.footer .social-icons img {
+  width: 25px;
+  height: 25px;
+  margin: 0 10px;
+}
+
+/* Logo */
+.footer .logo img {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+</style>
+
+<footer class="footer">
+  <div class="container">
     <!-- Columna 1: Copyright y redes sociales -->
-    <div class="footer-column" style="
-      flex: 1; /* La columna ocupa el espacio disponible */
-      min-width: 200px; /* Ancho mínimo para evitar que se encoja demasiado en pantallas pequeñas */
-      text-align: center; /* Centra el contenido horizontalmente */
-      margin-bottom: 10px; /* Margen inferior para separar columnas en pantallas pequeñas */
-    ">
+    <div class="footer-column">
       <p>&copy; <?php echo date("Y"); ?> TeleConsultations</p>
-      <div style="margin-top: 10px;">
-        <a href="https://www.facebook.com" target="_blank" style="color: #fff; margin: 0 10px;">
-          <img 
-            src="https://cdn-icons-png.flaticon.com/512/733/733547.png" 
-            alt="Facebook" 
-            style="
-              width: 25px; /* Ancho del ícono de Facebook */
-              height: 25px; /* Alto del ícono de Facebook */
-            "
-          >
+      <div class="social-icons">
+        <a href="https://www.facebook.com" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook">
         </a>
-        <a href="https://www.twitter.com" target="_blank" style="color: #fff; margin: 0 10px;">
-          <img 
-            src="https://cdn-icons-png.flaticon.com/512/733/733579.png" 
-            alt="Twitter" 
-            style="
-              width: 25px; /* Ancho del ícono de Twitter */
-              height: 25px; /* Alto del ícono de Twitter */
-            "
-          >
+        <a href="https://www.twitter.com" target="_blank">
+          <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter">
         </a>
       </div>
     </div>
+    
     <!-- Columna 2: Enlaces legales y datos de contacto -->
-    <div class="footer-column" style="
-      flex: 1; 
-      min-width: 200px; 
-      text-align: center; 
-      margin-bottom: 10px;
-    ">
+    <div class="footer-column">
       <p>
-        <a href="#" style="color:#fff; text-decoration: underline;">Terms and Conditions</a> | 
-        <a href="#" style="color:#fff; text-decoration: underline;">Privacy Policy</a>
+        <a href="#">Terms and Conditions</a> | 
+        <a href="#">Privacy Policy</a>
       </p>
       <p>Address: 550 Southwest 27th Avenue, Miami, FL 33135</p>
       <p>Phone: 305-541-2655</p>
     </div>
+    
     <!-- Columna 3: Logo y soporte técnico -->
-    <div class="footer-column" style="
-      flex: 1; 
-      min-width: 200px; 
-      text-align: center; 
-      margin-bottom: 10px;
-    ">
-      <p>
+    <div class="footer-column">
+      <p class="logo">
         <a href="https://advancedats.com" target="_blank">
-          <img 
-            src="../../images/logo1.png" 
-            alt="Advance ATS" 
-            style="
-              width: 25px; /* Ancho del logo */
-              height: 25px; /* Alto del logo */
-              margin-right: 10px; /* Espacio a la derecha del logo */
-            "
-          >
+          <img src="../../images/logo1.png" alt="Advance ATS">
         </a>
         Technical Support ccesin@link2ats.com
       </p>
@@ -90,7 +92,7 @@
   </div>
 </footer>
 
-<!-- jQuery and Bootstrap JS (CDN) -->
+<!-- jQuery y Bootstrap JS (CDN) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

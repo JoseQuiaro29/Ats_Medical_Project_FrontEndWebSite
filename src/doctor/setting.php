@@ -113,7 +113,7 @@ include 'sidebar.php';    // Contains the sidebar navigation
 
 <body>
   <div class="content" id="content">
-    <div class="settings-container">
+    <div style="font-size: 2rem" class="settings-container">
       <!-- Section Title -->
       <h2>Settings</h2>
       <p>Manage your profile, account, notifications, and security settings.</p>
