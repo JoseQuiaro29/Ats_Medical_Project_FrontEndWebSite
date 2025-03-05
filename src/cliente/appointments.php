@@ -5,12 +5,7 @@ include 'sidebar.php';
 ?>
 
 <div class="dashboard">
-    <div class="content" id="content" style="
-      margin-left: 220px; /* Espacio para el sidebar fijo */
-      margin-top: 60px;   /* Para que el contenido no se oculte detrás del header */
-      padding: 40px;
-      transition: margin-left 0.3s ease;
-    ">
+    <div class="content" id="content">
         <h2 style="margin: 0; font-size: 2.2rem; color: #2c3e50;">My Appointments</h2>
         <p>View and manage your upcoming appointments here.</p>
         <!-- Encabezado y filtros -->
