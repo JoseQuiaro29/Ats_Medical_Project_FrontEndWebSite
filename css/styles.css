@@ -6,17 +6,21 @@ body {
   background-color: #f0f0f0; /* Fondo gris claro */
   margin: 0;
   padding: 0;
+  background-image: url('../images/fondo2.jpg'); /* Reemplaza 'tu-imagen.jpg' con la ruta correcta */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* Opcional: Fija el fondo al hacer scroll */
 }
 
 /* Estilos para la barra de navegación */
-.navbar {
-  background-color: #20a967; /* ocean-green 500 */
-  border-color: #0f6d44;     /* ocean-green 700 */
+/*.navbar {
+  background-color: #20a967;  
+  border-color: #0f6d44;      
 }
 .navbar-default .navbar-brand,
 .navbar-default .navbar-nav>li>a {
   color: #fff;
-}
+}*/
 
 /* Carrusel */
 .carousel .item img {
@@ -24,17 +28,10 @@ body {
   max-height: 500px;
 }
 
-/* Footer */
-.footer {
-  background-color: #20a967; /* ocean-green 500 */
-  color: #fff;
-  padding: 20px 0;
-  margin-top: 40px;
-  text-align: center;
-}
+
 
 /* Ajuste para imágenes de especialidades */
-.specialty-img {
+/*.specialty-img {
   width: 100px;
   height: 100px;
   margin-bottom: 10px;

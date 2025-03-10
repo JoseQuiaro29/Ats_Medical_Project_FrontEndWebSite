@@ -40,8 +40,8 @@ if (isset($_POST['login'])) {
   <style>
     /* Fixed top navbar */
     .custom-navbar {
-      background-color: #20a967; /* ocean-green */
-      border-color: #3a8a7e;
+      background-color: rgba(51, 88, 170, 0.8); /* ocean-green 500 con 80% de opacidad */
+      border-color: rgba(58, 138, 126, 0.8); /* ocean-green 600 con 80% de opacidad */
     }
     .custom-navbar .navbar-brand {
       color: #fff !important;

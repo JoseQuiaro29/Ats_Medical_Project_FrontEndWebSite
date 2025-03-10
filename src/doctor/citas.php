@@ -1,46 +1,67 @@
 <?php
 // citas.php
 session_start();
-// Include header (docheader.php) which contains meta tags, CSS links, etc.
 include 'docheader.php';
-// Include the sidebar for navigation
 include 'sidebar.php';
 ?>
 
 <style>
-/* Main content container */
+:root {
+  --primary-color: #20a967;
+  --secondary-color: #2c3e50;
+  --bg-color: #f4f7f9;
+  --card-bg: #ffffff;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal */
 .content {
-  padding-top: 80px; /* Space to prevent content from being hidden behind the fixed header */
-  margin-left: 220px; /* Left margin according to the sidebar's expanded width */
+  margin-left: 220px; /* Sidebar expandido */
+  padding: 80px 40px 80px;
   transition: margin-left 0.3s ease;
 }
 
-/* Appointments container */
-.appointments-container {
-  background-color: #fff;
-  padding: 30px;
-  margin: 20px auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  max-width: 1200px;
+/* Cuando el sidebar está colapsado */
+.content.collapsed {
+  margin-left: 70px;
 }
 
-/* Appointments header */
+/* Contenedor de citas */
+.appointments-container {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .appointments-header {
   margin-bottom: 20px;
+  font-size: 1.5rem;
 }
 
 .appointments-header h2 {
-  color: #2c3e50;
+  color: var(--secondary-color);
 }
 
 .appointments-header p {
   color: #666;
 }
 
-/* Search filter */
+/* Filtros de búsqueda */
 .appointments-filters {
   margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .appointments-filters input {
@@ -52,7 +73,7 @@ include 'sidebar.php';
 
 .appointments-filters button {
   padding: 10px 20px;
-  background-color: #20a967;
+  background-color: var(--primary-color);
   border: none;
   border-radius: 4px;
   color: #fff;
@@ -60,60 +81,87 @@ include 'sidebar.php';
   cursor: pointer;
 }
 
-/* Table styling */
+/* Tabla */
 table {
   width: 100%;
   border-collapse: collapse;
 }
 
 thead tr {
-  background-color: #20a967;
+  background-color: var(--primary-color);
   color: #fff;
 }
 
 th, td {
   padding: 12px 8px;
   text-align: left;
-  font-size: 1.5rem; /* agregado para aumentar el tamaño de fuente */
+  font-size: 1.2rem;
 }
 
 tbody tr {
   border-bottom: 1px solid #ddd;
 }
 
+/* Enlaces */
 a {
   text-decoration: none;
 }
 
-a.view-link {
-  color: #20a967;
+.view-link {
+  color: var(--primary-color);
   margin-right: 10px;
 }
 
-a.cancel-link {
+.cancel-link {
   color: #e74c3c;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .content {
+    margin-left: 70px;
+    padding: 60px 20px 80px;
+  }
 }
 </style>
 
-<!-- Main content container -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var content = document.getElementById("content");
+  var sidebar = document.querySelector(".sidebar");
+
+  function adjustContent() {
+    if (document.body.classList.contains("sidebar-collapsed")) {
+      content.classList.add("collapsed");
+    } else {
+      content.classList.remove("collapsed");
+    }
+  }
+
+  // Verificar si el sidebar ya está colapsado al cargar
+  adjustContent();
+
+  // Escuchar eventos para ajustar el contenido cuando el sidebar cambia
+  sidebar.addEventListener("click", function () {
+    document.body.classList.toggle("sidebar-collapsed");
+    adjustContent();
+  });
+});
+</script>
+
 <div class="content" id="content">
-  <!-- Appointments container with card design -->
   <div class="appointments-container">
-    <!-- Header for the appointments section -->
-    <div style="font-size: 1.5rem" class="appointments-header">
+    <div class="appointments-header">
       <h2>Scheduled Appointments</h2>
       <p>View and manage your teleconsultation appointments.</p>
     </div>
 
-    <!-- Search filter (optional) -->
     <div class="appointments-filters">
       <input type="text" placeholder="Search by patient, specialty...">
       <button>Search</button>
     </div>
 
-    <!-- Appointments table -->
     <table>
-      <!-- Table header -->
       <thead>
         <tr>
           <th>Time</th>
@@ -123,7 +171,6 @@ a.cancel-link {
           <th>Actions</th>
         </tr>
       </thead>
-      <!-- Table body with example appointments -->
       <tbody>
         <tr>
           <td>09:00 AM</td>
@@ -158,6 +205,6 @@ a.cancel-link {
       </tbody>
     </table>
   </div>
-  <!-- Include the footer -->
+
   <?php include 'footer.php'; ?>
 </div>

@@ -1,6 +1,11 @@
 <!-- footer.php -->
   <!-- Footer Section -->
-  <footer class="footer" style="background-color: #20a967; color: #fff; padding: 20px 0; margin-top: 40px;">
+  <footer class="footer" style="
+    background-color: rgba(51, 88, 170, 0.8); /* ocean-green 500 con 80% de opacidad */
+    color: #fff;
+    padding: 20px 0;
+    margin-top: 40px;
+  ">
     <div class="container">
       <div class="row">
         <div class="col-md-4 text-center">

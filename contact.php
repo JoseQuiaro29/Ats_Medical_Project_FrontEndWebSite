@@ -1,7 +1,7 @@
 <?php include 'header.php'; ?>
 
 <!-- Green band with "Contact Us" -->
-<section style="background-color: #62c6a8; padding: 40px 0;">
+<section style="background-color: rgba(17, 62, 146, 0.31); padding: 40px 0;">
   <div class="container text-center">
     <h2 style="color: #fff; margin: 0;">Contact Us</h2>
   </div>
@@ -87,7 +87,7 @@
             required
           ></textarea>
         </div>
-        <button type="submit" class="btn btn-success">Schedule Teleconsultation</button>
+        <button  type="submit" class="btn btn-success">Schedule Teleconsultation</button>
       </form>
     </div>
   </div>

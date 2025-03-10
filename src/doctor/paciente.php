@@ -1,42 +1,62 @@
 <?php
 // patients.php
 session_start();
-include 'docheader.php';  // Contiene el <head> y el header de la página
-include 'sidebar.php';    // Contiene la navegación lateral
+include 'docheader.php';
+include 'sidebar.php';
 ?>
 
 <style>
+:root {
+  --primary-color: #20a967;
+  --secondary-color: #2c3e50;
+  --bg-color: #f4f7f9;
+  --card-bg: #ffffff;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+}
+
 /* Contenedor principal */
 .content {
-  padding-top: 80px;
-  margin-left: 220px;
+  margin-left: 220px; /* Sidebar expandido */
+  padding: 80px 40px 80px;
   transition: margin-left 0.3s ease;
 }
 
-/* Contenedor de la sección de pacientes */
-.patients-container {
-  background-color: #fff;
-  padding: 30px;
-  margin: 20px auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  max-width: 1200px;
+/* Cuando el sidebar está colapsado */
+.content.collapsed {
+  margin-left: 70px;
 }
 
-/* Encabezado de la sección */
+/* Contenedor de pacientes */
+.patients-container {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .patients-header {
   margin-bottom: 20px;
+  font-size: 1.5rem;
 }
 
 .patients-header h2 {
-  color: #2c3e50;
+  color: var(--secondary-color);
 }
 
 .patients-header p {
   color: #666;
 }
 
-/* Filtros de búsqueda y botones */
+/* Filtros de búsqueda */
 .patients-filters {
   margin-bottom: 20px;
   display: flex;
@@ -49,7 +69,6 @@ include 'sidebar.php';    // Contiene la navegación lateral
   width: 300px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  margin-right: 10px;
 }
 
 .patients-filters button {
@@ -61,7 +80,7 @@ include 'sidebar.php';    // Contiene la navegación lateral
 }
 
 .patients-filters button:first-of-type {
-  background-color: #20a967;
+  background-color: var(--primary-color);
 }
 
 .patients-filters button:last-of-type {
@@ -76,14 +95,14 @@ table {
 }
 
 thead tr {
-  background-color: #20a967;
+  background-color: var(--primary-color);
   color: #fff;
 }
 
 th, td {
   padding: 12px 8px;
   text-align: left;
-  font-size: 1.5rem; // agregado para aumentar el tamaño de fuente
+  font-size: 1.2rem;
 }
 
 tbody tr {
@@ -105,7 +124,7 @@ tbody tr {
 }
 
 .action-links .view {
-  color: #20a967;
+  color: var(--primary-color);
 }
 
 .action-links .edit {
@@ -115,26 +134,53 @@ tbody tr {
 .action-links .delete {
   color: #e74c3c;
 }
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .content {
+    margin-left: 70px;
+    padding: 60px 20px 80px;
+  }
+}
 </style>
 
-<!-- Contenedor principal -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var content = document.getElementById("content");
+  var sidebar = document.querySelector(".sidebar");
+
+  function adjustContent() {
+    if (document.body.classList.contains("sidebar-collapsed")) {
+      content.classList.add("collapsed");
+    } else {
+      content.classList.remove("collapsed");
+    }
+  }
+
+  // Verificar si el sidebar ya está colapsado al cargar
+  adjustContent();
+
+  // Escuchar eventos para ajustar el contenido cuando el sidebar cambia
+  sidebar.addEventListener("click", function () {
+    document.body.classList.toggle("sidebar-collapsed");
+    adjustContent();
+  });
+});
+</script>
+
 <div class="content" id="content">
-  <!-- Contenedor de la sección de pacientes -->
   <div class="patients-container">
-    <!-- Encabezado de la sección -->
-    <div style="font-size: 1.5rem" class="patients-header">
+    <div class="patients-header">
       <h2>Patients List</h2>
       <p>Manage the details and appointments of your registered patients.</p>
     </div>
 
-    <!-- Filtros de búsqueda y botón de agregar paciente -->
     <div class="patients-filters">
       <input type="text" placeholder="Search by name, email, or phone...">
       <button>Search</button>
       <button>Add Patient</button>
     </div>
 
-    <!-- Tabla de pacientes -->
     <table>
       <thead>
         <tr>
@@ -149,7 +195,6 @@ tbody tr {
         </tr>
       </thead>
       <tbody>
-        <!-- Paciente 1 -->
         <tr>
           <td><img src="path/to/patient1.jpg" alt="Patient 1" class="profile-img"></td>
           <td>John Perez</td>
@@ -164,7 +209,6 @@ tbody tr {
             <a href="#" class="delete">Delete</a>
           </td>
         </tr>
-        <!-- Paciente 2 -->
         <tr>
           <td><img src="path/to/patient2.jpg" alt="Patient 2" class="profile-img"></td>
           <td>Mary Lopez</td>
@@ -179,7 +223,6 @@ tbody tr {
             <a href="#" class="delete">Delete</a>
           </td>
         </tr>
-        <!-- Paciente 3 -->
         <tr>
           <td><img src="path/to/patient3.jpg" alt="Patient 3" class="profile-img"></td>
           <td>Carlos Martinez</td>
@@ -197,6 +240,6 @@ tbody tr {
       </tbody>
     </table>
   </div>
-  <!-- Incluir el footer -->
+
   <?php include 'footer.php'; ?>
 </div>

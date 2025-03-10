@@ -1,7 +1,7 @@
 <?php include 'header.php'; ?>
 
 <!-- Green band with "Our Services" -->
-<section style="background-color: #62c6a8; padding: 40px 0;">
+<section style="background-color:rgba(17, 62, 146, 0.65); padding: 40px 0;">
   <div class="container text-center">
     <h2 style="color: #fff; margin: 0;">Our Services</h2>
   </div>
@@ -33,11 +33,11 @@
     <!-- Atribución: "Riñones Fotos de Stock por Vecteezy" - <a href="https://es.vecteezy.com/fotos-gratis/ri%C3%B1ones" target="_blank">Fuente</a> -->
     <div class="col-md-6 text-center specialty-card">
       <img src="images/specialty/nephrology1.webp" alt="Tele Nephrology">
-      <h3 style="color: #62c6a8;">Tele Nephrology</h3>
+      <h3 style="color:rgba(17, 62, 146, 0.65);;">Tele Nephrology</h3>
       <p>
         Dr. Manuel Garcia Estrada offers remote nephrology services, providing specialized consultations for kidney diseases.
       </p>
-      <a href="#" style="color: #62c6a8; text-decoration: underline;">See more</a>
+      <a href="#" style="color:rgba(17, 62, 146, 0.65);; text-decoration: underline;">See more</a>
       <?php
       // Alternativamente, puedes mostrar la atribución en forma visible:
       // echo '<small>Riñones Fotos de Stock por <a href="https://es.vecteezy.com/fotos-gratis/ri%C3%B1ones" target="_blank">Vecteezy</a></small>';
@@ -45,11 +45,11 @@
     </div>
     <div class="col-md-6 text-center specialty-card">
       <img src="images/specialty/InternalMedicine.webp" alt="Tele Internal Medicine">
-      <h3 style="color: #62c6a8;">Tele Internal Medicine</h3>
+      <h3 style="color: rgba(17, 62, 146, 0.65);;">Tele Internal Medicine</h3>
       <p>
         Dr. Manuel Garcia Estrada offers remote internal medicine services, providing specialized consultations for adult diseases.
       </p>
-      <a href="#" style="color: #62c6a8; text-decoration: underline;">See more</a>
+      <a href="#" style="color: rgba(17, 62, 146, 0.65);; text-decoration: underline;">See more</a>
     </div>
   </div>
 </section>

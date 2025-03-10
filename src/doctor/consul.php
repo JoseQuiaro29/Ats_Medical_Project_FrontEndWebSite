@@ -1,43 +1,62 @@
 <?php
 // consul.php
 session_start();
-// Incluimos el header y sidebar (ajusta la ruta si tus archivos están en otra carpeta)
-include 'docheader.php';  // Contiene el <head> y el header
-include 'sidebar.php';    // Menú lateral
+include 'docheader.php';
+include 'sidebar.php';
 ?>
 
 <style>
-/* Contenedor principal del contenido */
+:root {
+  --primary-color: #20a967;
+  --secondary-color: #2c3e50;
+  --bg-color: #f4f7f9;
+  --card-bg: #ffffff;
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  margin: 0;
+  padding: 0;
+}
+
+/* Contenedor principal */
 .content {
-  padding-top: 80px; /* Espacio superior para evitar superposición con el header */
-  margin-left: 220px; /* Ajusta según el ancho del sidebar expandido */
+  margin-left: 220px; /* Sidebar expandido */
+  padding: 80px 40px 80px;
   transition: margin-left 0.3s ease;
 }
 
-/* Contenedor de la sección de Tele Consultations */
-.teleconsult-container {
-  background-color: #fff;
-  padding: 30px;
-  margin: 20px auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  max-width: 1200px;
+/* Cuando el sidebar está colapsado */
+.content.collapsed {
+  margin-left: 70px;
 }
 
-/* Encabezado de la sección */
+/* Contenedor de teleconsultas */
+.teleconsult-container {
+  background: var(--card-bg);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .teleconsult-header {
   margin-bottom: 20px;
+  font-size: 1.5rem;
 }
 
 .teleconsult-header h2 {
-  color: #2c3e50;
+  color: var(--secondary-color);
 }
 
 .teleconsult-header p {
   color: #666;
 }
 
-/* Filtros de búsqueda y botón de acción */
+/* Filtros de búsqueda */
 .teleconsult-filters {
   margin-bottom: 20px;
   display: flex;
@@ -50,17 +69,18 @@ include 'sidebar.php';    // Menú lateral
   width: 300px;
   border: 1px solid #ddd;
   border-radius: 4px;
-  margin-right: 10px;
 }
 
 .teleconsult-filters button {
   padding: 10px 20px;
-  background-color: #20a967;
   border: none;
   border-radius: 4px;
   color: #fff;
-  margin-right: 10px;
   cursor: pointer;
+}
+
+.teleconsult-filters button:first-of-type {
+  background-color: var(--primary-color);
 }
 
 .teleconsult-filters button:last-of-type {
@@ -68,56 +88,83 @@ include 'sidebar.php';    // Menú lateral
   margin-left: auto;
 }
 
-/* Tabla de teleconsultas programadas */
+/* Tabla de teleconsultas */
 table {
   width: 100%;
   border-collapse: collapse;
 }
 
 thead tr {
-  background-color: #20a967;
+  background-color: var(--primary-color);
   color: #fff;
 }
 
-th,
-td {
+th, td {
   padding: 12px 8px;
   text-align: left;
-  font-size: 1.5rem; /* agregado para aumentar el tamaño de fuente */
+  font-size: 1.2rem;
 }
 
 tbody tr {
   border-bottom: 1px solid #ddd;
 }
 
+/* Botones de acción */
 tbody button {
   padding: 8px 12px;
-  background-color: #20a967;
+  background-color: var(--primary-color);
   border: none;
   border-radius: 4px;
   color: #fff;
   cursor: pointer;
 }
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .content {
+    margin-left: 70px;
+    padding: 60px 20px 80px;
+  }
+}
 </style>
 
-<!-- Contenedor principal del contenido -->
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  var content = document.getElementById("content");
+  var sidebar = document.querySelector(".sidebar");
+
+  function adjustContent() {
+    if (document.body.classList.contains("sidebar-collapsed")) {
+      content.classList.add("collapsed");
+    } else {
+      content.classList.remove("collapsed");
+    }
+  }
+
+  // Verificar si el sidebar ya está colapsado al cargar
+  adjustContent();
+
+  // Escuchar eventos para ajustar el contenido cuando el sidebar cambia
+  sidebar.addEventListener("click", function () {
+    document.body.classList.toggle("sidebar-collapsed");
+    adjustContent();
+  });
+});
+</script>
+
 <div class="content" id="content">
-  <!-- Contenedor de la sección de Tele Consultations -->
   <div class="teleconsult-container">
-    <!-- Encabezado de la sección -->
-    <div style="font-size: 1.5rem" class="teleconsult-header">
+    <div class="teleconsult-header">
       <h2>Tele Consultations</h2>
       <p>Manage and initiate teleconsultation sessions with your patients.</p>
     </div>
 
-    <!-- Filtros de búsqueda y botón de acción -->
     <div class="teleconsult-filters">
       <input type="text" placeholder="Search by patient, date...">
       <button>Search</button>
       <button>New Teleconsultation</button>
     </div>
 
-    <!-- Tabla de teleconsultas programadas -->
     <table>
       <thead>
         <tr>
@@ -129,20 +176,17 @@ tbody button {
         </tr>
       </thead>
       <tbody>
-        <!-- Ejemplo 1 -->
         <tr>
           <td>10:00 AM</td>
           <td>John Doe</td>
           <td>Nephrology</td>
           <td>Confirmed</td>
           <td>
-            <!-- Acción para iniciar la videollamada (ficticio) -->
             <button>
               <i class="fas fa-video"></i> Start Call
             </button>
           </td>
         </tr>
-        <!-- Ejemplo 2 -->
         <tr>
           <td>11:30 AM</td>
           <td>Mary Smith</td>
@@ -154,7 +198,6 @@ tbody button {
             </button>
           </td>
         </tr>
-        <!-- Ejemplo 3 -->
         <tr>
           <td>02:00 PM</td>
           <td>Carlos Martinez</td>
@@ -169,6 +212,6 @@ tbody button {
       </tbody>
     </table>
   </div>
-  <!-- Se incluye el footer (ajusta la ruta según tu estructura) -->
+
   <?php include 'footer.php'; ?>
 </div>

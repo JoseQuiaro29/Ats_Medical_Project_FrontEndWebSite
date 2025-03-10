@@ -41,6 +41,20 @@ include 'sidebar.php';
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    
+  }
+
+
+
+  .settings-section3 {
+    background: var(--card-bg);
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    
   }
   .settings-section h2 {
     margin-top: 0;
@@ -178,7 +192,7 @@ include 'sidebar.php';
     </div>
 
     <!-- Sección 3: Preferencias de notificación -->
-    <div class="settings-section">
+    <div class="settings-section3">
       <h2>Notification Preferences</h2>
       <p>Select how you would like to receive notifications.</p>
       <form method="POST" action="update_notifications.php">
