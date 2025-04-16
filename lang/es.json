@@ -1,0 +1,20 @@
+{
+    "home": "Inicio",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "login": "Iniciar sesión",
+    "welcome": "Consulta médica especializada en línea",
+    "how_it_works": "Cómo funciona",
+    "step1": "Elija su especialidad",
+    "step1_desc": "Seleccione entre nuestras especialidades médicas disponibles para atender su necesidad específica de salud.",
+    "step2": "Revise el acuerdo",
+    "step2_desc": "Acepte los términos de la consulta que incluyen la duración específica y condiciones del servicio.",
+    "step3": "Complete su reserva",
+    "step3_desc": "Seleccione su horario preferido, realice el pago seguro y complete su información médica previa.",
+    "specialties": "Nuestras especialidades",
+    "internal_med": "Medicina Interna",
+    "internal_med_desc": "Diagnóstico y tratamiento integral para adultos. Nuestros internistas brindan atención personalizada para sus necesidades de salud general.",
+    "nephrology": "Nefrología",
+    "nephrology_desc": "Atención especializada en enfermedades renales. Evaluación y manejo personalizado por nefrólogos certificados.",
+    "book_now": "Reservar ahora"
+  }

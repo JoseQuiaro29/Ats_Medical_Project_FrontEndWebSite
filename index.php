@@ -42,36 +42,6 @@
     padding: 0 var(--space-lg);
   }
 
-  /* Selector de Idioma Flotante */
-  .language-switcher {
-    position: fixed;
-    top: var(--space-lg);
-    right: var(--space-lg);
-    display: flex;
-    gap: var(--space-xs);
-    z-index: 100;
-    background: rgba(255, 255, 255, 0.9);
-    padding: var(--space-xs);
-    border-radius: 9999px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  }
-
-  .language-btn {
-    background: transparent;
-    border: none;
-    color: var(--primary);
-    padding: var(--space-xxs) var(--space-sm);
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    cursor: pointer;
-    transition: var(--transition);
-  }
-
-  .language-btn.active {
-    background: var(--primary);
-    color: white;
-  }
-
   /* Hero Section Dividida */
   .hero-split {
     display: flex;
@@ -377,23 +347,23 @@
       <div style="display: flex; align-items: center; margin-bottom: var(--space-md);">
         <img src="images/logoG.png" alt="TeleConsultas" class="hero-logo">
         <div style="margin-left: var(--space-md);">
-          <h1 id="main-heading" class="hero-title">Consulta médica especializada en línea</h1>
-          <p class="hero-subtitle">Conecte con médicos certificados de forma rápida, segura y desde la comodidad de su hogar.</p>
+          <h1 id="main-heading" class="hero-title" data-i18n="welcome">Consulta médica especializada en línea</h1>
+          <p class="hero-subtitle" data-i18n="welcome_subtitle">Conecte con médicos certificados de forma rápida, segura y desde la comodidad de su hogar.</p>
         </div>
       </div>
       
       <!-- Process Section Insertada Aquí -->
       <section class="process-section" aria-labelledby="process-heading">
         <div class="container">
-          <h2 id="process-heading" class="section-title">Cómo funciona</h2>
+          <h2 id="process-heading" class="section-title" data-i18n="how_it_works">Cómo funciona</h2>
           
           <div class="process-steps">
             <!-- Paso 1 -->
             <div class="process-step">
               <div class="process-icon">1</div>
               <div class="process-content">
-                <h3 class="process-title">Elija su especialidad</h3>
-                <p class="process-description">Seleccione entre nuestras especialidades médicas disponibles para atender su necesidad específica de salud.</p>
+                <h3 class="process-title" data-i18n="step1">Elija su especialidad</h3>
+                <p class="process-description" data-i18n="step1_desc">Seleccione entre nuestras especialidades médicas disponibles para atender su necesidad específica de salud.</p>
               </div>
             </div>
             
@@ -401,8 +371,8 @@
             <div class="process-step">
               <div class="process-icon">2</div>
               <div class="process-content">
-                <h3 class="process-title">Revise el acuerdo</h3>
-                <p class="process-description">Acepte los términos de la consulta que incluyen la duración específica y condiciones del servicio.</p>
+                <h3 class="process-title" data-i18n="step2">Revise el acuerdo</h3>
+                <p class="process-description" data-i18n="step2_desc">Acepte los términos de la consulta que incluyen la duración específica y condiciones del servicio.</p>
               </div>
             </div>
             
@@ -410,8 +380,8 @@
             <div class="process-step">
               <div class="process-icon">3</div>
               <div class="process-content">
-                <h3 class="process-title">Complete su reserva</h3>
-                <p class="process-description">Seleccione su horario preferido, realice el pago seguro y complete su información médica previa.</p>
+                <h3 class="process-title" data-i18n="step3">Complete su reserva</h3>
+                <p class="process-description" data-i18n="step3_desc">Seleccione su horario preferido, realice el pago seguro y complete su información médica previa.</p>
               </div>
             </div>
           </div>
@@ -439,24 +409,24 @@
 <!-- Specialties Section -->
 <section class="specialties-cta" aria-labelledby="specialties-heading">
   <div class="container">
-    <h2 id="specialties-heading" class="section-title">Nuestras especialidades</h2>
+    <h2 id="specialties-heading" class="section-title" data-i18n="specialties">Nuestras especialidades</h2>
     
     <div class="specialties-grid">
       <!-- Medicina Interna -->
       <div class="specialty-card">
         <div class="specialty-header">
-          <h3 class="specialty-title">Medicina Interna</h3>
+          <h3 class="specialty-title" data-i18n="internal_med">Medicina Interna</h3>
           <div class="specialty-duration">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            Consulta de 10 minutos
+            <span data-i18n="consultation_time">Consulta de 10 minutos</span>
           </div>
         </div>
         <div class="specialty-body">
-          <p class="specialty-description">Diagnóstico y tratamiento integral para adultos. Nuestros internistas brindan atención personalizada para sus necesidades de salud general.</p>
+          <p class="specialty-description" data-i18n="internal_med_desc">Diagnóstico y tratamiento integral para adultos. Nuestros internistas brindan atención personalizada para sus necesidades de salud general.</p>
           <a href="register.php" class="specialty-button" aria-label="Reservar consulta de Medicina Interna">
-            Reservar ahora
+            <span data-i18n="book_now">Reservar ahora</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg>
@@ -467,18 +437,18 @@
       <!-- Nefrología -->
       <div class="specialty-card">
         <div class="specialty-header" style="background: var(--secondary);">
-          <h3 class="specialty-title">Nefrología</h3>
+          <h3 class="specialty-title" data-i18n="nephrology">Nefrología</h3>
           <div class="specialty-duration">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            Consulta de 10 minutos
+            <span data-i18n="consultation_time">Consulta de 10 minutos</span>
           </div>
         </div>
         <div class="specialty-body">
-          <p class="specialty-description">Atención especializada en enfermedades renales. Evaluación y manejo personalizado por nefrólogos certificados.</p>
+          <p class="specialty-description" data-i18n="nephrology_desc">Atención especializada en enfermedades renales. Evaluación y manejo personalizado por nefrólogos certificados.</p>
           <a href="register.php" class="specialty-button" style="background: var(--secondary);" aria-label="Reservar consulta de Nefrología">
-            Reservar ahora
+            <span data-i18n="book_now">Reservar ahora</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg>
@@ -490,26 +460,3 @@
 </section>
 
 <?php include 'footer.php'; ?>
-
-<script>
-// Interacción del selector de idioma
-document.querySelectorAll('.language-btn').forEach(btn => {
-  btn.addEventListener('click', function() {
-    document.querySelector('.language-btn.active').classList.remove('active');
-    this.classList.add('active');
-    
-    // Lógica de cambio de idioma
-    console.log(`Idioma cambiado a: ${this.textContent}`);
-  });
-});
-
-// Smooth scrolling para accesibilidad
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href')).scrollIntoView({
-      behavior: 'smooth'
-    });
-  });
-});
-</script>

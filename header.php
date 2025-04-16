@@ -1,5 +1,26 @@
+<?php
+// Iniciar sesión y manejar idioma
+session_start();
+
+$defaultLang = 'es';
+$availableLangs = ['es', 'en'];
+
+// Determinar idioma (prioridad: GET > SESSION > COOKIE > default)
+if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
+    $_SESSION['lang'] = $_GET['lang'];
+    setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/"); // 30 días
+} elseif (isset($_SESSION['lang'])) {
+    // Ya está en sesión
+} elseif (isset($_COOKIE['lang'])) {
+    $_SESSION['lang'] = $_COOKIE['lang'];
+} else {
+    $_SESSION['lang'] = $defaultLang;
+}
+
+$currentLang = $_SESSION['lang'];
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo $currentLang; ?>">
 <head>
   <meta charset="UTF-8">
   <title>TeleConsultations</title>
@@ -64,11 +85,13 @@
       cursor: pointer;
       transition: all 0.3s ease;
       font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
     }
     
     .language-btn:hover, .language-btn.active {
       background: #fff;
-      color: #3358aa;
+      color: #3358aa !important;
       border-color:rgb(239, 242, 247);
     }
     
@@ -111,15 +134,15 @@
       <!-- Menú de navegación -->
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
-          <li><a href="contact.php">Contact</a></li>
-          <li><a href="login.php">Sign in</a></li>
+          <li><a href="index.php" data-i18n="home">Home</a></li>
+          <li><a href="about.php" data-i18n="about">About</a></li>
+          <li><a href="contact.php" data-i18n="contact">Contact</a></li>
+          <li><a href="login.php" data-i18n="login">Sign in</a></li>
           <li>
             <div class="language-selector-container">
               <div class="language-selector">
-                <button class="language-btn active" data-lang="es">ES</button>
-                <button class="language-btn" data-lang="en">EN</button>
+                <a href="?lang=es" class="language-btn <?php echo $currentLang === 'es' ? 'active' : ''; ?>">ES</a>
+                <a href="?lang=en" class="language-btn <?php echo $currentLang === 'en' ? 'active' : ''; ?>">EN</a>
               </div>
             </div>
           </li>
@@ -136,23 +159,13 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   <!-- Script para el cambio de idioma -->
+  <script src="js/language.js"></script>
   <script>
+    // Pasar el idioma actual a JavaScript
+    const currentLang = '<?php echo $currentLang; ?>';
+    
+    // Inicializar el sistema de idiomas
     document.addEventListener('DOMContentLoaded', function() {
-      const languageBtns = document.querySelectorAll('.language-btn');
-      
-      languageBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-          // Remover clase active de todos los botones
-          languageBtns.forEach(b => b.classList.remove('active'));
-          // Agregar clase active al botón clickeado
-          this.classList.add('active');
-          
-          const lang = this.getAttribute('data-lang');
-          console.log('Idioma seleccionado:', lang);
-          // Aquí iría la lógica para cambiar el idioma de la página
-        });
-      });
+      initLanguageSystem(currentLang);
     });
   </script>
-</body>
-</html>

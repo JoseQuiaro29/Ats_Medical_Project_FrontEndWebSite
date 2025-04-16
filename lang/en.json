@@ -1,0 +1,20 @@
+{
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Sign in",
+    "welcome": "Specialized medical consultations online",
+    "how_it_works": "How it works",
+    "step1": "Choose your specialty",
+    "step1_desc": "Select from our available medical specialties to address your specific health needs.",
+    "step2": "Review the agreement",
+    "step2_desc": "Accept the consultation terms including specific duration and service conditions.",
+    "step3": "Complete your booking",
+    "step3_desc": "Select your preferred time, make a secure payment and complete your prior medical information.",
+    "specialties": "Our specialties",
+    "internal_med": "Internal Medicine",
+    "internal_med_desc": "Comprehensive diagnosis and treatment for adults. Our internists provide personalized care for your general health needs.",
+    "nephrology": "Nephrology",
+    "nephrology_desc": "Specialized care for kidney diseases. Personalized evaluation and management by certified nephrologists.",
+    "book_now": "Book now"
+  }
