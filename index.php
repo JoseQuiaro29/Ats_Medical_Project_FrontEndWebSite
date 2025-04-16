@@ -1,303 +1,515 @@
 <?php include 'header.php'; ?>
 
-<!-- Estilos CSS -->
+<!-- Estilos CSS Ultra Premium Mejorados -->
 <style>
-  /* Introductory Section */
-  .intro-section {
-    padding: 40px 0;
-    background-color: #ffffff;
-    transition: transform 0.3s ease;
+  :root {
+    --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --primary-light: #93c5fd;
+    --secondary: #10b981;
+    --accent: #f59e0b;
+    --dark: #1f2937;
+    --light: #f9fafb;
+    --gray: #6b7280;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Sistema de espaciado */
+    --space-xxs: 0.25rem;  /* 4px */
+    --space-xs: 0.5rem;    /* 8px */
+    --space-sm: 0.75rem;   /* 12px */
+    --space-md: 1rem;      /* 16px */
+    --space-lg: 1.5rem;    /* 24px */
+    --space-xl: 2rem;      /* 32px */
+    --space-xxl: 3rem;     /* 48px */
+    --space-xxxl: 4rem;    /* 64px */
   }
-  .intro-section:hover {
-    transform: scale(1.02);
-    background-color: rgba(51, 88, 170, 0.8); /* Resalta con el color al pasar el cursor */
+
+  /* Reset y Tipografía */
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background-color: var(--light);
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Contenedor principal */
+  .container {
+    max-width: 1440px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 var(--space-lg);
+  }
+
+  /* Selector de Idioma Flotante */
+  .language-switcher {
+    position: fixed;
+    top: var(--space-lg);
+    right: var(--space-lg);
+    display: flex;
+    gap: var(--space-xs);
+    z-index: 100;
+    background: rgba(255, 255, 255, 0.9);
+    padding: var(--space-xs);
+    border-radius: 9999px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+
+  .language-btn {
+    background: transparent;
+    border: none;
+    color: var(--primary);
+    padding: var(--space-xxs) var(--space-sm);
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+
+  .language-btn.active {
+    background: var(--primary);
     color: white;
   }
-  .intro-container {
+
+  /* Hero Section Dividida */
+  .hero-split {
+    display: flex;
+    min-height: 70vh;
+  }
+
+  .hero-content {
+    flex: 1;
+    padding: var(--space-xxxl) var(--space-xxl);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background: white;
+  }
+
+  .hero-video {
+    flex: 1;
+    background: linear-gradient(45deg, var(--primary-dark), var(--primary));
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    padding: var(--space-xl);
   }
-  .intro-logo {
-    flex: 0 0 auto;
-    text-align: center;
-    margin: 10px;
-    transition: transform 0.3s ease;
-  }
-  .intro-logo:hover {
-    transform: scale(1.05);
-    
-  }
-  .intro-logo img {
-    max-width: 200px;
+
+  /* Estilo simplificado para el video */
+  .simple-video-container {
     width: 100%;
-    height: auto;
-  }
-  .intro-text {
-    flex: 1 1 400px;
-    margin: 10px;
-    text-align: left;
-    transition: transform 0.3s ease;
-  }
-  .intro-text:hover {
-    transform: scale(1.02);
-    
-  }
-  .intro-text h1 {
-    color: #2c3e50;
-    font-size: 3rem;
-    margin-bottom: 20px;
-  }
-  .intro-text p {
-    color: #2c3e50;
-    font-size: 2rem;
-    line-height: 2rem;
-    text-align: justify;
-    ont-weight: bold;
-    
-  }
-
-  /* Carousel Section */
-  #homeCarousel {
-    position: relative;
-    max-height: 500px;
-    overflow: hidden;
-    transition: transform 0.3s ease;
-  }
-  #homeCarousel:hover {
-    transform: scale(1.02);
-  }
-  .carousel-inner .item img {
-    margin: 0 auto;
-    max-height: 500px;
-  }
-  .carousel-control span {
-    margin-top: 200px;
-  }
-
-  /* Specialties Section */
-  .specialties {
-    padding: 40px 0;
-    background-color: #f5f5f5;
-    transition: background-color 0.3s ease;
-  }
-  .specialties:hover {
-    background-color: rgba(51, 88, 170, 0.8); /* Resalta con el color al pasar el cursor */
-    color: white;
-  }
-  .specialty-card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  .specialty-card:hover {
-    transform: scale(1.05);
-    background-color: rgba(51, 88, 170, 0.8);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
-    
-  }
-  .specialty-card img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 10px;
-    transition: transform 0.3s ease;
-  }
-  .specialty-card img:hover {
-    transform: scale(1.1);
-    
-  }
-
-  /* Well-Being Section */
-  .wellbeing-section {
-    padding: 40px 0;
-   /* background-color: #f5f5f5;*/
-   background-color: rgba(255, 255, 255, 0.43);
-    transition: transform 0.3s ease;
-    text-align: center;
-  }
-  .wellbeing-section:hover {
-    transform: scale(1.02);
-    background-color: rgba(51, 88, 170, 0.8); /* Resalta con el color al pasar el cursor */
-    color: white;
-  }
-  .wellbeing-row {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center;
-  }
-  .wellbeing-card {
-    transition: transform 0.3s ease;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  .wellbeing-card:hover {
-    transform: scale(1.05);
-  }
-  .wellbeing-card img {
-    width: 60px;
-    height: 60px;
-    margin-bottom: 10px;
-  }
-
-  /* Schedule Your Online Consultation Section */
-  .consultation-section {
-    padding: 40px 0;
-   /* background-color: #f5f5f5;*/
-   background-color: rgba(255, 255, 255, 0);
-    margin-top: 40px;
-    transition: transform 0.3s ease;
-    text-align: center;
-    margin: 0 auto;  
     max-width: 800px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
   }
-  .consultation-section:hover {
-    transform: scale(1.02);
-    background-color: rgba(51, 88, 170, 0.8); /* Resalta con el color al pasar el cursor */
+
+  .simple-video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+  }
+
+  .simple-video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  .hero-logo {
+    width: 180px;
+    margin-bottom: var(--space-xs);
+  }
+
+  .hero-title {
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--space-sm);
+    color: var(--dark);
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    color: var(--gray);
+    margin-bottom: var(--space-lg);
+    max-width: 500px;
+  }
+
+  /* Process Section - Destacada */
+  .process-section {
+    padding: var(--space-xxxl) var(--space-xxl);
+    background: var(--light);
+  }
+
+  .section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: var(--space-xxl);
+    color: var(--dark);
+    position: relative;
+    display: inline-block;
+  }
+
+  .section-title:after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+    max-width: 800px;
+    margin-left: auto;
+  }
+
+  .process-step {
+    display: flex;
+    gap: var(--space-lg);
+    position: relative;
+    padding-bottom: var(--space-xl);
+  }
+
+  .process-step:not(:last-child):after {
+    content: '';
+    position: absolute;
+    left: 30px;
+    top: 60px;
+    height: calc(100% - 60px);
+    width: 2px;
+    background: var(--primary-light);
+    z-index: 1;
+  }
+
+  .process-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+  }
+
+  .process-content {
+    flex: 1;
+  }
+
+  .process-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: var(--space-sm);
+  }
+
+  .process-description {
+    color: var(--gray);
+    line-height: 1.7;
+  }
+
+  /* Specialties & CTA Section Combinada */
+  .specialties-cta {
+    padding: var(--space-xxxl) var(--space-xxl);
+    background: white;
+  }
+
+  .specialties-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-xxl);
+  }
+
+  .specialty-card {
+    background: white;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #e5e7eb;
+  }
+
+  .specialty-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  .specialty-header {
+    padding: var(--space-lg);
+    background: var(--primary);
     color: white;
   }
 
-  /* Subscription Section */
-  .subscription-section {
-    padding: 40px 0;
-   /* background-color: #eeeeee;*/
-   background-color: rgba(255, 255, 255, 0.43);
-    transition: transform 0.3s ease;
-  }
-  .subscription-section:hover {
-    transform: scale(1.02);
-    background-color: rgba(51, 88, 170, 0.8); /* Resalta con el color al pasar el cursor */
-    color: white;
+  .specialty-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
   }
 
-  /* Ejemplo de hover con sombra (si no está definido en otro lado) */
-  .hover\:shadow-ocean-green-300:hover {
-    box-shadow: 0 4px 8px rgba(0, 128, 128, 0.3);
+  .specialty-duration {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.875rem;
+    opacity: 0.9;
+  }
+
+  .specialty-body {
+    padding: var(--space-lg);
+  }
+
+  .specialty-description {
+    color: var(--gray);
+    margin-bottom: var(--space-lg);
+    line-height: 1.7;
+  }
+
+  .specialty-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary);
+    color: white;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: 0.5rem;
+    font-weight: 500;
+    transition: var(--transition);
+    text-decoration: none;
+  }
+
+  .specialty-button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1024px) {
+    .hero-split {
+      flex-direction: column;
+    }
+    
+    .hero-content, .process-section, .specialties-cta {
+      padding: var(--space-xxl) var(--space-lg);
+    }
+    
+    .hero-title {
+      font-size: 2.5rem;
+    }
+    
+    .simple-video-container {
+      width: 90%;
+      margin: var(--space-xl) auto;
+    }
+    
+    .process-steps {
+      margin-left: 0;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-content {
+      padding: var(--space-xl) var(--space-md);
+    }
+    
+    .hero-title {
+      font-size: 2.25rem;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+    
+    .section-title {
+      font-size: 1.75rem;
+    }
+    
+    .process-step {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    
+    .process-icon {
+      width: 50px;
+      height: 50px;
+      font-size: 1.25rem;
+    }
+    
+    .process-step:not(:last-child):after {
+      left: 25px;
+      top: 50px;
+      height: calc(100% - 50px);
+    }
+    
+    .specialties-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 
-<!-- HTML -->
-<!-- Introductory Section -->
-<section class="intro-section" style="background-color: rgba(255, 255, 255, 0.27);">
-  <div class="container intro-container">
-    <!-- Logo Column -->
-    <div class="intro-logo">
-      <img src="images/logoG.png" alt="Company Logo">
+<!-- Hero Section Dividida -->
+<section class="hero-split" aria-labelledby="main-heading">
+  <div class="hero-content">
+    <div class="container">
+      <div style="display: flex; align-items: center; margin-bottom: var(--space-md);">
+        <img src="images/logoG.png" alt="TeleConsultas" class="hero-logo">
+        <div style="margin-left: var(--space-md);">
+          <h1 id="main-heading" class="hero-title">Consulta médica especializada en línea</h1>
+          <p class="hero-subtitle">Conecte con médicos certificados de forma rápida, segura y desde la comodidad de su hogar.</p>
+        </div>
+      </div>
+      
+      <!-- Process Section Insertada Aquí -->
+      <section class="process-section" aria-labelledby="process-heading">
+        <div class="container">
+          <h2 id="process-heading" class="section-title">Cómo funciona</h2>
+          
+          <div class="process-steps">
+            <!-- Paso 1 -->
+            <div class="process-step">
+              <div class="process-icon">1</div>
+              <div class="process-content">
+                <h3 class="process-title">Elija su especialidad</h3>
+                <p class="process-description">Seleccione entre nuestras especialidades médicas disponibles para atender su necesidad específica de salud.</p>
+              </div>
+            </div>
+            
+            <!-- Paso 2 -->
+            <div class="process-step">
+              <div class="process-icon">2</div>
+              <div class="process-content">
+                <h3 class="process-title">Revise el acuerdo</h3>
+                <p class="process-description">Acepte los términos de la consulta que incluyen la duración específica y condiciones del servicio.</p>
+              </div>
+            </div>
+            
+            <!-- Paso 3 -->
+            <div class="process-step">
+              <div class="process-icon">3</div>
+              <div class="process-content">
+                <h3 class="process-title">Complete su reserva</h3>
+                <p class="process-description">Seleccione su horario preferido, realice el pago seguro y complete su información médica previa.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
-    <!-- Introductory Text Column -->
-    <div class="intro-text">
-      <h1>Welcome to TeleConsultations</h1>
-      <p>
-        Experience top-quality teleconsultations with leading doctors from the comfort of your home. Our innovative platform connects you with expert medical professionals quickly and securely, ensuring personalized care at your fingertips.
-      </p>
+  </div>
+  
+  <div class="hero-video">
+    <div class="simple-video-container">
+      <div class="simple-video-wrapper">
+        <iframe 
+          src="https://www.youtube.com/embed/VIDEO_ID" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen
+          title="Video de Misión del Doctor"
+          aria-label="Video explicativo del servicio">
+        </iframe>
+      </div>
     </div>
   </div>
 </section>
-
-<!-- Carousel Section -->
-<div id="homeCarousel" class="carousel slide hover:shadow-ocean-green-300" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
-    <li data-target="#homeCarousel" data-slide-to="1"></li>
-    <li data-target="#homeCarousel" data-slide-to="2"></li>
-    <li data-target="#homeCarousel" data-slide-to="3"></li>
-  </ol>
-
-  <!-- Slides -->
-  <div class="carousel-inner" role="listbox">
-    <div class="item active">
-      <img src="images/carousel/carousel1.webp" alt="Slide 1" class="img-responsive">
-    </div>
-    <div class="item">
-      <img src="images/carousel/carousel2.webp" alt="Slide 2" class="img-responsive">
-    </div>
-    <div class="item">
-      <img src="images/carousel/carousel3.webp" alt="Slide 3" class="img-responsive">
-    </div>
-    <div class="item">
-      <img src="images/carousel/carousel4.webp" alt="Slide 4" class="img-responsive">
-    </div>
-  </div>
-
-  <!-- Carousel Controls -->
-  <a class="left carousel-control" href="#homeCarousel" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-  </a>
-  <a class="right carousel-control" href="#homeCarousel" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-  </a>
-  
-  <?php
-    // Previously used overlay removed for a cleaner design
-  ?>
-</div>
 
 <!-- Specialties Section -->
-<section class="specialties hover:shadow-ocean-green-300" style="background-color: rgba(245, 245, 245, 0.61);">
+<section class="specialties-cta" aria-labelledby="specialties-heading">
   <div class="container">
-    <div class="row">
-      <!-- Specialty Card 1: Internal Medicine -->
-      <div class="col-md-6 specialty-card">
-        <img src="images/specialty/Internal-Medicine.webp" alt="Internal Medicine">
-        <h4>Internal Medicine</h4>
-        <p>Our experienced physicians provide comprehensive consultations in internal medicine, ensuring precise diagnosis and effective treatment for adult health concerns.</p>
-        <a href="#" class="btn btn-primary btn-sm">Read more</a>
+    <h2 id="specialties-heading" class="section-title">Nuestras especialidades</h2>
+    
+    <div class="specialties-grid">
+      <!-- Medicina Interna -->
+      <div class="specialty-card">
+        <div class="specialty-header">
+          <h3 class="specialty-title">Medicina Interna</h3>
+          <div class="specialty-duration">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            Consulta de 10 minutos
+          </div>
+        </div>
+        <div class="specialty-body">
+          <p class="specialty-description">Diagnóstico y tratamiento integral para adultos. Nuestros internistas brindan atención personalizada para sus necesidades de salud general.</p>
+          <a href="register.php" class="specialty-button" aria-label="Reservar consulta de Medicina Interna">
+            Reservar ahora
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
       </div>
-      <!-- Specialty Card 2: Nephrology -->
-      <div class="col-md-6 specialty-card">
-        <img src="images/specialty/nephrology.webp" alt="Nephrology">
-        <h4>Nephrology</h4>
-        <p>Receive expert consultations in nephrology focused on diagnosing and managing kidney conditions to help you maintain optimal renal health.</p>
-        <a href="#" class="btn btn-primary btn-sm">Read more</a>
+      
+      <!-- Nefrología -->
+      <div class="specialty-card">
+        <div class="specialty-header" style="background: var(--secondary);">
+          <h3 class="specialty-title">Nefrología</h3>
+          <div class="specialty-duration">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            Consulta de 10 minutos
+          </div>
+        </div>
+        <div class="specialty-body">
+          <p class="specialty-description">Atención especializada en enfermedades renales. Evaluación y manejo personalizado por nefrólogos certificados.</p>
+          <a href="register.php" class="specialty-button" style="background: var(--secondary);" aria-label="Reservar consulta de Nefrología">
+            Reservar ahora
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;">
+              <path d="M5 12h14M12 5l7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- Taking Care of Your Well-Being Section -->
-<section class="wellbeing-section hover:shadow-ocean-green-300">
-  <div class="container">
-    <h2>Taking Care of Your Well-Being</h2>
-    <div class="row wellbeing-row">
-      <!-- Well-Being Card 1: Tailored Health Plans -->
-      <div class="col-md-6 wellbeing-card">
-        <img src="images/icon-1.png" alt="Tailored Health Plans">
-        <h4>Tailored Health Plans</h4>
-        <p>We adapt to your unique needs by partnering with a diverse range of insurance providers, ensuring you get the coverage that fits you best.</p>
-        <a href="#" class="btn btn-default">Read more</a>
-      </div>
-      <!-- Well-Being Card 2: Expert Medical Care -->
-      <div class="col-md-6 wellbeing-card">
-        <img src="images/icon-2.png" alt="Expert Medical Care">
-        <h4>Expert Medical Care</h4>
-        <p>Our board-certified specialists provide comprehensive, personalized treatment plans to ensure exceptional care and positive health outcomes for you.</p>
-        <a href="#" class="btn btn-default">Read more</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Schedule Your Online Consultation Section -->
-<section class="consultation-section text-center hover:shadow-ocean-green-300">
-  <h2>Schedule Your Online Consultation</h2>
-  <p>Connect with top medical professionals from the comfort of your home.</p>
-  <a href="bookconsultation.php" class="btn btn-success btn-lg">Book a Consultation</a>
-</section>
-
-<!-- Subscription Section -->
-<section class="subscription-section hover:shadow-ocean-green-300">
-  <div class="container text-center">
-    <h2>Get Our Latest News</h2>
-    <p>Subscribe to receive updates on our services, events, and wellness tips to help you live a healthier life.</p>
-    <form class="form-inline">
-      <div class="form-group">
-        <label class="sr-only" for="emailAddress">Email address</label>
-        <input type="email" class="form-control" id="emailAddress" placeholder="Enter your email address">
-      </div>
-      <button type="submit" class="btn btn-primary">Subscribe</button>
-    </form>
   </div>
 </section>
 
 <?php include 'footer.php'; ?>
+
+<script>
+// Interacción del selector de idioma
+document.querySelectorAll('.language-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelector('.language-btn.active').classList.remove('active');
+    this.classList.add('active');
+    
+    // Lógica de cambio de idioma
+    console.log(`Idioma cambiado a: ${this.textContent}`);
+  });
+});
+
+// Smooth scrolling para accesibilidad
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+</script>
