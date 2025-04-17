@@ -1,9 +1,14 @@
 {
-    "home": "Inicio",
+  "global": {
+    "site_name": "TeleConsultations",
+    "home": "Volver",
     "about": "Acerca de",
     "contact": "Contacto",
-    "login": "Iniciar sesión",
+    "login": "Iniciar sesión"
+  },
+  "index": {
     "welcome": "Consulta médica especializada en línea",
+    "welcome_subtitle": "Conecte con médicos certificados de forma rápida, segura y desde la comodidad de su hogar.",
     "how_it_works": "Cómo funciona",
     "step1": "Elija su especialidad",
     "step1_desc": "Seleccione entre nuestras especialidades médicas disponibles para atender su necesidad específica de salud.",
@@ -16,5 +21,55 @@
     "internal_med_desc": "Diagnóstico y tratamiento integral para adultos. Nuestros internistas brindan atención personalizada para sus necesidades de salud general.",
     "nephrology": "Nefrología",
     "nephrology_desc": "Atención especializada en enfermedades renales. Evaluación y manejo personalizado por nefrólogos certificados.",
-    "book_now": "Reservar ahora"
-  }
+    "book_now": "Reservar ahora",
+    "consultation_time": "Consulta de 10 minutos"
+  },
+  "register": {
+    "register_title": "Registro | TeleConsultations",
+    "register_header": "Crea tu cuenta",
+    "register_subheader": "Únete a nuestra plataforma para acceder a servicios de teleconsulta",
+    "full_name": "Nombre completo",
+    "full_name_placeholder": "Ingresa tu nombre completo",
+    "email_address": "Correo electrónico",
+    "email_placeholder": "Ingresa tu correo electrónico",
+    "phone_number": "Número de teléfono",
+    "phone_placeholder": "Ingresa tu número de teléfono",
+    "username": "Nombre de usuario",
+    "username_placeholder": "Crea un nombre de usuario",
+    "password": "Contraseña",
+    "password_placeholder": "Crea una contraseña segura",
+    "confirm_password": "Confirmar contraseña",
+    "confirm_password_placeholder": "Repite tu contraseña",
+    "terms_text": "Acepto los",
+    "terms_conditions": "Términos y Condiciones",
+    "and_text": "y",
+    "privacy_policy": "Política de Privacidad",
+    "register_button": "Registrarse ahora",
+    "already_have_account": "¿Ya tienes una cuenta?",
+    "login_here": "Inicia sesión aquí"
+  },
+
+"specialty": {
+  "page_title": "Seleccionar Especialidad | TeleConsultations",
+  "select_specialty_header": "Seleccione su Especialidad",
+  "select_specialty_subheader": "Por favor elija la especialidad médica que necesita",
+  "selected_specialty": "Especialidad Seleccionada:",
+  "redirect_message": "Será redirigido a su panel de control en breve.",
+  "internal_medicine": "Medicina Interna",
+  "internal_medicine_desc": "Atención integral para adultos, enfocada en diagnóstico y tratamiento de enfermedades complejas.",
+  "nephrology": "Nefrología",
+  "nephrology_desc": "Atención especializada para enfermedades renales, hipertensión y condiciones relacionadas.",
+  "confirm_button": "Confirmar Selección",
+  "select_specialty_alert": "Por favor seleccione una especialidad primero.",
+  "terms_title": "Términos y Condiciones",
+  "important_info": "Información Importante Sobre Su Consulta",
+  "read_terms": "Por favor lea y acepte los siguientes términos antes de continuar:",
+  "terms_disclaimer": "<strong>Descargo de Responsabilidad Médica:</strong> Usted entiende y acepta que TeleConsultations provee consejo médico basado en la información que usted proporcione. Los médicos no son responsables por ningún resultado derivado del consejo dado durante la consulta. Usted acepta indemnizar y eximir de responsabilidad a los profesionales médicos por cualquier reclamo que surja de la consulta.",
+  "terms_duration": "<strong>Duración de la Consulta:</strong> Cada consulta está estrictamente limitada a 8 minutos de interacción directa con el médico, con 2 minutos adicionales asignados para cerrar la sesión (10 minutos en total). Si requiere más tiempo, puede necesitar programar una consulta adicional.",
+  "terms_payment": "<strong>Política de Pago:</strong> Todos los honorarios de consulta no son reembolsables una vez que la sesión ha comenzado. Si experimenta dificultades técnicas, por favor contacte a nuestro equipo de soporte inmediatamente.",
+  "terms_patient": "<strong>Política de Paciente Único:</strong> Cada consulta está destinada a un solo paciente. Compartir su consulta con otros está estrictamente prohibido y puede resultar en la terminación de su cuenta.",
+  "terms_acceptance": "He leído, entendido y acepto todos los términos y condiciones descritos anteriormente. Reconozco que al marcar esta casilla, estoy firmando electrónicamente este acuerdo.",
+  "cancel_button": "Cancelar",
+  "proceed_button": "Continuar a Consulta"
+}
+}

@@ -300,7 +300,7 @@ $appointment_total = $appointment_price; // Podría incluir impuestos u otros ca
 
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.php" style="color:#fff;"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> Home</a></li>
         </ul>
       </div>
     </div>

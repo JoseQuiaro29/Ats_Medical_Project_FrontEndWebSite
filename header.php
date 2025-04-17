@@ -9,21 +9,21 @@ $availableLangs = ['es', 'en'];
 if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
     $_SESSION['lang'] = $_GET['lang'];
     setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/"); // 30 días
+    $currentLang = $_GET['lang'];
 } elseif (isset($_SESSION['lang'])) {
-    // Ya está en sesión
+    $currentLang = $_SESSION['lang'];
 } elseif (isset($_COOKIE['lang'])) {
-    $_SESSION['lang'] = $_COOKIE['lang'];
+    $currentLang = $_COOKIE['lang'];
 } else {
-    $_SESSION['lang'] = $defaultLang;
+    $currentLang = $defaultLang;
+    $_SESSION['lang'] = $currentLang;
 }
-
-$currentLang = $_SESSION['lang'];
 ?>
 <!DOCTYPE html>
 <html lang="<?php echo $currentLang; ?>">
 <head>
   <meta charset="UTF-8">
-  <title>TeleConsultations</title>
+  <title data-i18n="global.site_name">TeleConsultations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS (CDN) -->
@@ -35,6 +35,7 @@ $currentLang = $_SESSION['lang'];
 
   <!-- Estilos internos personalizados -->
   <style>
+    /* Tus estilos CSS existentes... */
     /* Estilos para la Navbar personalizada */
     .custom-navbar {
       background-color: rgba(51, 88, 170, 0.8);
@@ -119,7 +120,6 @@ $currentLang = $_SESSION['lang'];
   <nav class="navbar navbar-default navbar-fixed-top custom-navbar">
     <div class="container">
       <div class="navbar-header">
-        <!-- Botón para menú móvil -->
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -127,17 +127,16 @@ $currentLang = $_SESSION['lang'];
         </button>
         <a class="navbar-brand custom-navbar-brand" href="index.php">
           <img src="images/logo1.png" alt="Logo" class="navbar-logo">
-          <strong style="color:#fff">TeleConsultations</strong>
+          <strong style="color:#fff" data-i18n="global.site_name">TeleConsultations</strong>
         </a>
       </div>
 
-      <!-- Menú de navegación -->
       <div class="collapse navbar-collapse" id="navbar-collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.php" data-i18n="home">Home</a></li>
-          <li><a href="about.php" data-i18n="about">About</a></li>
-          <li><a href="contact.php" data-i18n="contact">Contact</a></li>
-          <li><a href="login.php" data-i18n="login">Sign in</a></li>
+          <li><a href="index.php" data-i18n="global.home">Home</a></li>
+          <li><a href="about.php" data-i18n="global.about">About</a></li>
+          <li><a href="contact.php" data-i18n="global.contact">Contact</a></li>
+          <li><a href="login.php" data-i18n="global.login">Sign in</a></li>
           <li>
             <div class="language-selector-container">
               <div class="language-selector">
@@ -151,7 +150,6 @@ $currentLang = $_SESSION['lang'];
     </div>
   </nav>
 
-  <!-- Espaciador para evitar que el contenido quede oculto tras la navbar -->
   <div class="navbar-spacer"></div>
 
   <!-- jQuery y Bootstrap JS -->

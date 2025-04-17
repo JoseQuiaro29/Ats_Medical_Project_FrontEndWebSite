@@ -429,7 +429,7 @@ if (isset($_POST['book_appointment'])) {
           <li>
           </li>
           <li>
-            <a href="index.php" style="color:#fff;"><i class="fas fa-home"></i> Home</a>
+            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> Home</a>
           </li>
         </ul>
       </div>

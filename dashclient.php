@@ -1,7 +1,23 @@
 <?php
-// Enable error reporting (optional for debugging)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Iniciar sesión y manejar idioma
+session_start();
+
+$defaultLang = 'es';
+$availableLangs = ['es', 'en'];
+
+// Determinar idioma (prioridad: GET > SESSION > COOKIE > default)
+if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
+    $_SESSION['lang'] = $_GET['lang'];
+    setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/"); // 30 días
+    $currentLang = $_GET['lang'];
+} elseif (isset($_SESSION['lang'])) {
+    $currentLang = $_SESSION['lang'];
+} elseif (isset($_COOKIE['lang'])) {
+    $currentLang = $_COOKIE['lang'];
+} else {
+    $currentLang = $defaultLang;
+    $_SESSION['lang'] = $currentLang;
+}
 
 // Lógica para la página de selección de especialidad
 if (isset($_POST['select_specialty'])) {
@@ -10,10 +26,10 @@ if (isset($_POST['select_specialty'])) {
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo $currentLang; ?>">
 <head>
   <meta charset="UTF-8">
-  <title>Select Specialty | TeleConsultations</title>
+  <title data-i18n="specialty.page_title">Select Specialty | TeleConsultations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Bootstrap CSS (CDN) -->
@@ -222,7 +238,7 @@ if (isset($_POST['select_specialty'])) {
         <!-- Logo and title -->
         <a class="navbar-brand" href="index.php">
           <img src="images/logo1.png" alt="Logo">
-          TeleConsultations
+          <span data-i18n="global.site_name">TeleConsultations</span>
         </a>
       </div>
 
@@ -230,10 +246,15 @@ if (isset($_POST['select_specialty'])) {
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>
-            <a href="login.php" style="color:#fff;"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> <span data-i18n="global.home">Home</span></a>
           </li>
           <li>
-            <a href="index.php" style="color:#fff;"><i class="fas fa-home"></i> Home</a>
+            <div class="language-selector-container">
+              <div class="language-selector">
+                <a href="?lang=es" class="language-btn <?php echo $currentLang === 'es' ? 'active' : ''; ?>">ES</a>
+                <a href="?lang=en" class="language-btn <?php echo $currentLang === 'en' ? 'active' : ''; ?>">EN</a>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -246,14 +267,14 @@ if (isset($_POST['select_specialty'])) {
   <!-- Specialty selection page -->
   <div class="specialty-card">
     <div class="specialty-header">
-      <h2>Select Your Specialty</h2>
-      <p>Please choose the medical specialty you need</p>
+      <h2 data-i18n="specialty.select_specialty_header">Select Your Specialty</h2>
+      <p data-i18n="specialty.select_specialty_subheader">Please choose the medical specialty you need</p>
     </div>
 
     <?php if (isset($_POST['select_specialty'])): ?>
       <div class="alert alert-success text-center">
-        <h4>Specialty Selected: <?php echo htmlspecialchars($specialty); ?></h4>
-        <p>You will be redirected to your dashboard shortly.</p>
+        <h4 data-i18n="specialty.selected_specialty">Specialty Selected: <?php echo htmlspecialchars($specialty); ?></h4>
+        <p data-i18n="specialty.redirect_message">You will be redirected to your dashboard shortly.</p>
       </div>
     <?php else: ?>
       <form id="specialtyForm" method="post" action="" class="specialty-form">
@@ -264,8 +285,8 @@ if (isset($_POST['select_specialty'])) {
               <div class="specialty-icon">
                 <i class="fas fa-heartbeat"></i>
               </div>
-              <div class="specialty-name">Internal Medicine</div>
-              <div class="specialty-desc">
+              <div class="specialty-name" data-i18n="specialty.internal_medicine">Internal Medicine</div>
+              <div class="specialty-desc" data-i18n="specialty.internal_medicine_desc">
                 Comprehensive care for adults, focusing on diagnosis and treatment of complex diseases.
               </div>
             </label>
@@ -277,8 +298,8 @@ if (isset($_POST['select_specialty'])) {
               <div class="specialty-icon">
                 <i class="fas fa-kidneys"></i>
               </div>
-              <div class="specialty-name">Nephrology</div>
-              <div class="specialty-desc">
+              <div class="specialty-name" data-i18n="specialty.nephrology">Nephrology</div>
+              <div class="specialty-desc" data-i18n="specialty.nephrology_desc">
                 Specialized care for kidney diseases, hypertension, and related conditions.
               </div>
             </label>
@@ -286,7 +307,7 @@ if (isset($_POST['select_specialty'])) {
         </div>
 
         <button type="button" id="confirmBtn" class="btn specialty-btn">
-          <i class="fas fa-check-circle"></i> Confirm Selection
+          <i class="fas fa-check-circle"></i> <span data-i18n="specialty.confirm_button">Confirm Selection</span>
         </button>
       </form>
     <?php endif; ?>
@@ -300,26 +321,26 @@ if (isset($_POST['select_specialty'])) {
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true" style="color:white;">&times;</span>
           </button>
-          <h4 class="modal-title" id="termsModalLabel">Terms and Conditions</h4>
+          <h4 class="modal-title" id="termsModalLabel" data-i18n="specialty.terms_title">Terms and Conditions</h4>
         </div>
         <div class="modal-body">
-          <h4>Important Information About Your Consultation</h4>
-          <p>Please read and acknowledge the following terms before proceeding:</p>
+          <h4 data-i18n="specialty.important_info">Important Information About Your Consultation</h4>
+          <p data-i18n="specialty.read_terms">Please read and acknowledge the following terms before proceeding:</p>
           
           <ul class="terms-list">
-            <li>
+            <li data-i18n="specialty.terms_disclaimer">
               <strong>Medical Advice Disclaimer:</strong> You understand and agree that TeleConsultations provides medical advice based on the information you provide. The physicians are not liable for any outcomes resulting from the advice given during the consultation. You agree to indemnify and hold harmless the medical professionals from any claims arising from the consultation.
             </li>
             
-            <li>
+            <li data-i18n="specialty.terms_duration">
               <strong>Consultation Duration:</strong> Each consultation is strictly limited to 8 minutes of direct interaction with the physician, with an additional 2 minutes allocated for closing the session (10 minutes total). If you require more time, you may need to schedule an additional consultation.
             </li>
             
-            <li>
+            <li data-i18n="specialty.terms_payment">
               <strong>Payment Policy:</strong> All consultation fees are non-refundable once the session has begun. If you experience technical difficulties, please contact our support team immediately.
             </li>
             
-            <li>
+            <li data-i18n="specialty.terms_patient">
               <strong>Single Patient Policy:</strong> Each consultation is intended for one patient only. Sharing your consultation with others is strictly prohibited and may result in termination of your account.
             </li>
           </ul>
@@ -327,13 +348,13 @@ if (isset($_POST['select_specialty'])) {
           <div class="terms-checkbox">
             <label>
               <input type="checkbox" id="acceptTerms" required>
-              I have read, understood, and agree to all the terms and conditions outlined above. I acknowledge that by checking this box, I am electronically signing this agreement.
+              <span data-i18n="specialty.terms_acceptance">I have read, understood, and agree to all the terms and conditions outlined above. I acknowledge that by checking this box, I am electronically signing this agreement.</span>
             </label>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button type="button" id="proceedBtn" class="btn btn-primary" disabled>Proceed to Consultation</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" data-i18n="specialty.cancel_button">Cancel</button>
+          <button type="button" id="proceedBtn" class="btn btn-primary" disabled data-i18n="specialty.proceed_button">Proceed to Consultation</button>
         </div>
       </div>
     </div>
@@ -346,15 +367,23 @@ if (isset($_POST['select_specialty'])) {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+  <!-- Script para el cambio de idioma -->
+  <script src="js/language.js"></script>
   <script>
-    $(document).ready(function() {
+    // Pasar el idioma actual a JavaScript
+    const currentLang = '<?php echo $currentLang; ?>';
+    
+    // Inicializar el sistema de idiomas
+    document.addEventListener('DOMContentLoaded', function() {
+      initLanguageSystem(currentLang);
+      
       // Handle confirm button click
       $('#confirmBtn').click(function() {
         // Validate that a specialty is selected
         if ($('input[name="specialty"]:checked').length > 0) {
           $('#termsModal').modal('show');
         } else {
-          alert('Please select a specialty first.');
+          alert(t('specialty.select_specialty_alert'));
         }
       });
 
@@ -368,7 +397,7 @@ if (isset($_POST['select_specialty'])) {
         // Get the selected specialty
         var specialty = $('input[name="specialty"]:checked').val();
         // Redirect to appointment.php with the specialty parameter
-        window.location.href = 'appointment.php?specialty=' + encodeURIComponent(specialty);
+        window.location.href = 'appointment.php?specialty=' + encodeURIComponent(specialty) + '&lang=' + currentLang;
       });
     });
   </script>

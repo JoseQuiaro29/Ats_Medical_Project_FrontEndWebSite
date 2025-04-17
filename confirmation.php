@@ -260,7 +260,7 @@ $doctor = $doctors[$doctor_id];
 
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.php" style="color:#fff;"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> Home</a></li>
         </ul>
       </div>
     </div>

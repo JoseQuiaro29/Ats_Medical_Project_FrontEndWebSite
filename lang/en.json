@@ -1,9 +1,14 @@
 {
-    "home": "Home",
+  "global": {
+    "site_name": "TeleConsultations",
+    "home": "preview",
     "about": "About",
     "contact": "Contact",
-    "login": "Sign in",
+    "login": "Sign in"
+  },
+  "index": {
     "welcome": "Specialized medical consultations online",
+    "welcome_subtitle": "Connect with certified doctors quickly, safely and from the comfort of your home.",
     "how_it_works": "How it works",
     "step1": "Choose your specialty",
     "step1_desc": "Select from our available medical specialties to address your specific health needs.",
@@ -16,5 +21,54 @@
     "internal_med_desc": "Comprehensive diagnosis and treatment for adults. Our internists provide personalized care for your general health needs.",
     "nephrology": "Nephrology",
     "nephrology_desc": "Specialized care for kidney diseases. Personalized evaluation and management by certified nephrologists.",
-    "book_now": "Book now"
-  }
+    "book_now": "Book now",
+    "consultation_time": "10-minute consultation"
+  },
+  "register": {
+    "register_title": "Register | TeleConsultations",
+    "register_header": "Create Your Account",
+    "register_subheader": "Join our platform to access teleconsultation services",
+    "full_name": "Full Name",
+    "full_name_placeholder": "Enter your full name",
+    "email_address": "Email Address",
+    "email_placeholder": "Enter your email address",
+    "phone_number": "Phone Number",
+    "phone_placeholder": "Enter your phone number",
+    "username": "Username",
+    "username_placeholder": "Create a username",
+    "password": "Password",
+    "password_placeholder": "Create a secure password",
+    "confirm_password": "Confirm Password",
+    "confirm_password_placeholder": "Repeat your password",
+    "terms_text": "I agree to the",
+    "terms_conditions": "Terms and Conditions",
+    "and_text": "and",
+    "privacy_policy": "Privacy Policy",
+    "register_button": "Register Now",
+    "already_have_account": "Already have an account?",
+    "login_here": "Login here"
+  },
+  "specialty": {
+  "page_title": "Select Specialty | TeleConsultations",
+  "select_specialty_header": "Select Your Specialty",
+  "select_specialty_subheader": "Please choose the medical specialty you need",
+  "selected_specialty": "Specialty Selected:",
+  "redirect_message": "You will be redirected to your dashboard shortly.",
+  "internal_medicine": "Internal Medicine",
+  "internal_medicine_desc": "Comprehensive care for adults, focusing on diagnosis and treatment of complex diseases.",
+  "nephrology": "Nephrology",
+  "nephrology_desc": "Specialized care for kidney diseases, hypertension, and related conditions.",
+  "confirm_button": "Confirm Selection",
+  "select_specialty_alert": "Please select a specialty first.",
+  "terms_title": "Terms and Conditions",
+  "important_info": "Important Information About Your Consultation",
+  "read_terms": "Please read and acknowledge the following terms before proceeding:",
+  "terms_disclaimer": "<strong>Medical Advice Disclaimer:</strong> You understand and agree that TeleConsultations provides medical advice based on the information you provide. The physicians are not liable for any outcomes resulting from the advice given during the consultation. You agree to indemnify and hold harmless the medical professionals from any claims arising from the consultation.",
+  "terms_duration": "<strong>Consultation Duration:</strong> Each consultation is strictly limited to 8 minutes of direct interaction with the physician, with an additional 2 minutes allocated for closing the session (10 minutes total). If you require more time, you may need to schedule an additional consultation.",
+  "terms_payment": "<strong>Payment Policy:</strong> All consultation fees are non-refundable once the session has begun. If you experience technical difficulties, please contact our support team immediately.",
+  "terms_patient": "<strong>Single Patient Policy:</strong> Each consultation is intended for one patient only. Sharing your consultation with others is strictly prohibited and may result in termination of your account.",
+  "terms_acceptance": "I have read, understood, and agree to all the terms and conditions outlined above. I acknowledge that by checking this box, I am electronically signing this agreement.",
+  "cancel_button": "Cancel",
+  "proceed_button": "Proceed to Consultation"
+}
+}

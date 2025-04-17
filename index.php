@@ -1,5 +1,6 @@
 <?php include 'header.php'; ?>
 
+<!-- Estilos CSS... (mantener tus estilos existentes) -->
 <!-- Estilos CSS Ultra Premium Mejorados -->
 <style>
   :root {
@@ -339,7 +340,6 @@
     }
   }
 </style>
-
 <!-- Hero Section Dividida -->
 <section class="hero-split" aria-labelledby="main-heading">
   <div class="hero-content">
@@ -347,23 +347,23 @@
       <div style="display: flex; align-items: center; margin-bottom: var(--space-md);">
         <img src="images/logoG.png" alt="TeleConsultas" class="hero-logo">
         <div style="margin-left: var(--space-md);">
-          <h1 id="main-heading" class="hero-title" data-i18n="welcome">Consulta médica especializada en línea</h1>
-          <p class="hero-subtitle" data-i18n="welcome_subtitle">Conecte con médicos certificados de forma rápida, segura y desde la comodidad de su hogar.</p>
+          <h1 id="main-heading" class="hero-title" data-i18n="index.welcome">Consulta médica especializada en línea</h1>
+          <p class="hero-subtitle" data-i18n="index.welcome_subtitle">Conecte con médicos certificados de forma rápida, segura y desde la comodidad de su hogar.</p>
         </div>
       </div>
       
-      <!-- Process Section Insertada Aquí -->
+      <!-- Process Section -->
       <section class="process-section" aria-labelledby="process-heading">
         <div class="container">
-          <h2 id="process-heading" class="section-title" data-i18n="how_it_works">Cómo funciona</h2>
+          <h2 id="process-heading" class="section-title" data-i18n="index.how_it_works">Cómo funciona</h2>
           
           <div class="process-steps">
             <!-- Paso 1 -->
             <div class="process-step">
               <div class="process-icon">1</div>
               <div class="process-content">
-                <h3 class="process-title" data-i18n="step1">Elija su especialidad</h3>
-                <p class="process-description" data-i18n="step1_desc">Seleccione entre nuestras especialidades médicas disponibles para atender su necesidad específica de salud.</p>
+                <h3 class="process-title" data-i18n="index.step1">Elija su especialidad</h3>
+                <p class="process-description" data-i18n="index.step1_desc">Seleccione entre nuestras especialidades médicas disponibles para atender su necesidad específica de salud.</p>
               </div>
             </div>
             
@@ -371,8 +371,8 @@
             <div class="process-step">
               <div class="process-icon">2</div>
               <div class="process-content">
-                <h3 class="process-title" data-i18n="step2">Revise el acuerdo</h3>
-                <p class="process-description" data-i18n="step2_desc">Acepte los términos de la consulta que incluyen la duración específica y condiciones del servicio.</p>
+                <h3 class="process-title" data-i18n="index.step2">Revise el acuerdo</h3>
+                <p class="process-description" data-i18n="index.step2_desc">Acepte los términos de la consulta que incluyen la duración específica y condiciones del servicio.</p>
               </div>
             </div>
             
@@ -380,8 +380,8 @@
             <div class="process-step">
               <div class="process-icon">3</div>
               <div class="process-content">
-                <h3 class="process-title" data-i18n="step3">Complete su reserva</h3>
-                <p class="process-description" data-i18n="step3_desc">Seleccione su horario preferido, realice el pago seguro y complete su información médica previa.</p>
+                <h3 class="process-title" data-i18n="index.step3">Complete su reserva</h3>
+                <p class="process-description" data-i18n="index.step3_desc">Seleccione su horario preferido, realice el pago seguro y complete su información médica previa.</p>
               </div>
             </div>
           </div>
@@ -409,24 +409,24 @@
 <!-- Specialties Section -->
 <section class="specialties-cta" aria-labelledby="specialties-heading">
   <div class="container">
-    <h2 id="specialties-heading" class="section-title" data-i18n="specialties">Nuestras especialidades</h2>
+    <h2 id="specialties-heading" class="section-title" data-i18n="index.specialties">Nuestras especialidades</h2>
     
     <div class="specialties-grid">
       <!-- Medicina Interna -->
       <div class="specialty-card">
         <div class="specialty-header">
-          <h3 class="specialty-title" data-i18n="internal_med">Medicina Interna</h3>
+          <h3 class="specialty-title" data-i18n="index.internal_med">Medicina Interna</h3>
           <div class="specialty-duration">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            <span data-i18n="consultation_time">Consulta de 10 minutos</span>
+            <span data-i18n="index.consultation_time">Consulta de 10 minutos</span>
           </div>
         </div>
         <div class="specialty-body">
-          <p class="specialty-description" data-i18n="internal_med_desc">Diagnóstico y tratamiento integral para adultos. Nuestros internistas brindan atención personalizada para sus necesidades de salud general.</p>
+          <p class="specialty-description" data-i18n="index.internal_med_desc">Diagnóstico y tratamiento integral para adultos. Nuestros internistas brindan atención personalizada para sus necesidades de salud general.</p>
           <a href="register.php" class="specialty-button" aria-label="Reservar consulta de Medicina Interna">
-            <span data-i18n="book_now">Reservar ahora</span>
+            <span data-i18n="index.book_now">Reservar ahora</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg>
@@ -437,18 +437,18 @@
       <!-- Nefrología -->
       <div class="specialty-card">
         <div class="specialty-header" style="background: var(--secondary);">
-          <h3 class="specialty-title" data-i18n="nephrology">Nefrología</h3>
+          <h3 class="specialty-title" data-i18n="index.nephrology">Nefrología</h3>
           <div class="specialty-duration">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline>
             </svg>
-            <span data-i18n="consultation_time">Consulta de 10 minutos</span>
+            <span data-i18n="index.consultation_time">Consulta de 10 minutos</span>
           </div>
         </div>
         <div class="specialty-body">
-          <p class="specialty-description" data-i18n="nephrology_desc">Atención especializada en enfermedades renales. Evaluación y manejo personalizado por nefrólogos certificados.</p>
+          <p class="specialty-description" data-i18n="index.nephrology_desc">Atención especializada en enfermedades renales. Evaluación y manejo personalizado por nefrólogos certificados.</p>
           <a href="register.php" class="specialty-button" style="background: var(--secondary);" aria-label="Reservar consulta de Nefrología">
-            <span data-i18n="book_now">Reservar ahora</span>
+            <span data-i18n="index.book_now">Reservar ahora</span>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 0.5rem;">
               <path d="M5 12h14M12 5l7 7-7 7"></path>
             </svg>

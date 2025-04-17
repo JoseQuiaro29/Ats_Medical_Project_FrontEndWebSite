@@ -1,13 +1,29 @@
 <?php
-// Enable error reporting (optional for debugging)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Iniciar sesión y manejar idioma
+session_start();
+
+$defaultLang = 'es';
+$availableLangs = ['es', 'en'];
+
+// Determinar idioma (prioridad: GET > SESSION > COOKIE > default)
+if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
+    $_SESSION['lang'] = $_GET['lang'];
+    setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/"); // 30 días
+    $currentLang = $_GET['lang'];
+} elseif (isset($_SESSION['lang'])) {
+    $currentLang = $_SESSION['lang'];
+} elseif (isset($_COOKIE['lang'])) {
+    $currentLang = $_COOKIE['lang'];
+} else {
+    $currentLang = $defaultLang;
+    $_SESSION['lang'] = $currentLang;
+}
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo $currentLang; ?>">
 <head>
   <meta charset="UTF-8">
-  <title>Register | TeleConsultations</title>
+  <title data-i18n="register.register_title">Register | TeleConsultations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Bootstrap CSS (CDN) -->
@@ -94,19 +110,6 @@ ini_set('display_errors', 1);
       box-shadow: 0 0 0 0.2rem rgba(51, 88, 170, 0.25);
     }
 
-    /* Terms checkbox */
-    .terms-checkbox {
-      margin: 20px 0;
-    }
-    .terms-checkbox label {
-      font-weight: normal;
-      cursor: pointer;
-    }
-    .terms-checkbox a {
-      color: #3358aa;
-      text-decoration: underline;
-    }
-
     /* Submit button */
     .register-btn {
       background-color: #20a967;
@@ -159,7 +162,7 @@ ini_set('display_errors', 1);
         <!-- Logo and title -->
         <a class="navbar-brand" href="index.php">
           <img src="images/logo1.png" alt="Logo">
-          TeleConsultations
+          <span data-i18n="global.site_name">TeleConsultations</span>
         </a>
       </div>
 
@@ -167,9 +170,15 @@ ini_set('display_errors', 1);
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>
+            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> <span data-i18n="global.back">Volver</span></a>
           </li>
           <li>
-            <a href="index.php" style="color:#fff;"><i class="fas fa-home"></i> Home</a>
+            <div class="language-selector-container">
+              <div class="language-selector">
+                <a href="?lang=es" class="language-btn <?php echo $currentLang === 'es' ? 'active' : ''; ?>">ES</a>
+                <a href="?lang=en" class="language-btn <?php echo $currentLang === 'en' ? 'active' : ''; ?>">EN</a>
+              </div>
+            </div>
           </li>
         </ul>
       </div>
@@ -182,31 +191,33 @@ ini_set('display_errors', 1);
   <!-- Registration form -->
   <div class="register-card">
     <div class="register-header">
-      <h2>Create Your Account</h2>
-      <p>Join our platform to access teleconsultation services</p>
+      <h2 data-i18n="register.register_header">Create Your Account</h2>
+      <p data-i18n="register.register_subheader">Join our platform to access teleconsultation services</p>
     </div>
 
     <form method="post" action="dashclient.php" class="register-form">
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label for="fullname">Full Name</label>
+            <label for="fullname" data-i18n="register.full_name">Full Name</label>
             <input 
               type="text" 
               id="fullname" 
               name="fullname" 
               class="form-control"
+              placeholder="" data-i18n="[placeholder]register.full_name_placeholder"
             >
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="email">Email Address</label>
+            <label for="email" data-i18n="register.email_address">Email Address</label>
             <input 
               type="email" 
               id="email" 
               name="email" 
               class="form-control"
+              placeholder="" data-i18n="[placeholder]register.email_placeholder"
             >
           </div>
         </div>
@@ -215,23 +226,25 @@ ini_set('display_errors', 1);
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label for="phone">Phone Number</label>
+            <label for="phone" data-i18n="register.phone_number">Phone Number</label>
             <input 
               type="tel" 
               id="phone" 
               name="phone" 
               class="form-control"
+              placeholder="" data-i18n="[placeholder]register.phone_placeholder"
             >
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="username">Username</label>
+            <label for="username" data-i18n="register.username">Username</label>
             <input 
               type="text" 
               id="username" 
               name="username" 
               class="form-control"
+              placeholder="" data-i18n="[placeholder]register.username_placeholder"
             >
           </div>
         </div>
@@ -240,43 +253,37 @@ ini_set('display_errors', 1);
       <div class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <label for="password">Password</label>
+            <label for="password" data-i18n="register.password">Password</label>
             <input 
               type="password" 
               id="password" 
               name="password" 
               class="form-control"
+              placeholder="" data-i18n="[placeholder]register.password_placeholder"
             >
           </div>
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="confirm_password">Confirm Password</label>
+            <label for="confirm_password" data-i18n="register.confirm_password">Confirm Password</label>
             <input 
               type="password" 
               id="confirm_password" 
               name="confirm_password" 
               class="form-control"
+              placeholder="" data-i18n="[placeholder]register.confirm_password_placeholder"
             >
           </div>
         </div>
       </div>
 
-      <div class="terms-checkbox">
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" name="terms">
-            I agree to the <a href="terms.php" target="_blank">Terms and Conditions</a> and <a href="privacy.php" target="_blank">Privacy Policy</a>
-          </label>
-        </div>
-      </div>
-
       <button type="submit" name="register" class="btn register-btn">
-        <i class="fas fa-user-plus"></i> Register Now
+        <i class="fas fa-user-plus"></i> <span data-i18n="register.register_button">Register Now</span>
       </button>
 
       <div class="login-link">
-        Already have an account? <a href="login.php">Login here</a>
+        <span data-i18n="register.already_have_account">Already have an account?</span> 
+        <a href="login.php" data-i18n="register.login_here">Login here</a>
       </div>
     </form>
   </div>
@@ -288,5 +295,19 @@ ini_set('display_errors', 1);
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+  <!-- Script para el cambio de idioma -->
+  <script src="js/language.js"></script>
+  <script>
+    // Pasar el idioma actual a JavaScript
+    const currentLang = '<?php echo $currentLang; ?>';
+    
+    // Inicializar el sistema de idiomas
+    document.addEventListener('DOMContentLoaded', function() {
+      initLanguageSystem(currentLang);
+      
+      // Debug: Verificar carga de traducciones
+      console.log('Idioma actual:', currentLang);
+    });
+  </script>
 </body>
 </html>
