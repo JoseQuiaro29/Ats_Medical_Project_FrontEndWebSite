@@ -1,8 +1,8 @@
 /* styles.css - Versión actualizada con estilos unificados */
 
 :root {
-  --primary: #2563eb;        /* Azul principal */
-  --primary-dark: #1e40af;   /* Azul oscuro */
+  --primary: rgba(51, 88, 170, 0.8);
+  --primary-dark: #1e40af;
   --primary-light: #93c5fd;  /* Azul claro */
   --secondary: #10b981;      /* Verde principal (ocean-green) */
   --accent: #f59e0b;         /* Naranja/accent */

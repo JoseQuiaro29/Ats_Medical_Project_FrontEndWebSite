@@ -1,3 +1,4 @@
+/* cliente_dashboard.php */
 <?php
 session_start();
 include 'cliheader.php';

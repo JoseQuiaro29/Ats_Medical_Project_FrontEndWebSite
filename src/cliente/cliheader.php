@@ -1,3 +1,4 @@
+*/ cliheader.php */
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,7 +21,7 @@
     }
     /* Include Doctor's Dashboard CSS Variables */
     :root {
-      --primary: #2563eb;
+    --primary: #2563eb;
     --primary-dark: #1e40af;
     --primary-light: #93c5fd;
     --secondary: #10b981;
@@ -42,20 +43,20 @@
     }
     /* HEADER */
     header {
-      background-color: var(--primary-color); /* ocean-green 500 */
-      color: #fff;
-      padding: 10px 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.15);
-    }
+    background-color: var(--primary); /* Usar variable principal */
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
     .header-left {
       display: flex;
       align-items: center;

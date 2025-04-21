@@ -24,11 +24,7 @@ if (isset($_POST['select_specialty'])) {
     $specialty = $_POST['specialty'];
     // Aquí procesarías la selección y guardarías en la base de datos
 }
-
-include 'cliheader.php';
-include 'sidebar.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="<?php echo $currentLang; ?>">
 <head>
@@ -43,34 +39,39 @@ include 'sidebar.php';
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
   <style>
-    /* Estilos generales */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    /* Fixed top navbar */
+    .custom-navbar {
+      background-color: rgba(51, 88, 170, 0.8);
+      border-color: rgba(58, 138, 126, 0.8);
     }
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f0f0f0;
+    .custom-navbar .navbar-brand {
+      color: #fff !important;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
     }
-    /* Contenedor principal */
-    .content {
-      margin: 20px 0 80px 220px; /* Evita superposición con header y footer */
-      padding: 20px 40px;
-      transition: margin-left 0.3s ease;
+    .custom-navbar .navbar-brand img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
     }
-    .content.collapsed {
-      margin-left: 70px;
+    .custom-navbar .navbar-nav > li > a {
+      color: #fff !important;
     }
-    
-    /* Specialty card styles */
+
+    /* Spacing so the content is not hidden under the fixed navbar */
+    .top-spacing {
+      margin-top: 80px;
+    }
+
+    /* Centered "card" container */
     .specialty-card {
+      max-width: 900px;
+      margin: 0 auto;
       background: #fff;
       padding: 30px;
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      max-width: 900px;
-      margin: 30px auto 80px auto;
     }
 
     /* Form header */
@@ -213,10 +214,6 @@ include 'sidebar.php';
 
     /* Responsive adjustments */
     @media (max-width: 768px) {
-      .content {
-        margin-left: 70px;
-        padding: 15px 20px;
-      }
       .specialty-option {
         min-width: 100%;
       }
@@ -228,59 +225,93 @@ include 'sidebar.php';
 </head>
 <body>
 
-<div class="dashboard">
-  <div class="content" id="content">
-
-    <!-- Specialty selection page -->
-    <div class="specialty-card">
-      <div class="specialty-header">
-        <h2 data-i18n="specialty.select_specialty_header">Select Your Specialty</h2>
-        <p data-i18n="specialty.select_specialty_subheader">Please choose the medical specialty you need</p>
+  <!-- TOP NAVBAR -->
+  <nav class="navbar navbar-default navbar-fixed-top custom-navbar">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- Mobile menu toggle button -->
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+          <span class="icon-bar" style="background-color:#fff;"></span>
+          <span class="icon-bar" style="background-color:#fff;"></span>
+          <span class="icon-bar" style="background-color:#fff;"></span>
+        </button>
+        <!-- Logo and title -->
+        <a class="navbar-brand" href="index.php">
+          <img src="images/logo1.png" alt="Logo">
+          <span data-i18n="global.site_name">TeleConsultations</span>
+        </a>
       </div>
 
-      <?php if (isset($_POST['select_specialty'])): ?>
-        <div class="alert alert-success text-center">
-          <h4 data-i18n="specialty.selected_specialty">Specialty Selected: <?php echo htmlspecialchars($specialty); ?></h4>
-          <p data-i18n="specialty.redirect_message">You will be redirected to your dashboard shortly.</p>
-        </div>
-      <?php else: ?>
-        <form id="specialtyForm" method="post" action="" class="specialty-form">
-          <div class="specialty-options">
-            <div class="specialty-option">
-              <input type="radio" id="internal_medicine" name="specialty" value="Internal Medicine" required>
-              <label for="internal_medicine">
-                <div class="specialty-icon">
-                  <i class="fas fa-heartbeat"></i>
-                </div>
-                <div class="specialty-name" data-i18n="specialty.internal_medicine">Internal Medicine</div>
-                <div class="specialty-desc" data-i18n="specialty.internal_medicine_desc">
-                  Comprehensive care for adults, focusing on diagnosis and treatment of complex diseases.
-                </div>
-              </label>
+      <!-- Right-side links -->
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> <span data-i18n="global.home">Home</span></a>
+          </li>
+          <li>
+            <div class="language-selector-container">
+              <div class="language-selector">
+                <a href="?lang=es" class="language-btn <?php echo $currentLang === 'es' ? 'active' : ''; ?>">ES</a>
+                <a href="?lang=en" class="language-btn <?php echo $currentLang === 'en' ? 'active' : ''; ?>">EN</a>
+              </div>
             </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-            <div class="specialty-option">
-              <input type="radio" id="nephrology" name="specialty" value="Nephrology">
-              <label for="nephrology">
-                <div class="specialty-icon">
-                  <i class="fas fa-kidneys"></i>
-                </div>
-                <div class="specialty-name" data-i18n="specialty.nephrology">Nephrology</div>
-                <div class="specialty-desc" data-i18n="specialty.nephrology_desc">
-                  Specialized care for kidney diseases, hypertension, and related conditions.
-                </div>
-              </label>
-            </div>
+  <!-- Space so content isn't hidden under the navbar -->
+  <div class="top-spacing"></div>
+
+  <!-- Specialty selection page -->
+  <div class="specialty-card">
+    <div class="specialty-header">
+      <h2 data-i18n="specialty.select_specialty_header">Select Your Specialty</h2>
+      <p data-i18n="specialty.select_specialty_subheader">Please choose the medical specialty you need</p>
+    </div>
+
+    <?php if (isset($_POST['select_specialty'])): ?>
+      <div class="alert alert-success text-center">
+        <h4 data-i18n="specialty.selected_specialty">Specialty Selected: <?php echo htmlspecialchars($specialty); ?></h4>
+        <p data-i18n="specialty.redirect_message">You will be redirected to your dashboard shortly.</p>
+      </div>
+    <?php else: ?>
+      <form id="specialtyForm" method="post" action="" class="specialty-form">
+        <div class="specialty-options">
+          <div class="specialty-option">
+            <input type="radio" id="internal_medicine" name="specialty" value="Internal Medicine" required>
+            <label for="internal_medicine">
+              <div class="specialty-icon">
+                <i class="fas fa-heartbeat"></i>
+              </div>
+              <div class="specialty-name" data-i18n="specialty.internal_medicine">Internal Medicine</div>
+              <div class="specialty-desc" data-i18n="specialty.internal_medicine_desc">
+                Comprehensive care for adults, focusing on diagnosis and treatment of complex diseases.
+              </div>
+            </label>
           </div>
 
-          <button type="button" id="confirmBtn" class="btn specialty-btn">
-            <i class="fas fa-check-circle"></i> <span data-i18n="specialty.confirm_button">Confirm Selection</span>
-          </button>
-        </form>
-      <?php endif; ?>
-    </div>
+          <div class="specialty-option">
+            <input type="radio" id="nephrology" name="specialty" value="Nephrology">
+            <label for="nephrology">
+              <div class="specialty-icon">
+                <i class="fas fa-kidneys"></i>
+              </div>
+              <div class="specialty-name" data-i18n="specialty.nephrology">Nephrology</div>
+              <div class="specialty-desc" data-i18n="specialty.nephrology_desc">
+                Specialized care for kidney diseases, hypertension, and related conditions.
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <button type="button" id="confirmBtn" class="btn specialty-btn">
+          <i class="fas fa-check-circle"></i> <span data-i18n="specialty.confirm_button">Confirm Selection</span>
+        </button>
+      </form>
+    <?php endif; ?>
   </div>
-</div>
 
   <!-- Terms and Conditions Modal -->
   <div class="modal fade terms-modal" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="termsModalLabel">

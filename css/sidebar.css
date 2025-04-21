@@ -1,15 +1,10 @@
-:root {
-    --sidebar-width: 220px; /* Full width when expanded */
-    --sidebar-collapsed-width: 70px; /* Width when collapsed */
-    --primary-color: #20a967; /* ocean-green 300 */
-    --hover-color: #138852;   /* ocean-green 600 */
-    --text-color: #333;
-    --transition-speed: 0.3s;
-}
+/* sidebar.css */
+
 .sidebar {
     width: var(--sidebar-width);
-    background-color: var(--primary-color);
+    background-color: var(--primary);
     padding: 15px;
+    
     /* Position fixed below header of 60px */
     position: fixed;
     top: 60px;
@@ -19,6 +14,7 @@
     transition: width var(--transition-speed) ease;
     border-right: 1px solid #ddd;
     z-index: 999;
+    --hover-color: #138852; 
     font-family: var(--font-family); /* Use the defined font-family */
 }
 .sidebar.collapsed {
@@ -66,7 +62,7 @@
 }
 .sidebar ul li a:hover,
 .sidebar ul li a.active {
-    background-color: var(--hover-color);
+    background-color: var(--primary-dark);
     color: #fff;
 }
 .sidebar ul li a i {

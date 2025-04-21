@@ -1,10 +1,4 @@
-:root {
-    --primary-color: #20a967;
-    --secondary-color: #2c3e50;
-    --bg-color: #f4f7f9;
-    --card-bg: #ffffff;
-    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
+/* appointments.php */ 
   
   body {
     font-family: 'Segoe UI', sans-serif;
