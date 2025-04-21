@@ -34,16 +34,8 @@
                     <i class="fas fa-prescription-bottle-alt"></i><span>My Prescriptions</span>
                 </a>
             </li>
-            <li>
-                <a href="chat.php">
-                    <i class="fas fa-comments"></i><span>Chat</span>
-                </a>
-            </li>
-            <li>
-                <a href="notifications.php">
-                    <i class="fas fa-bell"></i><span>Notifications</span>
-                </a>
-            </li>
+            
+           
             <li>
                 <a href="settings.php">
                     <i class="fas fa-cog"></i><span>Settings</span>

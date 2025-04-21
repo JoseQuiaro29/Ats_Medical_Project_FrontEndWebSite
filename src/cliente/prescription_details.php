@@ -123,7 +123,7 @@ $prescriptionDetails = [
       <a href="prescriptions.php" class="btn-back">&larr; Back to Prescriptions</a>
     </div>
     
-    <?php include '../doctor/footer.php'; ?>
+    
   </div>
   
   <!-- jQuery & Bootstrap JS (CDN) -->

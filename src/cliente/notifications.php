@@ -117,7 +117,7 @@ include 'sidebar.php';
   </div>
 
   <!-- Footer tomado de la carpeta de doctor -->
-  <?php include '../doctor/footer.php'; ?>
+
 </div>
 
 <!-- jQuery & Bootstrap JS (CDN) -->

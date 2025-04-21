@@ -3,6 +3,26 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Iniciar sesión y manejar idioma
+session_start();
+
+$defaultLang = 'es';
+$availableLangs = ['es', 'en'];
+
+// Determinar idioma (prioridad: GET > SESSION > COOKIE > default)
+if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
+    $_SESSION['lang'] = $_GET['lang'];
+    setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/"); // 30 días
+    $currentLang = $_GET['lang'];
+} elseif (isset($_SESSION['lang'])) {
+    $currentLang = $_SESSION['lang'];
+} elseif (isset($_COOKIE['lang']) && in_array($_COOKIE['lang'], $availableLangs)) {
+    $currentLang = $_COOKIE['lang'];
+} else {
+    $currentLang = $defaultLang;
+    $_SESSION['lang'] = $currentLang;
+}
+
 // Obtener los datos de la cita
 $doctor_id = isset($_GET['doctor_id']) ? $_GET['doctor_id'] : '';
 $appointment_date = isset($_GET['date']) ? $_GET['date'] : '';
@@ -15,26 +35,40 @@ if (empty($doctor_id) || empty($appointment_date) || empty($appointment_time) ||
     exit();
 }
 
-// Simular información del doctor (en una aplicación real, esto vendría de la base de datos)
+// Traducciones de especialidades
+$specialtyTranslations = [
+    'es' => [
+        'Internal Medicine' => 'Medicina Interna',
+        'Nephrology' => 'Nefrología'
+    ],
+    'en' => [
+        'Internal Medicine' => 'Internal Medicine',
+        'Nephrology' => 'Nephrology'
+    ]
+];
+
+// Simular información del doctor
 $doctors = [
     1 => [
         'name' => 'Dr. Manuel García',
         'specialty' => $specialty,
-        'price' => ($specialty == 'Internal Medicine') ? 150 : 200, // Precio diferente por especialidad
-        'image' => 'doctor_garcia.jpg'
+        'price' => ($specialty == 'Internal Medicine') ? 150 : 200,
+        'image' => 'doctor_garcia.jpg',
+        'specialty_es' => ($specialty == 'Internal Medicine') ? 'Medicina Interna' : 'Nefrología',
+        'specialty_en' => $specialty
     ]
 ];
 
 $doctor = $doctors[$doctor_id];
 $appointment_price = $doctor['price'];
-$appointment_total = $appointment_price; // Podría incluir impuestos u otros cargos
+$appointment_total = $appointment_price;
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo $currentLang; ?>">
 <head>
   <meta charset="UTF-8">
-  <title>Payment | TeleConsultations</title>
+  <title data-i18n="payment.page_title">Payment | TeleConsultations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Bootstrap CSS (CDN) -->
@@ -294,13 +328,23 @@ $appointment_total = $appointment_price; // Podría incluir impuestos u otros ca
         </button>
         <a class="navbar-brand" href="index.php">
           <img src="images/logo1.png" alt="Logo">
-          TeleConsultations
+          <span data-i18n="global.site_name">TeleConsultations</span>
         </a>
       </div>
 
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> Home</a></li>
+          <li>
+            <div class="language-selector-container">
+              <div class="language-selector">
+                <a href="?lang=es&doctor_id=<?php echo $doctor_id; ?>&date=<?php echo $appointment_date; ?>&time=<?php echo $appointment_time; ?>&specialty=<?php echo urlencode($specialty); ?>" class="language-btn <?php echo $currentLang === 'es' ? 'active' : ''; ?>">ES</a>
+                <a href="?lang=en&doctor_id=<?php echo $doctor_id; ?>&date=<?php echo $appointment_date; ?>&time=<?php echo $appointment_time; ?>&specialty=<?php echo urlencode($specialty); ?>" class="language-btn <?php echo $currentLang === 'en' ? 'active' : ''; ?>">EN</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> <span data-i18n="global.home">Home</span></a>
+          </li>
         </ul>
       </div>
     </div>
@@ -316,36 +360,36 @@ $appointment_total = $appointment_price; // Podría incluir impuestos u otros ca
       <div class="payment-info-section">
         <div class="payment-card">
           <h2 class="section-title">
-            <i class="fas fa-info-circle"></i> Appointment Summary
+            <i class="fas fa-info-circle"></i> <span data-i18n="payment.summary_title">Appointment Summary</span>
           </h2>
           
           <div class="summary-item">
-            <span class="summary-label">Doctor:</span>
+            <span class="summary-label" data-i18n="payment.doctor_label">Doctor:</span>
             <span class="summary-value"><?php echo htmlspecialchars($doctor['name']); ?></span>
           </div>
           
           <div class="summary-item">
-            <span class="summary-label">Specialty:</span>
-            <span class="summary-value"><?php echo htmlspecialchars($doctor['specialty']); ?></span>
+            <span class="summary-label" data-i18n="payment.specialty_label">Specialty:</span>
+            <span class="summary-value"><?php echo htmlspecialchars($specialtyTranslations[$currentLang][$specialty]); ?></span>
           </div>
           
           <div class="summary-item">
-            <span class="summary-label">Date:</span>
+            <span class="summary-label" data-i18n="payment.date_label">Date:</span>
             <span class="summary-value"><?php echo htmlspecialchars(date('F j, Y', strtotime($appointment_date))); ?></span>
           </div>
           
           <div class="summary-item">
-            <span class="summary-label">Time:</span>
+            <span class="summary-label" data-i18n="payment.time_label">Time:</span>
             <span class="summary-value"><?php echo htmlspecialchars($appointment_time); ?></span>
           </div>
           
           <div class="summary-item">
-            <span class="summary-label">Consultation Fee:</span>
+            <span class="summary-label" data-i18n="payment.fee_label">Consultation Fee:</span>
             <span class="summary-value">$<?php echo number_format($appointment_price, 2); ?></span>
           </div>
           
           <div class="summary-item total-amount">
-            <span class="summary-label">Total Amount:</span>
+            <span class="summary-label" data-i18n="payment.total_label">Total Amount:</span>
             <span class="summary-value">$<?php echo number_format($appointment_total, 2); ?></span>
           </div>
         </div>
@@ -355,86 +399,82 @@ $appointment_total = $appointment_price; // Podría incluir impuestos u otros ca
       <div class="payment-methods-section">
         <div class="payment-card">
           <h2 class="section-title">
-            <i class="fas fa-credit-card"></i> Payment Methods
+            <i class="fas fa-credit-card"></i> <span data-i18n="payment.methods_title">Payment Methods</span>
           </h2>
           
           <div class="payment-methods">
-            <!-- Credit/Debit Card (expandible) -->
+            <!-- Credit/Debit Card -->
             <div class="payment-option selected" onclick="togglePaymentMethod('credit-card')">
               <div class="payment-title">
                 <span>
                   <i class="far fa-credit-card payment-icon"></i>
-                  Credit/Debit Card
+                  <span data-i18n="payment.credit_card">Credit/Debit Card</span>
                 </span>
                 <i class="fas fa-chevron-down toggle-icon"></i>
               </div>
-              <p class="payment-description">Pay with Visa, Mastercard, American Express or Discover</p>
+              <p class="payment-description" data-i18n="payment.credit_card_desc">Pay with Visa, Mastercard, American Express or Discover</p>
               
               <div class="payment-form collapsible active" id="credit-card-form">
                 <form id="card-payment-form">
                   <div class="form-group">
-                    <label for="card-number">Card Number</label>
-                    <input type="text" class="form-control" id="card-number" placeholder="1234 5678 9012 3456" required>
+                    <label for="card-number" data-i18n="payment.card_number">Card Number</label>
+                    <input type="text" class="form-control" id="card-number" data-i18n="[placeholder]payment.card_number_placeholder" required>
                   </div>
                   
                   <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="card-expiry">Expiration Date</label>
-                        <input type="text" class="form-control" id="card-expiry" placeholder="MM/YY" required>
+                        <label for="card-expiry" data-i18n="payment.expiry_date">Expiration Date</label>
+                        <input type="text" class="form-control" id="card-expiry" data-i18n="[placeholder]payment.expiry_placeholder" required>
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="card-cvc">Security Code (CVC)</label>
-                        <input type="text" class="form-control" id="card-cvc" placeholder="123" required>
+                        <label for="card-cvc" data-i18n="payment.cvc_label">Security Code (CVC)</label>
+                        <input type="text" class="form-control" id="card-cvc" data-i18n="[placeholder]payment.cvc_placeholder" required>
                       </div>
                     </div>
                   </div>
                   
                   <div class="form-group">
-                    <label for="card-name">Name on Card</label>
-                    <input type="text" class="form-control" id="card-name" placeholder="John Smith" required>
+                    <label for="card-name" data-i18n="payment.card_name">Name on Card</label>
+                    <input type="text" class="form-control" id="card-name" data-i18n="[placeholder]payment.name_placeholder" required>
                   </div>
                   
                   <div class="form-group">
-                    <label for="card-zip">ZIP Code</label>
-                    <input type="text" class="form-control" id="card-zip" placeholder="12345" required>
+                    <label for="card-zip" data-i18n="payment.zip_label">ZIP Code</label>
+                    <input type="text" class="form-control" id="card-zip" data-i18n="[placeholder]payment.zip_placeholder" required>
                   </div>
                 </form>
               </div>
             </div>
             
-            <!-- Stripe (fijo) -->
+            <!-- Stripe -->
             <div class="payment-option fixed">
               <div class="payment-title">
                 <span>
                   <i class="fab fa-stripe payment-icon"></i>
-                  Stripe
+                  <span data-i18n="payment.stripe">Stripe</span>
                 </span>
               </div>
-              <p class="payment-description">Secure payment processing with Stripe</p>
-              
-             
+              <p class="payment-description" data-i18n="payment.stripe_desc">Secure payment processing with Stripe</p>
             </div>
             
-            <!-- PayPal (fijo) -->
+            <!-- PayPal -->
             <div class="payment-option fixed">
               <div class="payment-title">
                 <span>
                   <i class="fab fa-paypal payment-icon"></i>
-                  PayPal
+                  <span data-i18n="payment.paypal">PayPal</span>
                 </span>
               </div>
-              <p class="payment-description">Pay with your PayPal account or credit card</p>
-              
-              
+              <p class="payment-description" data-i18n="payment.paypal_desc">Pay with your PayPal account or credit card</p>
             </div>
           </div>
           
           <!-- Submit Button -->
           <button type="button" class="btn pay-btn" onclick="processPayment()">
-            <i class="fas fa-lock"></i> Pay $<?php echo number_format($appointment_total, 2); ?>
+            <i class="fas fa-lock"></i> <span data-i18n="payment.pay_button">Pay</span> $<?php echo number_format($appointment_total, 2); ?>
           </button>
         </div>
       </div>
@@ -448,10 +488,37 @@ $appointment_total = $appointment_price; // Podría incluir impuestos u otros ca
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+  <!-- Script para el cambio de idioma -->
+  <script src="js/language.js"></script>
   <script>
-    // Toggle payment method (solo para tarjeta de crédito)
+    // Pasar el idioma actual a JavaScript
+    const currentLang = '<?php echo $currentLang; ?>';
+    
+    // Inicializar el sistema de idiomas
+    document.addEventListener('DOMContentLoaded', function() {
+      initLanguageSystem(currentLang);
+      
+      // Formatear número de tarjeta (simulación)
+      $('#card-number').on('input', function() {
+        let value = $(this).val().replace(/\s+/g, '');
+        if (value.length > 0) {
+          value = value.match(new RegExp('.{1,4}', 'g')).join(' ');
+        }
+        $(this).val(value);
+      });
+      
+      // Formatear fecha de expiración (simulación)
+      $('#card-expiry').on('input', function() {
+        let value = $(this).val().replace(/\D/g, '');
+        if (value.length > 2) {
+          value = value.substring(0, 2) + '/' + value.substring(2, 4);
+        }
+        $(this).val(value);
+      });
+    });
+
+    // Toggle payment method
     function togglePaymentMethod(method) {
-      // Solo permitir toggle para tarjeta de crédito
       if (method !== 'credit-card') return;
       
       const option = $(event.currentTarget);
@@ -469,34 +536,10 @@ $appointment_total = $appointment_price; // Podría incluir impuestos u otros ca
     
     // Procesar el pago
     function processPayment() {
-    // Aquí iría la lógica real de pago
-    // Después de pago exitoso, redirigir a medical_info.php
-    window.location.href = 'medical_info.php?doctor_id=<?php echo $doctor_id; ?>&date=<?php echo $appointment_date; ?>&time=<?php echo $appointment_time; ?>';
-}
-    
-    // Formatear número de tarjeta (simulación)
-    $('#card-number').on('input', function() {
-      let value = $(this).val().replace(/\s+/g, '');
-      if (value.length > 0) {
-        value = value.match(new RegExp('.{1,4}', 'g')).join(' ');
-      }
-      $(this).val(value);
-    });
-    
-    // Formatear fecha de expiración (simulación)
-    $('#card-expiry').on('input', function() {
-      let value = $(this).val().replace(/\D/g, '');
-      if (value.length > 2) {
-        value = value.substring(0, 2) + '/' + value.substring(2, 4);
-      }
-      $(this).val(value);
-    });
-    
-    // Initialize - mostrar solo el formulario de tarjeta si está seleccionado
-    $(document).ready(function() {
-      $('#credit-card-form').show();
-      $('.payment-option.selected .toggle-icon').removeClass('fa-chevron-down').addClass('fa-chevron-up');
-    });
+      // Aquí iría la lógica real de pago
+      // Después de pago exitoso, redirigir a medical_info.php
+      window.location.href = 'medical_info.php?doctor_id=<?php echo $doctor_id; ?>&date=<?php echo $appointment_date; ?>&time=<?php echo $appointment_time; ?>&specialty=<?php echo urlencode($specialty); ?>&lang=<?php echo $currentLang; ?>';
+    }
   </script>
 </body>
 </html>

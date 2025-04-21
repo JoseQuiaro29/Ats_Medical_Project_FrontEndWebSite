@@ -3,10 +3,31 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Iniciar sesión y manejar idioma
+session_start();
+
+$defaultLang = 'es';
+$availableLangs = ['es', 'en'];
+
+// Determinar idioma (prioridad: GET > SESSION > COOKIE > default)
+if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
+    $_SESSION['lang'] = $_GET['lang'];
+    setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/"); // 30 días
+    $currentLang = $_GET['lang'];
+} elseif (isset($_SESSION['lang'])) {
+    $currentLang = $_SESSION['lang'];
+} elseif (isset($_COOKIE['lang']) && in_array($_COOKIE['lang'], $availableLangs)) {
+    $currentLang = $_COOKIE['lang'];
+} else {
+    $currentLang = $defaultLang;
+    $_SESSION['lang'] = $currentLang;
+}
+
 // Obtener datos de la cita
 $doctor_id = isset($_GET['doctor_id']) ? $_GET['doctor_id'] : '';
 $appointment_date = isset($_GET['date']) ? $_GET['date'] : '';
 $appointment_time = isset($_GET['time']) ? $_GET['time'] : '';
+$specialty = isset($_GET['specialty']) ? $_GET['specialty'] : '';
 
 // Verificar datos
 if (empty($doctor_id) || empty($appointment_date) || empty($appointment_time)) {
@@ -18,17 +39,19 @@ if (empty($doctor_id) || empty($appointment_date) || empty($appointment_time)) {
 $doctors = [
     1 => [
         'name' => 'Dr. Manuel García',
-        'specialty' => 'Internal Medicine',
-        'image' => 'doctor_garcia.jpg'
+        'specialty' => $specialty,
+        'image' => 'doctor_garcia.jpg',
+        'specialty_es' => ($specialty == 'Internal Medicine') ? 'Medicina Interna' : 'Nefrología',
+        'specialty_en' => $specialty
     ]
 ];
 $doctor = $doctors[$doctor_id];
 
 // Procesar el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Validar y guardar los datos (en un sistema real, guardarías en la base de datos)
+    // Validar y guardar los datos
     $medical_info = [
-        'reason' => substr($_POST['reason'], 0, 250), // Limitar a 50 palabras aprox
+        'reason' => substr($_POST['reason'], 0, 250),
         'medical_history' => $_POST['medical_history'],
         'surgical_history' => $_POST['surgical_history'],
         'medications' => $_POST['medications'],
@@ -41,16 +64,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     ];
     
     // Redirigir a confirmación con todos los datos
-    header('Location: confirmation.php?doctor_id='.$doctor_id.'&date='.$appointment_date.'&time='.$appointment_time);
+    header('Location: confirmation.php?doctor_id='.$doctor_id.'&date='.$appointment_date.'&time='.$appointment_time.'&specialty='.urlencode($specialty).'&lang='.$currentLang);
     exit();
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo $currentLang; ?>">
 <head>
   <meta charset="UTF-8">
-  <title>Complete Medical Information | TeleConsultations</title>
+  <title data-i18n="medical_info.page_title">Complete Medical Information | TeleConsultations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- Bootstrap CSS -->
@@ -69,6 +92,60 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f5f5f5;
+    }
+    
+    /* Navbar styles */
+    .custom-navbar {
+      background-color: rgba(51, 88, 170, 0.8);
+      border-color: rgba(58, 138, 126, 0.8);
+    }
+    .custom-navbar .navbar-brand {
+      color: #fff !important;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+    }
+    .custom-navbar .navbar-brand img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+    .custom-navbar .navbar-nav > li > a {
+      color: #fff !important;
+    }
+    
+    /* Language selector styles */
+    .language-selector-container {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding: 15px 0;
+    }
+    
+    .language-selector {
+      display: flex;
+      margin-left: 15px;
+      align-items: center;
+    }
+    
+    .language-btn {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid #fff;
+      color: #fff !important;
+      padding: 5px 10px;
+      margin: 0 3px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .language-btn:hover, .language-btn.active {
+      background: #fff;
+      color: #3358aa !important;
+      border-color: rgb(239, 242, 247);
     }
     
     .top-spacing {
@@ -120,9 +197,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 <body>
 
-  <!-- Navbar (igual que en tus otros archivos) -->
+  <!-- Navbar -->
   <nav class="navbar navbar-default navbar-fixed-top custom-navbar">
-    <!-- ... mismo navbar que en confirmation.php ... -->
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+          <span class="icon-bar" style="background-color:#fff;"></span>
+          <span class="icon-bar" style="background-color:#fff;"></span>
+          <span class="icon-bar" style="background-color:#fff;"></span>
+        </button>
+        <a class="navbar-brand" href="index.php">
+          <img src="images/logo1.png" alt="Logo">
+          <span data-i18n="global.site_name">TeleConsultations</span>
+        </a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <div class="language-selector-container">
+              <div class="language-selector">
+                <a href="?lang=es&doctor_id=<?php echo $doctor_id; ?>&date=<?php echo $appointment_date; ?>&time=<?php echo $appointment_time; ?>&specialty=<?php echo urlencode($specialty); ?>" class="language-btn <?php echo $currentLang === 'es' ? 'active' : ''; ?>">ES</a>
+                <a href="?lang=en&doctor_id=<?php echo $doctor_id; ?>&date=<?php echo $appointment_date; ?>&time=<?php echo $appointment_time; ?>&specialty=<?php echo urlencode($specialty); ?>" class="language-btn <?php echo $currentLang === 'en' ? 'active' : ''; ?>">EN</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> <span data-i18n="global.home">Home</span></a>
+          </li>
+        </ul>
+      </div>
+    </div>
   </nav>
 
   <div class="top-spacing"></div>
@@ -130,94 +235,94 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="container">
     <div class="medical-form-container">
       <h2 class="text-center" style="color: var(--primary-color); margin-bottom: 30px;">
-        <i class="fas fa-file-medical"></i> Complete Medical Information
+        <i class="fas fa-file-medical"></i> <span data-i18n="medical_info.form_title">Complete Medical Information</span>
       </h2>
       
       <p class="text-center" style="margin-bottom: 30px;">
-        Please complete this form to help your doctor prepare for your consultation on 
-        <strong><?php echo date('F j, Y', strtotime($appointment_date)); ?> at <?php echo htmlspecialchars($appointment_time); ?></strong>
+        <span data-i18n="medical_info.form_subtitle">Please complete this form to help your doctor prepare for your consultation on</span>
+        <strong><?php echo date('F j, Y', strtotime($appointment_date)); ?> <span data-i18n="medical_info.at">at</span> <?php echo htmlspecialchars($appointment_time); ?></strong>
       </p>
       
-      <form method="POST" action="medical_info.php?doctor_id=<?php echo $doctor_id; ?>&date=<?php echo $appointment_date; ?>&time=<?php echo $appointment_time; ?>">
+      <form method="POST" action="medical_info.php?doctor_id=<?php echo $doctor_id; ?>&date=<?php echo $appointment_date; ?>&time=<?php echo $appointment_time; ?>&specialty=<?php echo urlencode($specialty); ?>">
         
         <!-- Motivo de Consulta -->
         <div class="form-section">
-          <h3><i class="fas fa-question-circle"></i> Reason for Consultation</h3>
+          <h3><i class="fas fa-question-circle"></i> <span data-i18n="medical_info.reason_title">Reason for Consultation</span></h3>
           <div class="form-group">
-            <label>Please describe the reason for your visit (50 words maximum)</label>
+            <label data-i18n="medical_info.reason_label">Please describe the reason for your visit (50 words maximum)</label>
             <textarea class="form-control" name="reason" rows="3" maxlength="250" 
-                      placeholder="Describe your symptoms, concerns, or reason for scheduling this appointment..." 
+                      data-i18n="[placeholder]medical_info.reason_placeholder" 
                       required oninput="updateWordCount(this, 'reason-counter')"></textarea>
             <div class="word-counter">
-              <span id="reason-counter">0</span>/50 words
+              <span id="reason-counter">0</span>/50 <span data-i18n="medical_info.words">words</span>
             </div>
           </div>
         </div>
         
         <!-- Historial Médico -->
         <div class="form-section">
-          <h3><i class="fas fa-notes-medical"></i> Medical History</h3>
+          <h3><i class="fas fa-notes-medical"></i> <span data-i18n="medical_info.medical_history_title">Medical History</span></h3>
           <div class="form-group">
-            <label>Chronic illnesses, allergies, or relevant medical conditions</label>
+            <label data-i18n="medical_info.medical_history_label">Chronic illnesses, allergies, or relevant medical conditions</label>
             <textarea class="form-control" name="medical_history" rows="3" 
-                      placeholder="List any chronic conditions, allergies, or relevant medical history..."></textarea>
+                      data-i18n="[placeholder]medical_info.medical_history_placeholder"></textarea>
           </div>
         </div>
         
         <!-- Historial Quirúrgico -->
         <div class="form-section">
-          <h3><i class="fas fa-procedures"></i> Surgical History</h3>
+          <h3><i class="fas fa-procedures"></i> <span data-i18n="medical_info.surgical_history_title">Surgical History</span></h3>
           <div class="form-group">
-            <label>Previous surgeries or hospitalizations</label>
+            <label data-i18n="medical_info.surgical_history_label">Previous surgeries or hospitalizations</label>
             <textarea class="form-control" name="surgical_history" rows="2" 
-                      placeholder="List any previous surgeries with approximate dates if possible..."></textarea>
+                      data-i18n="[placeholder]medical_info.surgical_history_placeholder"></textarea>
           </div>
         </div>
         
         <!-- Medicamentos -->
         <div class="form-section">
-          <h3><i class="fas fa-pills"></i> Current Medications</h3>
+          <h3><i class="fas fa-pills"></i> <span data-i18n="medical_info.medications_title">Current Medications</span></h3>
           <div class="form-group">
-            <label>Medications you're currently taking (include dosage if possible)</label>
+            <label data-i18n="medical_info.medications_label">Medications you're currently taking (include dosage if possible)</label>
             <textarea class="form-control" name="medications" rows="2" 
-                      placeholder="List all medications, supplements, or vitamins..."></textarea>
+                      data-i18n="[placeholder]medical_info.medications_placeholder"></textarea>
           </div>
         </div>
         
         <!-- Laboratorios -->
         <div class="form-section">
-          <h3><i class="fas fa-flask"></i> Laboratory Results</h3>
+          <h3><i class="fas fa-flask"></i> <span data-i18n="medical_info.labs_title">Laboratory Results</span></h3>
           
           <div class="form-group">
-            <label>Most Recent Results</label>
+            <label data-i18n="medical_info.recent_labs_label">Most Recent Results</label>
             <textarea class="form-control" name="recent_labs" rows="2" 
-                      placeholder="Any recent lab tests or imaging results..."></textarea>
+                      data-i18n="[placeholder]medical_info.labs_placeholder"></textarea>
           </div>
           
           <div class="row">
             <div class="col-md-6">
               <div class="form-group">
-                <label>Results from 3 Months Ago</label>
+                <label data-i18n="medical_info.3month_labs_label">Results from 3 Months Ago</label>
                 <textarea class="form-control" name="3month_labs" rows="2"></textarea>
               </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
-                <label>Results from 6 Months Ago</label>
+                <label data-i18n="medical_info.6month_labs_label">Results from 6 Months Ago</label>
                 <textarea class="form-control" name="6month_labs" rows="2"></textarea>
               </div>
             </div>
           </div>
           
           <div class="form-group">
-            <label>Results from 1 Year Ago</label>
+            <label data-i18n="medical_info.1year_labs_label">Results from 1 Year Ago</label>
             <textarea class="form-control" name="1year_labs" rows="2"></textarea>
           </div>
         </div>
         
         <div class="text-center" style="margin-top: 40px;">
           <button type="submit" class="btn btn-submit">
-            <i class="fas fa-check-circle"></i> Submit Information
+            <i class="fas fa-check-circle"></i> <span data-i18n="medical_info.submit_button">Submit Information</span>
           </button>
         </div>
       </form>
@@ -231,7 +336,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+  <!-- Script para el cambio de idioma -->
+  <script src="js/language.js"></script>
   <script>
+    // Pasar el idioma actual a JavaScript
+    const currentLang = '<?php echo $currentLang; ?>';
+    
+    // Inicializar el sistema de idiomas
+    document.addEventListener('DOMContentLoaded', function() {
+      initLanguageSystem(currentLang);
+    });
+
     // Contador de palabras para el motivo de consulta
     function updateWordCount(textarea, counterId) {
       const text = textarea.value.trim();
@@ -255,7 +370,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       const wordCount = reasonText ? reasonText.split(/\s+/).length : 0;
       
       if (wordCount > 50) {
-        alert('Please limit your reason for consultation to 50 words maximum.');
+        alert(t('medical_info.word_limit_alert'));
         e.preventDefault();
       }
     });

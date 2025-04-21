@@ -24,11 +24,7 @@ include 'sidebar.php';
           <h3>Prescriptions</h3>
           <p>2 Active / 1 Expired</p>
         </div>
-        <div class="card" onclick="window.location.href='chat.php'">
-          <i class="fa fa-comments"></i>
-          <h3>Messages</h3>
-          <p>2 Unread</p>
-        </div>
+        
       </div>
     </div>
 
@@ -39,7 +35,7 @@ include 'sidebar.php';
       <ul>
         <li><span>March 08, 2025</span> – You booked an appointment with Dr. Manuel Garcia Estrada.</li>
         <li><span>March 06, 2025</span> – You requested a refill for Metformin.</li>
-        <li><span>March 05, 2025</span> – You received a new message from Dr. Manuel Garcia Estrada.</li>
+       
       </ul>
     </div>
   </div>
@@ -47,7 +43,7 @@ include 'sidebar.php';
 
 
 
-<?php include '../doctor/footer.php'; ?>
+
 
 <!-- jQuery & Bootstrap JS -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

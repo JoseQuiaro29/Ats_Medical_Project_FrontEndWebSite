@@ -20,8 +20,18 @@
     }
     /* Include Doctor's Dashboard CSS Variables */
     :root {
-      --primary-color: #20a967;
-      --secondary-color: #2c3e50;
+      --primary: #2563eb;
+    --primary-dark: #1e40af;
+    --primary-light: #93c5fd;
+    --secondary: #10b981;
+    --accent: #f59e0b;
+    --dark: #1f2937;
+    --light: #f9fafb;
+    --gray: #6b7280;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+
+
       --bg-color: #f4f7f9;
       --card-bg: #ffffff;
       --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

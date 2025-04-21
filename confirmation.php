@@ -1,12 +1,33 @@
 <?php
-// Enable error reporting (optional for debugging)
+// Enable error reporting
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
+
+// Iniciar sesión y manejar idioma
+session_start();
+
+$defaultLang = 'es';
+$availableLangs = ['es', 'en'];
+
+// Determinar idioma (prioridad: GET > SESSION > COOKIE > default)
+if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
+    $_SESSION['lang'] = $_GET['lang'];
+    setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/"); // 30 días
+    $currentLang = $_GET['lang'];
+} elseif (isset($_SESSION['lang'])) {
+    $currentLang = $_SESSION['lang'];
+} elseif (isset($_COOKIE['lang']) && in_array($_COOKIE['lang'], $availableLangs)) {
+    $currentLang = $_COOKIE['lang'];
+} else {
+    $currentLang = $defaultLang;
+    $_SESSION['lang'] = $currentLang;
+}
 
 // Obtener los datos de la cita
 $doctor_id = isset($_GET['doctor_id']) ? $_GET['doctor_id'] : '';
 $appointment_date = isset($_GET['date']) ? $_GET['date'] : '';
 $appointment_time = isset($_GET['time']) ? $_GET['time'] : '';
+$specialty = isset($_GET['specialty']) ? $_GET['specialty'] : '';
 
 // Verificar que todos los datos estén presentes
 if (empty($doctor_id) || empty($appointment_date) || empty($appointment_time)) {
@@ -14,13 +35,27 @@ if (empty($doctor_id) || empty($appointment_date) || empty($appointment_time)) {
     exit();
 }
 
-// Simular información del doctor (en una aplicación real, esto vendría de la base de datos)
+// Traducciones de especialidades
+$specialtyTranslations = [
+    'es' => [
+        'Internal Medicine' => 'Medicina Interna',
+        'Nephrology' => 'Nefrología'
+    ],
+    'en' => [
+        'Internal Medicine' => 'Internal Medicine',
+        'Nephrology' => 'Nephrology'
+    ]
+];
+
+// Simular información del doctor
 $doctors = [
     1 => [
         'name' => 'Dr. Manuel García',
-        'specialty' => 'Internal Medicine', // Esto normalmente vendría de la base de datos
-        'price' => 150,
-        'image' => 'doctor_garcia.jpg'
+        'specialty' => $specialty,
+        'price' => ($specialty == 'Internal Medicine') ? 150 : 200,
+        'image' => 'doctor_garcia.jpg',
+        'specialty_es' => ($specialty == 'Internal Medicine') ? 'Medicina Interna' : 'Nefrología',
+        'specialty_en' => $specialty
     ]
 ];
 
@@ -28,10 +63,10 @@ $doctor = $doctors[$doctor_id];
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo $currentLang; ?>">
 <head>
   <meta charset="UTF-8">
-  <title>Appointment Confirmation | TeleConsultations</title>
+  <title data-i18n="confirmation.page_title">Appointment Confirmation | TeleConsultations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Bootstrap CSS (CDN) -->
@@ -55,7 +90,7 @@ $doctor = $doctors[$doctor_id];
       background-color: #f5f5f5;
     }
     
-    /* Fixed top navbar */
+    /* Navbar styles */
     .custom-navbar {
       background-color: rgba(51, 88, 170, 0.8);
       border-color: rgba(58, 138, 126, 0.8);
@@ -75,19 +110,50 @@ $doctor = $doctors[$doctor_id];
       color: #fff !important;
     }
     
-    /* Spacing so the content is not hidden under the fixed navbar */
+    /* Language selector styles */
+    .language-selector-container {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding: 15px 0;
+    }
+    
+    .language-selector {
+      display: flex;
+      margin-left: 15px;
+      align-items: center;
+    }
+    
+    .language-btn {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid #fff;
+      color: #fff !important;
+      padding: 5px 10px;
+      margin: 0 3px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .language-btn:hover, .language-btn.active {
+      background: #fff;
+      color: #3358aa !important;
+      border-color: rgb(239, 242, 247);
+    }
+    
     .top-spacing {
       margin-top: 80px;
     }
 
-    /* Main container */
     .confirmation-container {
       max-width: 800px;
       margin: 0 auto;
       padding: 30px;
     }
 
-    /* Confirmation card */
     .confirmation-card {
       background: white;
       border-radius: 10px;
@@ -98,7 +164,6 @@ $doctor = $doctors[$doctor_id];
       text-align: center;
     }
 
-    /* Confirmation header */
     .confirmation-header {
       margin-bottom: 30px;
     }
@@ -117,7 +182,6 @@ $doctor = $doctors[$doctor_id];
       font-size: 18px;
     }
 
-    /* Appointment details */
     .appointment-details {
       background: var(--light-bg);
       border-radius: 8px;
@@ -147,7 +211,6 @@ $doctor = $doctors[$doctor_id];
       border-top: 2px solid #eee;
     }
 
-    /* Doctor info */
     .doctor-info {
       display: flex;
       align-items: center;
@@ -173,7 +236,6 @@ $doctor = $doctors[$doctor_id];
       margin-bottom: 5px;
     }
 
-    /* Action buttons */
     .action-buttons {
       margin-top: 40px;
       display: flex;
@@ -215,7 +277,6 @@ $doctor = $doctors[$doctor_id];
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
-    /* Responsive adjustments */
     @media (max-width: 768px) {
       .confirmation-container {
         padding: 15px;
@@ -239,6 +300,33 @@ $doctor = $doctors[$doctor_id];
         width: 100%;
       }
     }
+
+    /* Estilos para impresión */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      .confirmation-card, .confirmation-card * {
+        visibility: visible;
+      }
+      .confirmation-card {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none;
+        border: none;
+      }
+      .action-buttons {
+        display: none;
+      }
+      .custom-navbar {
+        display: none;
+      }
+      .top-spacing {
+        margin-top: 0;
+      }
+    }
   </style>
 </head>
 <body>
@@ -254,74 +342,82 @@ $doctor = $doctors[$doctor_id];
         </button>
         <a class="navbar-brand" href="index.php">
           <img src="images/logo1.png" alt="Logo">
-          TeleConsultations
+          <span data-i18n="global.site_name">TeleConsultations</span>
         </a>
       </div>
 
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> Home</a></li>
+          <li>
+            <div class="language-selector-container">
+              <div class="language-selector">
+                <a href="?lang=es&doctor_id=<?php echo $doctor_id; ?>&date=<?php echo $appointment_date; ?>&time=<?php echo $appointment_time; ?>&specialty=<?php echo urlencode($specialty); ?>" class="language-btn <?php echo $currentLang === 'es' ? 'active' : ''; ?>">ES</a>
+                <a href="?lang=en&doctor_id=<?php echo $doctor_id; ?>&date=<?php echo $appointment_date; ?>&time=<?php echo $appointment_time; ?>&specialty=<?php echo urlencode($specialty); ?>" class="language-btn <?php echo $currentLang === 'en' ? 'active' : ''; ?>">EN</a>
+              </div>
+            </div>
+          </li>
+          <li>
+            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> <span data-i18n="global.home">Home</span></a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 
-  <!-- Space so content isn't hidden under the fixed navbar -->
   <div class="top-spacing"></div>
 
-  <!-- Main confirmation container -->
   <div class="confirmation-container">
     <div class="confirmation-card">
       <div class="confirmation-header">
         <div class="success-icon">
           <i class="fas fa-check-circle"></i>
         </div>
-        <h2>Appointment Confirmed!</h2>
-        <p>Your teleconsultation has been successfully scheduled.</p>
+        <h2 data-i18n="confirmation.title">Appointment Confirmed!</h2>
+        <p data-i18n="confirmation.subtitle">Your teleconsultation has been successfully scheduled.</p>
       </div>
       
       <div class="appointment-details">
         <h3 class="text-center" style="color: var(--primary-color); margin-bottom: 20px;">
-          <i class="fas fa-calendar-check"></i> Appointment Details
+          <i class="fas fa-calendar-check"></i> <span data-i18n="confirmation.details_title">Appointment Details</span>
         </h3>
         
         <div class="detail-item">
-          <span class="detail-label">Confirmation Number:</span>
+          <span class="detail-label" data-i18n="confirmation.confirmation_number">Confirmation Number:</span>
           <span class="detail-value">TC<?php echo rand(100000, 999999); ?></span>
         </div>
         
         <div class="detail-item">
-          <span class="detail-label">Doctor:</span>
+          <span class="detail-label" data-i18n="confirmation.doctor_label">Doctor:</span>
           <span class="detail-value"><?php echo htmlspecialchars($doctor['name']); ?></span>
         </div>
         
         <div class="detail-item">
-          <span class="detail-label">Specialty:</span>
-          <span class="detail-value"><?php echo htmlspecialchars($doctor['specialty']); ?></span>
+          <span class="detail-label" data-i18n="confirmation.specialty_label">Specialty:</span>
+          <span class="detail-value"><?php echo htmlspecialchars($specialtyTranslations[$currentLang][$specialty]); ?></span>
         </div>
         
         <div class="detail-item">
-          <span class="detail-label">Date:</span>
+          <span class="detail-label" data-i18n="confirmation.date_label">Date:</span>
           <span class="detail-value"><?php echo htmlspecialchars(date('F j, Y', strtotime($appointment_date))); ?></span>
         </div>
         
         <div class="detail-item">
-          <span class="detail-label">Time:</span>
+          <span class="detail-label" data-i18n="confirmation.time_label">Time:</span>
           <span class="detail-value"><?php echo htmlspecialchars($appointment_time); ?></span>
         </div>
         
         <div class="detail-item">
-          <span class="detail-label">Duration:</span>
-          <span class="detail-value">10 minutes</span>
+          <span class="detail-label" data-i18n="confirmation.duration_label">Duration:</span>
+          <span class="detail-value" data-i18n="confirmation.duration_value">10 minutes</span>
         </div>
         
         <div class="detail-item">
-          <span class="detail-label">Consultation Fee:</span>
+          <span class="detail-label" data-i18n="confirmation.fee_label">Consultation Fee:</span>
           <span class="detail-value">$<?php echo number_format($doctor['price'], 2); ?></span>
         </div>
         
         <div class="detail-item total-amount">
-          <span class="detail-label">Total Paid:</span>
+          <span class="detail-label" data-i18n="confirmation.total_label">Total Paid:</span>
           <span class="detail-value">$<?php echo number_format($doctor['price'], 2); ?></span>
         </div>
       </div>
@@ -330,29 +426,29 @@ $doctor = $doctors[$doctor_id];
         <img src="images/doctors/<?php echo $doctor['image']; ?>" alt="<?php echo htmlspecialchars($doctor['name']); ?>">
         <div>
           <h4><?php echo htmlspecialchars($doctor['name']); ?></h4>
-          <p><?php echo htmlspecialchars($doctor['specialty']); ?></p>
-          <p><i class="fas fa-star" style="color: #ffc107;"></i> 4.9 (245 reviews)</p>
+          <p><?php echo htmlspecialchars($specialtyTranslations[$currentLang][$specialty]); ?></p>
+          <p><i class="fas fa-star" style="color: #ffc107;"></i> 4.9 (245 <span data-i18n="confirmation.reviews">reviews</span>)</p>
         </div>
       </div>
       
       <div class="whats-next">
         <h3 class="text-center" style="color: var(--primary-color); margin-top: 30px;">
-          <i class="fas fa-info-circle"></i> What's Next?
+          <i class="fas fa-info-circle"></i> <span data-i18n="confirmation.next_title">What's Next?</span>
         </h3>
         <ul style="text-align: left; max-width: 600px; margin: 20px auto; color: var(--light-text);">
-          <li style="margin-bottom: 10px;">You will receive a confirmation email with all the details.</li>
-          <li style="margin-bottom: 10px;">A reminder will be sent 24 hours before your appointment.</li>
-          <li style="margin-bottom: 10px;">Join the video call 5 minutes before your scheduled time using the link we'll provide.</li>
-          <li>Contact support if you need to reschedule or cancel your appointment.</li>
+          <li style="margin-bottom: 10px;" data-i18n="confirmation.next_point1">You will receive a confirmation email with all the details.</li>
+          <li style="margin-bottom: 10px;" data-i18n="confirmation.next_point2">A reminder will be sent 24 hours before your appointment.</li>
+          <li style="margin-bottom: 10px;" data-i18n="confirmation.next_point3">Join the video call 5 minutes before your scheduled time using the link we'll provide.</li>
+          <li data-i18n="confirmation.next_point4">Contact support if you need to reschedule or cancel your appointment.</li>
         </ul>
       </div>
       
       <div class="action-buttons">
         <a href="dashclient.php" class="btn btn-dashboard">
-        <i class="fas fa-tachometer-alt"></i> Return to Portal
+          <i class="fas fa-tachometer-alt"></i> <span data-i18n="confirmation.dashboard_button">Return to Portal</span>
         </a>
         <button onclick="window.print()" class="btn btn-print">
-          <i class="fas fa-print"></i> Print Confirmation
+          <i class="fas fa-print"></i> <span data-i18n="confirmation.print_button">Print Confirmation</span>
         </button>
       </div>
     </div>
@@ -365,14 +461,23 @@ $doctor = $doctors[$doctor_id];
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+  <!-- Script para el cambio de idioma -->
+  <script src="js/language.js"></script>
   <script>
-    // Script para imprimir solo la tarjeta de confirmación
+    // Pasar el idioma actual a JavaScript
+    const currentLang = '<?php echo $currentLang; ?>';
+    
+    // Inicializar el sistema de idiomas
     document.addEventListener('DOMContentLoaded', function() {
-      // Mejorar la experiencia de impresión
+      initLanguageSystem(currentLang);
+      
+      // Configurar título para impresión
       const originalTitle = document.title;
+      const doctorName = '<?php echo htmlspecialchars($doctor['name']); ?>';
+      const apptDate = '<?php echo date('m/d/Y', strtotime($appointment_date)); ?>';
       
       window.addEventListener('beforeprint', function() {
-        document.title = "Appointment Confirmation - <?php echo htmlspecialchars($doctor['name']); ?> - <?php echo date('m/d/Y', strtotime($appointment_date)); ?>";
+        document.title = t('confirmation.print_title') + ' - ' + doctorName + ' - ' + apptDate;
       });
       
       window.addEventListener('afterprint', function() {

@@ -3,6 +3,26 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// Iniciar sesión y manejar idioma
+session_start();
+
+$defaultLang = 'es';
+$availableLangs = ['es', 'en'];
+
+// Determinar idioma (prioridad: GET > SESSION > COOKIE > default)
+if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
+    $_SESSION['lang'] = $_GET['lang'];
+    setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/"); // 30 días
+    $currentLang = $_GET['lang'];
+} elseif (isset($_SESSION['lang'])) {
+    $currentLang = $_SESSION['lang'];
+} elseif (isset($_COOKIE['lang']) && in_array($_COOKIE['lang'], $availableLangs)) {
+    $currentLang = $_COOKIE['lang'];
+} else {
+    $currentLang = $defaultLang;
+    $_SESSION['lang'] = $currentLang;
+}
+
 // Procesar la especialidad seleccionada
 $specialty = isset($_POST['specialty']) ? $_POST['specialty'] : (isset($_GET['specialty']) ? $_GET['specialty'] : '');
 if (empty($specialty)) {
@@ -10,13 +30,29 @@ if (empty($specialty)) {
     exit();
 }
 
-// Configuración de doctores - Solo Dr. Manuel García para ambas especialidades
+// Traducciones de especialidades
+$specialtyTranslations = [
+    'es' => [
+        'Internal Medicine' => 'Medicina Interna',
+        'Nephrology' => 'Nefrología'
+    ],
+    'en' => [
+        'Internal Medicine' => 'Internal Medicine',
+        'Nephrology' => 'Nephrology'
+    ]
+];
+
+// Configuración de doctores
 $doctors = [
     'Internal Medicine' => [
-        ['id' => 1, 'name' => 'Dr. Manuel García', 'image' => 'doctor_garcia.jpg', 'bio' => 'Especialista en Medicina Interna con 15 años de experiencia. Atención personalizada y enfoque preventivo.']
+        ['id' => 1, 'name' => 'Dr. Manuel García', 'image' => 'doctor_garcia.jpg', 
+         'bio_es' => 'Especialista en Medicina Interna con 15 años de experiencia. Atención personalizada y enfoque preventivo.',
+         'bio_en' => 'Specialist in Internal Medicine with 15 years of experience. Personalized care and preventive approach.']
     ],
     'Nephrology' => [
-        ['id' => 1, 'name' => 'Dr. Manuel García', 'image' => 'doctor_garcia.jpg', 'bio' => 'Nefrólogo certificado con amplia experiencia en enfermedades renales y trasplantes.']
+        ['id' => 1, 'name' => 'Dr. Manuel García', 'image' => 'doctor_garcia.jpg',
+         'bio_es' => 'Nefrólogo certificado con amplia experiencia en enfermedades renales y trasplantes.',
+         'bio_en' => 'Certified nephrologist with extensive experience in kidney diseases and transplants.']
     ]
 ];
 
@@ -48,15 +84,15 @@ if (isset($_POST['book_appointment'])) {
     $specialty = $_POST['specialty'];
     
     // Redirigir a payments.php con todos los datos necesarios
-    header('Location: payments.php?doctor_id='.$doctor_id.'&date='.$appointment_date.'&time='.$appointment_time.'&specialty='.urlencode($specialty));
+    header('Location: payments.php?doctor_id='.$doctor_id.'&date='.$appointment_date.'&time='.$appointment_time.'&specialty='.urlencode($specialty).'&lang='.$currentLang);
     exit();
 }
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="<?php echo $currentLang; ?>">
 <head>
   <meta charset="UTF-8">
-  <title>Book Appointment | TeleConsultations</title>
+  <title data-i18n="appointment.page_title">Book Appointment | TeleConsultations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Bootstrap CSS (CDN) -->
@@ -410,26 +446,29 @@ if (isset($_POST['book_appointment'])) {
   <nav class="navbar navbar-default navbar-fixed-top custom-navbar">
     <div class="container">
       <div class="navbar-header">
-        <!-- Mobile menu toggle button -->
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
           <span class="icon-bar" style="background-color:#fff;"></span>
           <span class="icon-bar" style="background-color:#fff;"></span>
           <span class="icon-bar" style="background-color:#fff;"></span>
         </button>
-        <!-- Logo and title -->
         <a class="navbar-brand" href="index.php">
           <img src="images/logo1.png" alt="Logo">
-          TeleConsultations
+          <span data-i18n="global.site_name">TeleConsultations</span>
         </a>
       </div>
 
-      <!-- Right-side links -->
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>
+            <div class="language-selector-container">
+              <div class="language-selector">
+                <a href="?lang=es&specialty=<?php echo urlencode($specialty); ?>" class="language-btn <?php echo $currentLang === 'es' ? 'active' : ''; ?>">ES</a>
+                <a href="?lang=en&specialty=<?php echo urlencode($specialty); ?>" class="language-btn <?php echo $currentLang === 'en' ? 'active' : ''; ?>">EN</a>
+              </div>
+            </div>
           </li>
           <li>
-            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> Home</a>
+            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> <span data-i18n="global.home">Home</span></a>
           </li>
         </ul>
       </div>
@@ -442,9 +481,9 @@ if (isset($_POST['book_appointment'])) {
   <!-- Main appointment container -->
   <div class="appointment-container">
     <div class="appointment-header">
-      <h2>Book Your Teleconsultation</h2>
+      <h2 data-i18n="appointment.book_title">Book Your Teleconsultation</h2>
       <div class="specialty-badge">
-        <i class="fas fa-stethoscope"></i> <?php echo htmlspecialchars($specialty); ?>
+        <i class="fas fa-stethoscope"></i> <?php echo htmlspecialchars($specialtyTranslations[$currentLang][$specialty]); ?>
       </div>
     </div>
 
@@ -453,15 +492,15 @@ if (isset($_POST['book_appointment'])) {
       
       <!-- Doctor Selection -->
       <div class="doctor-section">
-        <h3 class="section-title"><i class="fas fa-user-md"></i> Your Doctor</h3>
+        <h3 class="section-title"><i class="fas fa-user-md"></i> <span data-i18n="appointment.your_doctor">Your Doctor</span></h3>
         <?php $doctor = $doctors[$specialty][0]; ?>
         <div class="doctor-card">
           <img src="images/doctors/<?php echo $doctor['image']; ?>" alt="<?php echo htmlspecialchars($doctor['name']); ?>">
           <div class="doctor-info">
             <h3><?php echo htmlspecialchars($doctor['name']); ?></h3>
-            <span class="specialty"><?php echo htmlspecialchars($specialty); ?></span>
-            <p class="rating"><i class="fas fa-star"></i> 4.9 (245 reviews)</p>
-            <p><?php echo $doctor['bio']; ?></p>
+            <span class="specialty"><?php echo htmlspecialchars($specialtyTranslations[$currentLang][$specialty]); ?></span>
+            <p class="rating"><i class="fas fa-star"></i> 4.9 (245 <span data-i18n="appointment.reviews">reviews</span>)</p>
+            <p><?php echo $doctor['bio_'.$currentLang]; ?></p>
           </div>
         </div>
         <input type="hidden" id="doctor_id" name="doctor_id" value="<?php echo $doctor['id']; ?>">
@@ -472,41 +511,41 @@ if (isset($_POST['book_appointment'])) {
         <!-- Calendar and Summary Container -->
         <div class="calendar-summary-container">
           <div class="calendar-section">
-            <h3 class="section-title"><i class="far fa-calendar-alt"></i> Select Date</h3>
-            <input type="text" id="appointmentDate" name="appointment_date" class="form-control" placeholder="Click to choose date" readonly>
+            <h3 class="section-title"><i class="far fa-calendar-alt"></i> <span data-i18n="appointment.select_date">Select Date</span></h3>
+            <input type="text" id="appointmentDate" name="appointment_date" class="form-control" data-i18n="[placeholder]appointment.date_placeholder" readonly>
             <div class="mt-3 text-muted small">
-              <i class="fas fa-info-circle"></i> Available dates are highlighted
+              <i class="fas fa-info-circle"></i> <span data-i18n="appointment.date_note">Available dates are highlighted</span>
             </div>
           </div>
           
-          <!-- Compact Booking Summary - Moved below calendar -->
+          <!-- Compact Booking Summary -->
           <div class="booking-summary-compact">
-            <h3 class="summary-title"><i class="fas fa-clipboard-list"></i> Summary</h3>
+            <h3 class="summary-title"><i class="fas fa-clipboard-list"></i> <span data-i18n="appointment.summary">Summary</span></h3>
             <div class="summary-item">
-              <div class="summary-label">Doctor:</div>
+              <div class="summary-label" data-i18n="appointment.doctor_label">Doctor:</div>
               <div class="summary-value">Dr. Manuel García</div>
             </div>
             <div class="summary-item">
-              <div class="summary-label">Date:</div>
-              <div class="summary-value empty" id="compactSummaryDate">Not selected</div>
+              <div class="summary-label" data-i18n="appointment.date_label">Date:</div>
+              <div class="summary-value empty" id="compactSummaryDate" data-i18n="appointment.not_selected">Not selected</div>
             </div>
             <div class="summary-item">
-              <div class="summary-label">Time:</div>
-              <div class="summary-value empty" id="compactSummaryTime">Not selected</div>
+              <div class="summary-label" data-i18n="appointment.time_label">Time:</div>
+              <div class="summary-value empty" id="compactSummaryTime" data-i18n="appointment.not_selected">Not selected</div>
             </div>
             <div class="summary-item">
-              <div class="summary-label">Duration:</div>
-              <div class="summary-value">10 minutes</div>
+              <div class="summary-label" data-i18n="appointment.duration_label">Duration:</div>
+              <div class="summary-value" data-i18n="appointment.duration_value">10 minutes</div>
             </div>
           </div>
         </div>
         
         <!-- Time Selection -->
         <div class="time-section">
-          <h3 class="section-title"><i class="far fa-clock"></i> Select Time</h3>
+          <h3 class="section-title"><i class="far fa-clock"></i> <span data-i18n="appointment.select_time">Select Time</span></h3>
           <div class="time-slots-container">
             <div class="time-group">
-              <div class="time-group-title">Morning</div>
+              <div class="time-group-title" data-i18n="appointment.morning">Morning</div>
               <div class="time-slots">
                 <?php 
                 foreach ($available_slots as $slot) {
@@ -519,7 +558,7 @@ if (isset($_POST['book_appointment'])) {
             </div>
             
             <div class="time-group">
-              <div class="time-group-title">Afternoon</div>
+              <div class="time-group-title" data-i18n="appointment.afternoon">Afternoon</div>
               <div class="time-slots">
                 <?php 
                 foreach ($available_slots as $slot) {
@@ -537,7 +576,7 @@ if (isset($_POST['book_appointment'])) {
 
       <!-- Submit Button -->
       <button type="submit" name="book_appointment" class="btn book-btn" disabled id="bookButton">
-        <i class="fas fa-calendar-check"></i> Confirm Appointment
+        <i class="fas fa-calendar-check"></i> <span data-i18n="appointment.confirm_button">Confirm Appointment</span>
       </button>
     </form>
   </div>
@@ -552,22 +591,45 @@ if (isset($_POST['book_appointment'])) {
   <!-- Flatpickr JS -->
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+  <!-- Script para el cambio de idioma -->
+  <script src="js/language.js"></script>
   <script>
-    // Initialize date picker
-    const datePicker = flatpickr("#appointmentDate", {
-      minDate: "today",
-      maxDate: new Date().fp_incr(14), // 14 days from now
-      enable: [
-        <?php 
-          foreach ($available_dates as $date) {
-            echo "'".$date."',";
-          }
-        ?>
-      ],
-      onChange: function(selectedDates, dateStr, instance) {
+    // Pasar el idioma actual a JavaScript
+    const currentLang = '<?php echo $currentLang; ?>';
+    
+    // Inicializar el sistema de idiomas
+    document.addEventListener('DOMContentLoaded', function() {
+      initLanguageSystem(currentLang);
+      
+      // Actualizar el resumen cuando cambia el idioma
+      document.addEventListener('languageChanged', function() {
         updateSummary();
-        checkBookingReady();
-      }
+      });
+      
+      // Initialize date picker
+      const datePicker = flatpickr("#appointmentDate", {
+        minDate: "today",
+        maxDate: new Date().fp_incr(14), // 14 days from now
+        enable: [
+          <?php 
+            foreach ($available_dates as $date) {
+              echo "'".$date."',";
+            }
+          ?>
+        ],
+        onChange: function(selectedDates, dateStr, instance) {
+          updateSummary();
+          checkBookingReady();
+        }
+      });
+
+      // Simulate some booked slots (in a real app, this would come from the server)
+      $('.time-slot').each(function() {
+        if (Math.random() < 0.3) { // 30% chance to be booked
+          $(this).addClass('booked');
+          $(this).attr('onclick', '');
+        }
+      });
     });
 
     // Select time slot function
@@ -603,17 +665,6 @@ if (isset($_POST['book_appointment'])) {
         $('#bookButton').prop('disabled', true);
       }
     }
-
-    // Simulate some booked slots (in a real app, this would come from the server)
-    $(document).ready(function() {
-      // Randomly mark some slots as booked for demo purposes
-      $('.time-slot').each(function() {
-        if (Math.random() < 0.3) { // 30% chance to be booked
-          $(this).addClass('booked');
-          $(this).attr('onclick', '');
-        }
-      });
-    });
   </script>
 </body>
 </html>

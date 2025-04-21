@@ -116,7 +116,7 @@ $appointmentDetails = [
       <a href="appointments.php" class="btn-back">&larr; Back to Appointments</a>
     </div>
     
-    <?php include '../doctor/footer.php'; ?>
+
   </div>
   <!-- jQuery & Bootstrap JS (CDN) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

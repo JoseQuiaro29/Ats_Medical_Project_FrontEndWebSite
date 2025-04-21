@@ -1,122 +1,189 @@
-/* styles.css */
+/* styles.css - Versión actualizada con estilos unificados */
+
+:root {
+  --primary: #2563eb;        /* Azul principal */
+  --primary-dark: #1e40af;   /* Azul oscuro */
+  --primary-light: #93c5fd;  /* Azul claro */
+  --secondary: #10b981;      /* Verde principal (ocean-green) */
+  --accent: #f59e0b;         /* Naranja/accent */
+  --dark: #1f2937;           /* Texto oscuro */
+  --light: #f9fafb;          /* Fondo claro */
+  --gray: #6b7280;           /* Texto gris */
+  
+  /* Sistema de espaciado */
+  --space-xxs: 0.25rem;  /* 4px */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 0.75rem;   /* 12px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-xxl: 3rem;     /* 48px */
+  --space-xxxl: 4rem;    /* 64px */
+  
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 /* Ajustes generales */
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0; /* Fondo gris claro */
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  color: var(--dark);
+  background-color: var(--light);
   margin: 0;
   padding: 0;
-  background-image: url('../images/fondo2.jpg'); /* Reemplaza 'tu-imagen.jpg' con la ruta correcta */
+  background-image: url('../images/fondo2.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-  background-attachment: fixed; /* Opcional: Fija el fondo al hacer scroll */
+  background-attachment: fixed;
 }
 
-/* Estilos para la barra de navegación */
-/*.navbar {
-  background-color: #20a967;  
-  border-color: #0f6d44;      
-}
-.navbar-default .navbar-brand,
-.navbar-default .navbar-nav>li>a {
-  color: #fff;
-}*/
-
-/* Carrusel */
-.carousel .item img {
+/* Contenedor principal */
+.container {
+  max-width: 1440px;
   margin: 0 auto;
-  max-height: 500px;
+  width: 100%;
+  padding: 0 var(--space-lg);
 }
 
-
-
-/* Ajuste para imágenes de especialidades */
-/*.specialty-img {
-  width: 100px;
-  height: 100px;
-  margin-bottom: 10px;
+/* Navbar styles */
+.custom-navbar {
+  background-color: rgba(51, 88, 170, 0.8);
+  border-color: rgba(58, 138, 126, 0.8);
 }
 
-/* Estilos para el formulario de inicio de sesión */
+.custom-navbar .navbar-brand {
+  color: #fff !important;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.custom-navbar .navbar-brand img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.custom-navbar .navbar-nav > li > a {
+  color: #fff !important;
+}
+
+/* Language selector styles */
+.language-selector-container {
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 15px 0;
+}
+
+.language-selector {
+  display: flex;
+  margin-left: 15px;
+  align-items: center;
+}
+
+.language-btn {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid #fff;
+  color: #fff !important;
+  padding: 5px 10px;
+  margin: 0 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.language-btn:hover, .language-btn.active {
+  background: #fff;
+  color: var(--primary) !important;
+  border-color: rgb(239, 242, 247);
+}
+
+/* Spacing for fixed navbar */
+.top-spacing {
+  margin-top: 80px;
+}
+
+/* Form styles */
 .login-container {
-  /* Margen superior para que no quede pegado al navbar */
-  margin-top: 100px;
+  margin-top: var(--space-xxl);
 }
 
-/* Logo del login (puedes ajustar el margen si lo deseas) */
-.login-logo {
-  margin-bottom: 30px;
-}
-
-/* Estilo general de la caja del formulario */
 .login-form {
-  background-color: #f8f9fa;  /* Fondo gris claro */
-  padding: 30px;              /* Espacio interno */
-  border-radius: 10px;        /* Bordes redondeados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+  background-color: white;
+  border-radius: 1rem;
+  padding: var(--space-xl);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
 }
 
-/* Bordes redondeados para los inputs */
 .login-form .form-control {
-  border-radius: 5px;
+  border-radius: 0.5rem;
+  padding: var(--space-sm);
 }
 
-/* Botón con color ocean-green */
 .login-form .btn-primary {
-  background-color: #138852;  /* ocean-green 600 */
-  border-color: #0f6d44;      /* ocean-green 700 */
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: var(--transition);
 }
 
-/* Hover del botón */
 .login-form .btn-primary:hover {
-  background-color: #0f6d44;  /* ocean-green 700 */
-  border-color: #0c5635;      /* ocean-green 800 */
+  background-color: #0f6d44;
+  border-color: #0c5635;
+  transform: translateY(-2px);
 }
 
-/* ----------------------------------------------------------------- */
-/* NUEVAS CLASES PARA FLEXBOX (logo a la izquierda, formulario a la derecha) */
-/* ----------------------------------------------------------------- */
-
-/* Contenedor interno que mostrará logo y formulario en dos columnas */
+/* Flexbox layout for login */
 .login-flex-container {
-  display: flex;             /* Activa Flexbox */
-  flex-direction: row;       /* Logo y formulario en fila (lado a lado) */
-  background-color: #fff;    /* Fondo blanco */
-  border-radius: 8px;        /* Bordes redondeados */
-  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Sombra suave */
-  padding: 20px;             /* Espacio interno */
-  max-width: 800px;          /* Ancho máximo de la caja */
-  margin: 0 auto;            /* Centra horizontalmente si es menor a 100% */
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  padding: var(--space-xl);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* Columna izquierda (donde irá el logo) */
 .login-flex-left {
-  flex: 1;                   /* Ocupa 1 parte del espacio */
-  display: flex;             /* Para centrar el logo vertical/horizontal */
-  align-items: center; 
-  justify-content: center;
-}
-
-/* Columna derecha (donde irá el formulario) */
-.login-flex-right {
-  flex: 2;                   /* Ocupa 2 partes del espacio */
-  display: flex;             /* Para centrar el formulario */
+  flex: 1;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Línea vertical que separa las dos columnas */
+.login-flex-right {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .login-separator {
   width: 1px;
-  background-color: #ccc;
-  margin: 0 20px;            /* Espacio horizontal a ambos lados */
-  height: 200px;             /* Ajusta la altura que necesites */
+  background-color: #e5e7eb;
+  margin: 0 var(--space-lg);
+  height: 300px;
+}
+
+/* Carousel styles */
+.carousel .item img {
+  margin: 0 auto;
+  max-height: 500px;
+  border-radius: 0.5rem;
 }
 
 /* Content styles */
 .content {
   margin-left: 200px;
-  transition: margin-left 0.3s ease;
+  transition: var(--transition);
 }
 
 .content.collapsed {
@@ -128,24 +195,76 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f4f4f4;
-  padding: 10px;
+  background-color: var(--light);
+  padding: var(--space-md);
 }
 
 .header img {
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: var(--space-sm);
 }
 
 /* Toggle button styles */
 .toggle-btn {
   font-size: 1.5rem;
   cursor: pointer;
-  display: none; /* Hidden by default, shown on smaller screens */
+  display: none;
+  color: var(--dark);
+}
+
+/* Specialty images */
+.specialty-img {
+  width: 100px;
+  height: 100px;
+  margin-bottom: var(--space-sm);
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .login-flex-container {
+    flex-direction: column;
+    padding: var(--space-lg);
+  }
+  
+  .login-separator {
+    width: 100%;
+    height: 1px;
+    margin: var(--space-lg) 0;
+  }
 }
 
 @media (max-width: 768px) {
   .toggle-btn {
     display: block;
+  }
+  
+  .content {
+    margin-left: 0;
+  }
+  
+  .login-form {
+    padding: var(--space-lg);
+  }
+  
+  .login-flex-container {
+    padding: var(--space-md);
+  }
+}
+
+@media (max-width: 640px) {
+  .login-flex-container {
+    padding: var(--space-sm);
+  }
+  
+  .login-form {
+    padding: var(--space-md);
+  }
+  
+  .top-spacing {
+    margin-top: 70px;
   }
 }
