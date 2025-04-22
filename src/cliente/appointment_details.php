@@ -1,4 +1,5 @@
 <?php
+// appointment_details.php
 session_start();
 // Validar la sesión del cliente si es necesario
 

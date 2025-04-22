@@ -194,8 +194,7 @@ include 'sidebar.php';   // Dashboard sidebar
       </table>
     </div>
 
-    <!-- Footer -->
-    <?php include 'footer.php'; ?>
+    
   </div>
 
   <!-- Sidebar toggle script (if needed) -->

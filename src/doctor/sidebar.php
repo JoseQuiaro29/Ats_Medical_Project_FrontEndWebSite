@@ -34,11 +34,7 @@
           <i class="fas fa-user-injured"></i><span>Patients</span>
         </a>
       </li>
-      <li>
-        <a href="chat.php">
-          <i class="fas fa-comments"></i><span>Chat</span>
-        </a>
-      </li>
+     
       <li>
         <a href="consul.php">
           <i class="fas fa-video"></i><span>Tele Consultations</span>
@@ -54,11 +50,7 @@
           <i class="fas fa-file-alt"></i><span>Reports</span>
         </a>
       </li>
-      <li>
-        <a href="notificaciones.php">
-          <i class="fas fa-bell"></i><span>Notifications</span>
-        </a>
-      </li>
+      
       <li>
         <a href="setting.php">
           <i class="fas fa-cog"></i><span>Settings</span>

@@ -32,7 +32,7 @@ include 'sidebar.php';
         ">
             <table class="appointments-table" style="width: 100%; border-collapse: collapse; margin-top: 20px;">
                 <thead>
-                    <tr style="background: #20a967; color: #fff;">
+                    <tr style="background: #2563eb; color: #fff;">
                         <th style="padding: 15px 10px; text-align: left;">Date</th>
                         <th style="padding: 15px 10px; text-align: left;">Time</th>
                         <th style="padding: 15px 10px; text-align: left;">Doctor</th>
@@ -51,7 +51,7 @@ include 'sidebar.php';
                         <td style="padding: 15px 10px;">Confirmed</td>
                         <td style="padding: 15px 10px;">
                             <button class="btn-detail" onclick="window.location.href='appointment_details.php?id=1'" style="
-                              background-color: #20a967; 
+                              background-color: #2563eb; 
                               color: #fff; 
                               border: none; 
                               border-radius: 4px; 
@@ -69,7 +69,7 @@ include 'sidebar.php';
                         <td style="padding: 15px 10px;">Pending</td>
                         <td style="padding: 15px 10px;">
                             <button class="btn-detail" onclick="window.location.href='appointment_details.php?id=2'" style="
-                              background-color: #20a967; 
+                              background-color: #2563eb; 
                               color: #fff; 
                               border: none; 
                               border-radius: 4px; 
@@ -87,7 +87,7 @@ include 'sidebar.php';
                         <td style="padding: 15px 10px;">Rescheduled</td>
                         <td style="padding: 15px 10px;">
                             <button class="btn-detail" onclick="window.location.href='appointment_details.php?id=3'" style="
-                              background-color: #20a967; 
+                              background-color: #2563eb; 
                               color: #fff; 
                               border: none; 
                               border-radius: 4px; 

@@ -1,4 +1,5 @@
 <?php
+// settings.php
 session_start();
 // (Opcional) Validar la sesión del cliente aquí
 
@@ -10,7 +11,7 @@ include 'sidebar.php';
 <!-- Estilos específicos para la página de Settings -->
 <style>
   :root {
-    --primary-color: #20a967;
+    --primary-color: #3358aa;
     --secondary-color: #2c3e50;
     --bg-color: #f4f7f9;
     --card-bg: #ffffff;
@@ -88,6 +89,7 @@ include 'sidebar.php';
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
+    text-align: right;
     font-size: 1rem;
     cursor: pointer;
     transition: background 0.3s ease;

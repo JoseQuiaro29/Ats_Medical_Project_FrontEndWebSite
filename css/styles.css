@@ -3,6 +3,7 @@
 :root {
   --primary: rgba(51, 88, 170, 0.8);
   --primary-dark: #1e40af;
+  --text-color: #ffffff; /* Añade esto para consistencia */
   --primary-light: #93c5fd;  /* Azul claro */
   --secondary: #10b981;      /* Verde principal (ocean-green) */
   --accent: #f59e0b;         /* Naranja/accent */
@@ -135,8 +136,8 @@ body {
 }
 
 .login-form .btn-primary:hover {
-  background-color: #0f6d44;
-  border-color: #0c5635;
+  background-color: #403dc2;
+  border-color: #3d52c9;
   transform: translateY(-2px);
 }
 

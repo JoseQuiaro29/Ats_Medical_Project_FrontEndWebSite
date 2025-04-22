@@ -1,3 +1,4 @@
+/* prescriptions.css */
 .content {
   margin-left: 220px;  /* Espacio para el sidebar fijo */
   margin-top: 60px;    /* Evita que quede detrás del header de 60px */
@@ -31,7 +32,7 @@ table {
 }
 
 thead tr {
-  background: #20a967;
+  background: #3358aa;
   color: #fff;
 }
 
@@ -49,7 +50,7 @@ td {
 }
 
 td a {
-  color: #20a967;
+  color: #3358aa;
   text-decoration: none;
   font-weight: bold;
 }

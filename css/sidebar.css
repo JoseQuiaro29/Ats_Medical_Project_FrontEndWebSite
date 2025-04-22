@@ -4,18 +4,20 @@
     width: var(--sidebar-width);
     background-color: var(--primary);
     padding: 15px;
-    
-    /* Position fixed below header of 60px */
     position: fixed;
     top: 60px;
     left: 0;
-    height: calc(100vh - 60px); /* Full height minus header */
+    height: calc(100vh - 60px);
     overflow-y: auto;
     transition: width var(--transition-speed) ease;
     border-right: 1px solid #ddd;
     z-index: 999;
-    --hover-color: #138852; 
-    font-family: var(--font-family); /* Use the defined font-family */
+    font-family: var(--font-family);
+    /* Añade esto para forzar el color del texto */
+    color: #fff !important; /* Color blanco por defecto */
+}
+.sidebar * {
+    color: inherit !important;
 }
 .sidebar.collapsed {
     width: var(--sidebar-collapsed-width);
@@ -27,7 +29,7 @@
     margin-bottom: 15px;
 }
 .sidebar .sidebar-header h3 {
-    color: var(--text-color);
+    color: var(--text-color );
     margin: 0;
     font-size: 1.5em; /* Ajustar tamaño de letra del header aquí */
     transition: opacity var(--transition-speed) ease;
@@ -36,9 +38,9 @@
     opacity: 0;
 }
 .sidebar .toggle-btn {
+    color: inherit !important;
     background: none;
     border: none;
-    color: var(--text-color);
     font-size: 1.2em;
     cursor: pointer;
 }
@@ -54,16 +56,15 @@
     display: flex;
     align-items: center;
     text-decoration: none;
-    color: var(--text-color);
     padding: 10px;
     border-radius: 4px;
-    transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
-    font-size: 1.6rem; /* Ajustar tamaño de letra de los links aquí */
+    transition: background var(--transition-speed) ease;
+    font-size: 1.8rem;
 }
 .sidebar ul li a:hover,
 .sidebar ul li a.active {
     background-color: var(--primary-dark);
-    color: #fff;
+    color: inherit !important;
 }
 .sidebar ul li a i {
     margin-right: 10px;

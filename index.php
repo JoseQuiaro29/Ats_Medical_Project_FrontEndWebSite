@@ -1,4 +1,4 @@
-/* index.php */
+
 <?php include 'header.php'; ?>
 
 <!-- Estilos CSS... (mantener tus estilos existentes) -->

@@ -120,7 +120,7 @@ include 'sidebar.php';
   }
 
   th {
-    background: #20a967;
+    background: #3358aa;
     color: #fff;
     font-weight: normal;
     font-size: 1.5rem;
@@ -132,7 +132,7 @@ include 'sidebar.php';
   }
 
   a {
-    color: #20a967;
+    color: #3358aa;
     text-decoration: none;
    /* font-weight: bold;*/  /* coloca el texto en negrita */
   }

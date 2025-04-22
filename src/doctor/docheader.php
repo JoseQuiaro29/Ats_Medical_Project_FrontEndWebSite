@@ -5,7 +5,9 @@
   <title>Doctor Dashboard | TeleConsultations</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Enlace a tu CSS general -->
+  <link rel="stylesheet" href="../../css/clientDash.css">
   <link rel="stylesheet" href="../../css/sidebar.css"> <!-- Add this line -->
+
   <style>
     /* Reset y estilos base */
     * {
@@ -22,7 +24,7 @@
     }
     /* HEADER */
     header {
-      background-color: #20a967; /* ocean-green 500 */
+      background-color: #2563eb; /* ocean-green 500 */
       color: #fff;
       padding: 10px 20px;
       display: flex;

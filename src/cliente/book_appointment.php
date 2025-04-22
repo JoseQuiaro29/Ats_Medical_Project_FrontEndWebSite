@@ -1,4 +1,6 @@
+
 <?php
+// book_appointment.php
 // Iniciar sesión y manejar idioma
 session_start();
 
@@ -92,14 +94,14 @@ include 'sidebar.php';
       display: block;
       width: 50px;
       height: 3px;
-      background: #20a967;
+      background:  #3358aa;
       margin: 15px auto;
     }
 
     /* Submit button */
     .specialty-btn {
-      background-color: #20a967;
-      border-color: #1e8e5d;
+      background-color:  #3358aa;
+      border-color: #3358aa;
       color: white;
       padding: 12px 30px;
       font-weight: bold;
@@ -109,8 +111,8 @@ include 'sidebar.php';
       width: 100%;
     }
     .specialty-btn:hover {
-      background-color: #1e8e5d;
-      border-color: #167349;
+      background-color:rgb(54, 86, 153);
+      border-color:rgb(36, 22, 115);
       color: white;
     }
 

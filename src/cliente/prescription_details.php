@@ -27,13 +27,7 @@ $prescriptionDetails = [
   <!-- Bootstrap CSS (CDN) -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <style>
-    :root {
-      --primary-color: #20a967;
-      --secondary-color: #2c3e50;
-      --bg-color: #f4f7f9;
-      --card-bg: #ffffff;
-      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+    
     body {
       font-family: var(--font-family);
       background-color: var(--bg-color);
@@ -85,7 +79,7 @@ $prescriptionDetails = [
       margin-top: 20px;
     }
     .btn-back:hover {
-      background-color: #1e8e5d;
+      
     }
     @media (max-width: 768px) {
       .content {

@@ -23,8 +23,10 @@
     :root {
     --primary: #2563eb;
     --primary-dark: #1e40af;
+    --text-color: #ffffff; /* Color blanco para texto */
+
     --primary-light: #93c5fd;
-    --secondary: #10b981;
+    --secondary:rgb(35, 32, 204);
     --accent: #f59e0b;
     --dark: #1f2937;
     --light: #f9fafb;
