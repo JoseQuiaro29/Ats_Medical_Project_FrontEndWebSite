@@ -35,6 +35,7 @@
     margin: 0;
     padding: 0;
   }
+  
 
   /* Contenedor principal */
   .container {
@@ -311,34 +312,57 @@
   }
 
   @media (max-width: 640px) {
-    .hero-title {
-      font-size: 2rem;
-    }
-    
-    .section-title {
-      font-size: 1.75rem;
-    }
-    
-    .process-step {
-      flex-direction: column;
-      gap: var(--space-md);
-    }
-    
-    .process-icon {
-      width: 50px;
-      height: 50px;
-      font-size: 1.25rem;
-    }
-    
-    .process-step:not(:last-child):after {
-      left: 25px;
-      top: 50px;
-      height: calc(100% - 50px);
-    }
-    
-    .specialties-grid {
-      grid-template-columns: 1fr;
-    }
+  .process-step {
+    flex-direction: row !important; /* Mantenemos la disposición en fila */
+    align-items: flex-start; /* Alineamos los items al inicio */
+    gap: var(--space-md);
+  }
+
+  .process-icon {
+    margin-top: 0.25rem; /* Pequeño ajuste para alinear con el texto */
+  }
+
+  .process-content {
+    flex: 1;
+  }
+
+  /* Asegurar que el texto no quede muy pegado al número */
+  .process-title, .process-description {
+    padding-left: 0;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .process-step {
+    gap: var(--space-sm);
+  }
+
+  .process-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  /* Ajuste fino de alineación */
+  .process-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 375px) {
+  .process-step {
+    gap: var(--space-xs);
+  }
+
+  .process-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 1rem;
+  }
+}
   }
 </style>
 <!-- Hero Section Dividida -->

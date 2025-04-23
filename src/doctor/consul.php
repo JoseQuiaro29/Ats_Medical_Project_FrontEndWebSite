@@ -7,7 +7,7 @@ include 'sidebar.php';
 
 <style>
 :root {
-  --primary-color: #20a967;
+  --primary-color: #3358aa;
   --secondary-color: #2c3e50;
   --bg-color: #f4f7f9;
   --card-bg: #ffffff;
@@ -81,11 +81,6 @@ body {
 
 .teleconsult-filters button:first-of-type {
   background-color: var(--primary-color);
-}
-
-.teleconsult-filters button:last-of-type {
-  background-color: #3498db;
-  margin-left: auto;
 }
 
 /* Tabla de teleconsultas */
@@ -162,7 +157,6 @@ document.addEventListener("DOMContentLoaded", function () {
     <div class="teleconsult-filters">
       <input type="text" placeholder="Search by patient, date...">
       <button>Search</button>
-      <button>New Teleconsultation</button>
     </div>
 
     <table>
@@ -213,5 +207,4 @@ document.addEventListener("DOMContentLoaded", function () {
     </table>
   </div>
 
-  <?php include 'footer.php'; ?>
 </div>

@@ -22,21 +22,16 @@ if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
 
 // Lógica para la página de selección de especialidad
 if (isset($_POST['select_specialty'])) {
-    if (isset($_POST['specialty'])) {
-        $specialty = $_POST['specialty'];
-        // Redirigir a la página de selección de fecha y hora
-        header('Location: date_appointment.php?specialty='.urlencode($specialty).'&lang='.$currentLang);
-        exit();
-    } else {
-        $error_message = "Por favor, selecciona una especialidad médica antes de continuar.";
-    }
+    $specialty = $_POST['specialty'];
+    // Redirigir a la página de selección de fecha y hora
+    header('Location: appointment.php?specialty='.urlencode($specialty).'&lang='.$currentLang);
+    exit();
 }
 
 include 'cliheader.php';
 include 'sidebar.php';
 ?>
 
-<!-- Estilos (se mantienen igual) -->
 <style>
   /* Estilos generales */
   * {
@@ -231,45 +226,51 @@ include 'sidebar.php';
         <p data-i18n="specialty.select_specialty_subheader">Please choose the medical specialty you need</p>
       </div>
 
-      <?php if (isset($error_message)): ?>
-        <div class="alert alert-danger text-center">
-          <h4><?php echo $error_message; ?></h4>
+      <?php if (isset($_POST['select_specialty'])): ?>
+        <div class="alert alert-success text-center">
+          <h4 data-i18n="specialty.selected_specialty">Specialty Selected: <?php echo htmlspecialchars($specialty); ?></h4>
+          <p data-i18n="specialty.redirect_message">You will be redirected to schedule your appointment shortly.</p>
         </div>
+        <script>
+          setTimeout(function() {
+            window.location.href = 'appointment.php?specialty=' + encodeURIComponent('<?php echo $specialty; ?>') + '&lang=' + '<?php echo $currentLang; ?>';
+          }, 2000);
+        </script>
+      <?php else: ?>
+        <form id="specialtyForm" method="post" action="" class="specialty-form">
+          <div class="specialty-options">
+            <div class="specialty-option">
+              <input type="radio" id="internal_medicine" name="specialty" value="Internal Medicine" required>
+              <label for="internal_medicine">
+                <div class="specialty-icon">
+                  <i class="fas fa-heartbeat"></i>
+                </div>
+                <div class="specialty-name" data-i18n="specialty.internal_medicine">Internal Medicine</div>
+                <div class="specialty-desc" data-i18n="specialty.internal_medicine_desc">
+                  Comprehensive care for adults, focusing on diagnosis and treatment of complex diseases.
+                </div>
+              </label>
+            </div>
+
+            <div class="specialty-option">
+              <input type="radio" id="nephrology" name="specialty" value="Nephrology">
+              <label for="nephrology">
+                <div class="specialty-icon">
+                  <i class="fas fa-kidneys"></i>
+                </div>
+                <div class="specialty-name" data-i18n="specialty.nephrology">Nephrology</div>
+                <div class="specialty-desc" data-i18n="specialty.nephrology_desc">
+                  Specialized care for kidney diseases, hypertension, and related conditions.
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <button type="submit" name="select_specialty" class="btn specialty-btn">
+            <i class="fas fa-check-circle"></i> <span data-i18n="specialty.confirm_button">Confirm Selection</span>
+          </button>
+        </form>
       <?php endif; ?>
-
-      <form id="specialtyForm" method="post" action="" class="specialty-form">
-        <div class="specialty-options">
-          <div class="specialty-option">
-            <input type="radio" id="internal_medicine" name="specialty" value="Internal Medicine" required>
-            <label for="internal_medicine">
-              <div class="specialty-icon">
-                <i class="fas fa-heartbeat"></i>
-              </div>
-              <div class="specialty-name" data-i18n="specialty.internal_medicine">Internal Medicine</div>
-              <div class="specialty-desc" data-i18n="specialty.internal_medicine_desc">
-                Comprehensive care for adults, focusing on diagnosis and treatment of complex diseases.
-              </div>
-            </label>
-          </div>
-
-          <div class="specialty-option">
-            <input type="radio" id="nephrology" name="specialty" value="Nephrology">
-            <label for="nephrology">
-              <div class="specialty-icon">
-                <i class="fas fa-kidneys"></i>
-              </div>
-              <div class="specialty-name" data-i18n="specialty.nephrology">Nephrology</div>
-              <div class="specialty-desc" data-i18n="specialty.nephrology_desc">
-                Specialized care for kidney diseases, hypertension, and related conditions.
-              </div>
-            </label>
-          </div>
-        </div>
-
-        <button type="submit" name="select_specialty" class="btn specialty-btn">
-          <i class="fas fa-check-circle"></i> <span data-i18n="specialty.confirm_button">Confirm Selection</span>
-        </button>
-      </form>
     </div>
   </div>
 </div>
@@ -287,13 +288,5 @@ include 'sidebar.php';
   // Inicializar el sistema de idiomas
   document.addEventListener('DOMContentLoaded', function() {
     initLanguageSystem(currentLang);
-    
-    // Validación del formulario
-    $('#specialtyForm').submit(function(e) {
-      if ($('input[name="specialty"]:checked').length === 0) {
-        e.preventDefault();
-        alert('Por favor, selecciona una especialidad médica antes de continuar.');
-      }
-    });
   });
 </script>

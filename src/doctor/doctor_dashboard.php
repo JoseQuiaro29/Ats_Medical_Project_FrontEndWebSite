@@ -10,7 +10,7 @@ include 'sidebar.php';   // Dashboard sidebar
   <style>
     /* Color and typography variables */
     :root {
-      --primary-color: #20a967;
+      --primary-color: #3358aa;
       --secondary-color: #2c3e50;
       --bg-color: #f4f7f9;
       --card-bg: #ffffff;
@@ -44,14 +44,12 @@ include 'sidebar.php';   // Dashboard sidebar
       font-size: 2rem;
       color: var(--secondary-color);
     }
-    /* Asignamos tamaño a los párrafos del dashboard principal */
     .dashboard-main p {
-      font-size: 1.5rem; // agregado
+      font-size: 1.5rem; /* corrected comment syntax */
     }
-    /* Asignamos tamaño a los subtítulos faltantes */
     .dashboard-main h3 {
-      font-size: 2rem; // agregado
-      color: var(--secondary-color); // agregado
+      font-size: 2rem; /* corrected comment syntax */
+      color: var(--secondary-color); /* corrected comment syntax */
     }
     /* Grid for quick info cards */
     .dashboard-grid {
@@ -74,11 +72,11 @@ include 'sidebar.php';   // Dashboard sidebar
     }
     .card h3 {
       margin: 0 0 10px;
-      font-size: 1.6rem; // aumentado de 1.4rem
+      font-size: 1.6rem; /* corrected comment syntax */
       color: var(--secondary-color);
     }
     .card p {
-      font-size: 1.3rem; // aumentado de 1.1rem
+      font-size: 1.3rem;
       margin: 0;
       color: #666;
     }
@@ -92,7 +90,7 @@ include 'sidebar.php';   // Dashboard sidebar
       padding: 15px 10px;
       text-align: left;
       border-bottom: 1px solid #e0e0e0;
-      font-size: 1.5rem; // cambiado de 1rem a 1.2rem
+      font-size: 1.5rem; /* corrected comment syntax */
     }
     table th {
       background: var(--primary-color);
@@ -102,9 +100,8 @@ include 'sidebar.php';   // Dashboard sidebar
     table tbody tr:hover {
       background: #f1f1f1;
     }
-    /* Asignamos tamaño a celdas de tabla sin declarar */
     table td {
-      font-size: 1rem; // agregado
+      font-size: 1rem; /* corrected comment syntax */
     }
     /* Footer */
     footer {
@@ -113,7 +110,7 @@ include 'sidebar.php';   // Dashboard sidebar
       text-align: center;
       padding: 20px 10px;
       margin-top: 30px;
-      border-top: 3px solid #1e8e5d;
+      border-top: 3px solid #3358aa;
     }
     .footer-content {
       max-width: 1200px;
@@ -152,10 +149,7 @@ include 'sidebar.php';   // Dashboard sidebar
         <h3>Pending Reports</h3>
         <p>3 Reports to Review</p>
       </div>
-      <div class="card" onclick="window.location.href='#'">
-        <h3>New Messages</h3>
-        <p>8 Unread Messages</p>
-      </div>
+      
       <div class="card" onclick="window.location.href='paciente.php'">
         <h3>Active Patients</h3>
         <p>24 Registered Patients</p>
@@ -178,14 +172,12 @@ include 'sidebar.php';   // Dashboard sidebar
           <tr>
             <td>10:00 AM</td>
             <td>John Perez</td>
-            <!-- Reemplazamos Cardiología por una de las dos especialidades -->
             <td>Nephrology</td>
             <td>Confirmed</td>
           </tr>
           <tr>
             <td>11:30 AM</td>
             <td>Mary Lopez</td>
-            <!-- Reemplazamos Neurología por la otra especialidad -->
             <td>General Medicine</td>
             <td>Pending</td>
           </tr>
@@ -193,17 +185,13 @@ include 'sidebar.php';   // Dashboard sidebar
         </tbody>
       </table>
     </div>
-
-    
   </div>
 
   <!-- Sidebar toggle script (if needed) -->
   <script>
-    // Function to collapse or expand the sidebar
     function toggleSidebar() {
       document.getElementById('content').classList.toggle('collapsed');
     }
-    // Example: add a listener to a toggle button (make sure to have it in the header)
     document.getElementById('toggleSidebarBtn')?.addEventListener('click', toggleSidebar);
   </script>
 </body>

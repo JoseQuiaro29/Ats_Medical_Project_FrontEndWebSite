@@ -1,14 +1,25 @@
 <?php
-// Iniciar sesión y manejar idioma
-session_start();
+// Configuración de sesión
+$customSessionPath = '/home1/ats/tmp_sessions';
+if (!file_exists($customSessionPath)) {
+    if (!mkdir($customSessionPath, 0700, true)) {
+        die('Error crítico: No se pudo configurar el sistema de sesiones');
+    }
+}
+ini_set('session.save_path', $customSessionPath);
+
+// Iniciar sesión al principio del script
+if (session_status() !== PHP_SESSION_ACTIVE) {
+    session_start();
+}
 
 $defaultLang = 'es';
 $availableLangs = ['es', 'en'];
 
-// Determinar idioma (prioridad: GET > SESSION > COOKIE > default)
+// Determinar idioma
 if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
     $_SESSION['lang'] = $_GET['lang'];
-    setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/"); // 30 días
+    setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/");
     $currentLang = $_GET['lang'];
 } elseif (isset($_SESSION['lang'])) {
     $currentLang = $_SESSION['lang'];
@@ -51,6 +62,37 @@ if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
     }
     .custom-navbar .navbar-nav > li > a {
       color: #fff !important;
+    }
+
+    /* Language selector styles */
+    .language-selector-container {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding: 15px 0;
+    }
+    .language-selector {
+      display: flex;
+      margin-left: 15px;
+      align-items: center;
+    }
+    .language-btn {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid #fff;
+      color: #fff !important;
+      padding: 5px 10px;
+      margin: 0 3px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .language-btn:hover, .language-btn.active {
+      background: #fff;
+      color: #3358aa !important;
+      border-color: rgb(239, 242, 247);
     }
 
     /* Spacing so the content is not hidden under the fixed navbar */
@@ -166,7 +208,6 @@ if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
         </a>
       </div>
 
-      <!-- Right-side links -->
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>

@@ -24,8 +24,6 @@
             <a href="#" style="color:#fff; text-decoration: underline;">Terms and Conditions</a> | 
             <a href="#" style="color:#fff; text-decoration: underline;">Privacy Policy</a>
           </p>
-          <p> Address: 550 Southwest 27th Avenue Miami, FL 33135 </p>
-          <p> Phone: 305-541-2655 </p>
         </div>
         <div class="col-md-4 text-center">
           <p>

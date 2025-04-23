@@ -95,11 +95,15 @@ include 'sidebar.php';
     transition: background 0.3s ease;
   }
   .btn-primary:hover {
-    background-color: #1e8e5d;
+    background-color:rgb(33, 95, 228);
   }
   /* Checkbox y radio styling opcional */
   .checkbox-group, .radio-group {
     margin: 10px 0;
+  }
+  /* Align buttons to the right */
+  .button-container {
+    text-align: right; /* Aligns buttons to the right */
   }
   @media (max-width: 768px) {
     .content {
@@ -150,7 +154,9 @@ include 'sidebar.php';
             value="+1 305 123 4567"
           >
         </div>
-        <button type="submit" class="btn-primary">Save Changes</button>
+        <div class="button-container">
+          <button type="submit" class="btn-primary">Save Changes</button>
+        </div>
       </form>
     </div>
 
@@ -189,7 +195,9 @@ include 'sidebar.php';
             required
           >
         </div>
-        <button type="submit" class="btn-primary">Update Password</button>
+        <div class="button-container">
+          <button type="submit" class="btn-primary">Update Password</button>
+        </div>
       </form>
     </div>
 
@@ -216,7 +224,9 @@ include 'sidebar.php';
             Push Notifications
           </label>
         </div>
-        <button type="submit" class="btn-primary">Save Preferences</button>
+        <div class="button-container">
+          <button type="submit" class="btn-primary">Save Preferences</button>
+        </div>
       </form>
     </div>
 

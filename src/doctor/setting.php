@@ -12,8 +12,9 @@ include 'sidebar.php';    // Contains the sidebar navigation
     
     /* Body Styling */
     body {
-      font-family: 'Segoe UI', sans-serif; /* Main font */
+      --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #f4f7f9; /* Page background color */
+      font-size: 1.5rem; /* Base font size */
     }
     
     /* Main Content Container */
@@ -34,16 +35,19 @@ include 'sidebar.php';    // Contains the sidebar navigation
       border-radius: 8px; /* Rounded corners */
       box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow for depth */
       max-width: 1200px; /* Maximum width for larger screens */
+      font-size: 1.5rem; /* Default font size for container */
     }
     
     /* Section Header Styles */
     .settings-container h2 {
       color: #2c3e50; /* Dark blue color for headings */
       margin-bottom: 20px; /* Space below the heading */
+      font-size: 2.5rem; /* Adjusted font size for headings */
     }
     .settings-container p {
       color: #666; /* Gray color for descriptive text */
       margin-bottom: 20px;
+      font-size: 1.8rem; /* Adjusted font size for paragraphs */
     }
     
     /* Tab Buttons Container */
@@ -60,10 +64,11 @@ include 'sidebar.php';    // Contains the sidebar navigation
       cursor: pointer; /* Pointer cursor on hover */
       margin-right: 10px; /* Right margin for separation */
       transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+      font-size: 1.5rem; /* Adjusted font size for tab buttons */
     }
     /* Active Tab Button */
     .tab-btn.active {
-      background-color: #20a967; /* Green background for active tab */
+      background-color: #3358aa; /* Green background for active tab */
       color: #fff; /* White text for active tab */
     }
     
@@ -77,7 +82,10 @@ include 'sidebar.php';    // Contains the sidebar navigation
     
     /* Form Styling for Each Tab */
     .settings-form {
-      margin-bottom: 20px; /* Space below each form */
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column; /* Ensures fields stack vertically */
+      gap: 15px; /* Adds spacing between fields */
     }
     .settings-form div {
       margin-bottom: 15px; /* Vertical spacing between form fields */
@@ -86,6 +94,7 @@ include 'sidebar.php';    // Contains the sidebar navigation
       display: block; /* Labels take a full line */
       margin-bottom: 5px; /* Space below the label */
       color: #333; /* Dark text color */
+      font-size: 1.5rem; /* Adjusted font size for labels */
     }
     .settings-form input[type="text"],
     .settings-form input[type="email"],
@@ -96,18 +105,21 @@ include 'sidebar.php';    // Contains the sidebar navigation
       padding: 10px; /* Internal spacing */
       border: 1px solid #ddd; /* Subtle border */
       border-radius: 4px; /* Rounded corners */
+      font-size: 1.2rem; /* Adjusted font size for input fields */
     }
     .settings-form button {
       padding: 10px 20px; /* Vertical & horizontal padding */
-      background-color: #20a967; /* Green background */
+      background-color: #3358aa; /* Green background */
       border: none; /* No border */
       border-radius: 4px; /* Rounded corners */
       color: #fff; /* White text */
       cursor: pointer; /* Pointer cursor */
       transition: background-color 0.3s ease; /* Smooth transition on hover */
+      font-size: 1.5rem; /* Adjusted font size for buttons */
+      align-self: flex-end; /* Moves the button to the right */
     }
     .settings-form button:hover {
-      background-color: #138852; /* Darker green on hover */
+      background-color: #3358aa; /* Darker green on hover */
     }
   </style>
 
@@ -230,7 +242,6 @@ include 'sidebar.php';    // Contains the sidebar navigation
     </div>
   </div>
   
-  <?php include 'footer.php'; ?>
   
   <script>
     // JavaScript to handle tab switching

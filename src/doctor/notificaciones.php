@@ -160,7 +160,6 @@ include 'sidebar.php';   // Contains the sidebar navigation
         <button>Next</button>
       </div>
     </div>
-    <?php include 'footer.php'; ?>
   </div>
 </body>
 

@@ -1,18 +1,30 @@
 <?php
-// Enable error reporting (optional for debugging)
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Configuración de sesión segura
+$customSessionPath = '/home1/ats/tmp_sessions';
+if (!file_exists($customSessionPath)) {
+    if (!mkdir($customSessionPath, 0700, true)) {
+        die('Error: No se pudo crear directorio para sesiones');
+    }
+}
 
-// Iniciar sesión y manejar idioma
-session_start();
+ini_set('session.save_path', $customSessionPath);
+ini_set('session.gc_probability', 1);
+ini_set('session.gc_divisor', 100);
+ini_set('session.gc_maxlifetime', 1440);
 
+// Iniciar sesión antes de cualquier salida
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Manejo de idiomas
 $defaultLang = 'es';
 $availableLangs = ['es', 'en'];
 
-// Determinar idioma (prioridad: GET > SESSION > COOKIE > default)
+// Determinar idioma
 if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
     $_SESSION['lang'] = $_GET['lang'];
-    setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/"); // 30 días
+    setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/");
     $currentLang = $_GET['lang'];
 } elseif (isset($_SESSION['lang'])) {
     $currentLang = $_SESSION['lang'];
@@ -23,40 +35,35 @@ if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
     $_SESSION['lang'] = $currentLang;
 }
 
-// Procesar la especialidad seleccionada
+// Procesar especialidad
 $specialty = isset($_POST['specialty']) ? $_POST['specialty'] : (isset($_GET['specialty']) ? $_GET['specialty'] : '');
 if (empty($specialty)) {
+    // Redirección segura
     header('Location: dashclient.php');
-    exit();
+    exit;
 }
 
-// Traducciones de especialidades
+// Traducciones
 $specialtyTranslations = [
-    'es' => [
-        'Internal Medicine' => 'Medicina Interna',
-        'Nephrology' => 'Nefrología'
-    ],
-    'en' => [
-        'Internal Medicine' => 'Internal Medicine',
-        'Nephrology' => 'Nephrology'
-    ]
+    'es' => ['Internal Medicine' => 'Medicina Interna', 'Nephrology' => 'Nefrología'],
+    'en' => ['Internal Medicine' => 'Internal Medicine', 'Nephrology' => 'Nephrology']
 ];
 
 // Configuración de doctores
 $doctors = [
     'Internal Medicine' => [
         ['id' => 1, 'name' => 'Dr. Manuel García', 'image' => 'doctor_garcia.jpg', 
-         'bio_es' => 'Especialista en Medicina Interna con 15 años de experiencia. Atención personalizada y enfoque preventivo.',
-         'bio_en' => 'Specialist in Internal Medicine with 15 years of experience. Personalized care and preventive approach.']
+         'bio_es' => 'Especialista en Medicina Interna con 15 años de experiencia.',
+         'bio_en' => 'Specialist in Internal Medicine with 15 years of experience.']
     ],
     'Nephrology' => [
         ['id' => 1, 'name' => 'Dr. Manuel García', 'image' => 'doctor_garcia.jpg',
-         'bio_es' => 'Nefrólogo certificado con amplia experiencia en enfermedades renales y trasplantes.',
-         'bio_en' => 'Certified nephrologist with extensive experience in kidney diseases and transplants.']
+         'bio_es' => 'Nefrólogo certificado con amplia experiencia.',
+         'bio_en' => 'Certified nephrologist with extensive experience.']
     ]
 ];
 
-// Horarios disponibles (simulado) - Bloques de 10 minutos
+// Horarios disponibles
 $available_slots = [
     '9:00 AM', '9:10 AM', '9:20 AM', '9:30 AM', '9:40 AM', '9:50 AM',
     '10:00 AM', '10:10 AM', '10:20 AM', '10:30 AM', '10:40 AM', '10:50 AM',
@@ -66,26 +73,25 @@ $available_slots = [
     '4:00 PM', '4:10 PM', '4:20 PM', '4:30 PM', '4:40 PM', '4:50 PM'
 ];
 
-// Días disponibles (próximos 14 días, excluyendo fines de semana)
+// Días disponibles
 $available_dates = [];
 $date = new DateTime();
 for ($i = 0; $i < 14; $i++) {
     $date->modify('+1 day');
-    if ($date->format('N') < 6) { // 1-5 (lunes a viernes)
+    if ($date->format('N') < 6) {
         $available_dates[] = $date->format('Y-m-d');
     }
 }
 
-// Procesar el formulario de cita
+// Procesar formulario
 if (isset($_POST['book_appointment'])) {
     $doctor_id = $_POST['doctor_id'];
     $appointment_date = $_POST['appointment_date'];
     $appointment_time = $_POST['appointment_time'];
-    $specialty = $_POST['specialty'];
     
-    // Redirigir a payments.php con todos los datos necesarios
+    // Redirección segura
     header('Location: payments.php?doctor_id='.$doctor_id.'&date='.$appointment_date.'&time='.$appointment_time.'&specialty='.urlencode($specialty).'&lang='.$currentLang);
-    exit();
+    exit;
 }
 ?>
 <!DOCTYPE html>
@@ -137,7 +143,38 @@ if (isset($_POST['book_appointment'])) {
     .custom-navbar .navbar-nav > li > a {
       color: #fff !important;
     }
-    
+
+    /* Language selector styles */
+    .language-selector-container {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding: 15px 0;
+    }
+    .language-selector {
+      display: flex;
+      margin-left: 15px;
+      align-items: center;
+    }
+    .language-btn {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid #fff;
+      color: #fff !important;
+      padding: 5px 10px;
+      margin: 0 3px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .language-btn:hover, .language-btn.active {
+      background: #fff;
+      color: #3358aa !important;
+      border-color: rgb(239, 242, 247);
+    }
+
     /* Spacing so the content is not hidden under the fixed navbar */
     .top-spacing {
       margin-top: 80px;
@@ -459,6 +496,9 @@ if (isset($_POST['book_appointment'])) {
 
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> <span data-i18n="global.home">Home</span></a>
+          </li>
           <li>
             <div class="language-selector-container">
               <div class="language-selector">
@@ -467,9 +507,7 @@ if (isset($_POST['book_appointment'])) {
               </div>
             </div>
           </li>
-          <li>
-            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> <span data-i18n="global.home">Home</span></a>
-          </li>
+         
         </ul>
       </div>
     </div>

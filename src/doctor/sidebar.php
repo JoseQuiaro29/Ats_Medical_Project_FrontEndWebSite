@@ -1,58 +1,52 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Sidebar Example | TeleConsultations</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Enlace a Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  
-  <!-- Puedes incluir aquí tu hoja de estilos general o inline styles -->
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
-  <!-- SIDEBAR -->
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-header">
-      <h3>Menu</h3>
-      <!-- Podrías colocar aquí un botón para colapsar la sidebar, si lo deseas -->
-      <!-- <button id="toggleSidebarBtn">Toggle</button> -->
-    </div>
-    <ul>
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3>Menu</h3>
+            
+        </div>
+        <ul>
       <li>
-        <a href="doctor_dashboard.php" class="active">
+        <a href="doctor_dashboard.php" class="<?php if (basename($_SERVER['PHP_SELF']) == 'doctor_dashboard.php') echo 'active'; ?>">
           <i class="fas fa-tachometer-alt"></i><span>Dashboard</span>
         </a>
       </li>
       <li>
-        <a href="citas.php">
+        <a href="citas.php" class="<?php if (basename($_SERVER['PHP_SELF']) == 'citas.php') echo 'active'; ?>">
           <i class="fas fa-calendar-alt"></i><span>Appointments</span>
         </a>
       </li>
       <li>
-        <a href="paciente.php">
+        <a href="paciente.php" class="<?php if (basename($_SERVER['PHP_SELF']) == 'paciente.php') echo 'active'; ?>">
           <i class="fas fa-user-injured"></i><span>Patients</span>
         </a>
       </li>
-     
       <li>
-        <a href="consul.php">
+        <a href="consul.php" class="<?php if (basename($_SERVER['PHP_SELF']) == 'consul.php') echo 'active'; ?>">
           <i class="fas fa-video"></i><span>Tele Consultations</span>
         </a>
       </li>
       <li>
-        <a href="recemedic.php">
+        <a href="recemedic.php" class="<?php if (basename($_SERVER['PHP_SELF']) == 'recemedic.php') echo 'active'; ?>">
           <i class="fas fa-prescription-bottle-alt"></i><span>Medical Prescriptions</span>
         </a>
       </li>
       <li>
-        <a href="reportes.php">
+        <a href="reportes.php" class="<?php if (basename($_SERVER['PHP_SELF']) == 'reportes.php') echo 'active'; ?>">
           <i class="fas fa-file-alt"></i><span>Reports</span>
         </a>
       </li>
-      
       <li>
-        <a href="setting.php">
+        <a href="setting.php" class="<?php if (basename($_SERVER['PHP_SELF']) == 'setting.php') echo 'active'; ?>">
           <i class="fas fa-cog"></i><span>Settings</span>
         </a>
       </li>
@@ -63,19 +57,13 @@
       </li>
     </ul>
   </div>
-  
-  <!-- Botón para alternar la barra lateral (opcional) -->
-  <button id="toggleSidebarBtn">Toggle</button>
-
-  <!-- Scripts -->
-  <script>
-    const toggleBtn = document.getElementById('toggleSidebarBtn');
-    const sidebar = document.getElementById('sidebar');
-    
-    // Toggles the "collapsed" class to expand or collapse the sidebar
-    toggleBtn.addEventListener('click', () => {
-      sidebar.classList.toggle('collapsed');
-    });
-  </script>
+    <script>
+        const toggleBtnClient = document.getElementById('toggleSidebarBtn');
+        const sidebarClient = document.getElementById('sidebar');
+        
+        toggleBtnClient.addEventListener('click', () => {
+            sidebarClient.classList.toggle('collapsed');
+        });
+    </script>
 </body>
 </html>

@@ -40,8 +40,8 @@ if (isset($_POST['login'])) {
   <style>
     /* Fixed top navbar */
     .custom-navbar {
-      background-color: rgba(51, 88, 170, 0.8); /* ocean-green 500 con 80% de opacidad */
-      border-color: rgba(58, 138, 126, 0.8); /* ocean-green 600 con 80% de opacidad */
+      background-color: rgba(51, 88, 170, 0.8);
+      border-color: rgba(58, 138, 126, 0.8);
     }
     .custom-navbar .navbar-brand {
       color: #fff !important;
@@ -58,41 +58,67 @@ if (isset($_POST['login'])) {
       color: #fff !important;
     }
 
-    /* Spacing so the content is not hidden under the fixed navbar */
-    .top-spacing {
-      margin-top: 80px; /* Adjust based on your navbar height */
+    /* Full page layout */
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    
+    body {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
-    /* Centered "card" container for login */
+    /* Main content area */
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 0;
+    }
+
+    /* Centered login container */
+    .login-container {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    /* Login card styling */
     .login-card {
-      max-width: 800px;        /* Max width */
-      margin: 0 auto;          /* Center horizontally */
-      background: #fff;        /* White background */
-      padding: 30px;           /* Inner spacing */
-      border-radius: 8px;      /* Rounded corners */
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Subtle shadow */
+      width: 100%;
+      max-width: 800px;
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      margin: 20px 0;
     }
 
-    /* Flex container to split logo and form */
+    /* Flex layout for logo and form */
     .login-flex-container {
       display: flex;
-      flex-wrap: wrap;         /* Allows columns to stack on small screens */
-      justify-content: center; /* Center horizontally */
-      align-items: center;     /* Center vertically inside the container */
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
     }
 
-    /* Columns */
-    .login-flex-left,
+    /* Logo and form columns */
+    .login-flex-left, 
     .login-flex-right {
-      flex: 1 1 300px; /* Grows/Shrinks with a minimum width of 300px */
+      flex: 1;
+      min-width: 300px;
       text-align: center;
-      margin: 10px;    /* Horizontal and vertical gap */
     }
 
-    /* Logo effect: grayscale + hover zoom */
+    /* Logo styling */
     .login-logo {
-      width: 150px; 
-      height: auto; 
+      width: 150px;
+      height: auto;
       margin-bottom: 20px;
       filter: grayscale(80%);
       transition: filter 0.3s ease, transform 0.3s ease;
@@ -106,21 +132,61 @@ if (isset($_POST['login'])) {
     .login-separator {
       width: 2px;
       background-color: #eee;
-      height: 200px; /* Adjust height */
-      margin: 0 20px;
+      height: 200px;
     }
 
-    /* Form styles */
+    /* Form styling */
     .login-form h2 {
       margin-bottom: 20px;
+      color: #333;
     }
     .login-form .btn {
-      background-color: #20a967;
-      border-color: #1e8e5d;
+      background-color: #3358aa;
+      border-color: #3358aa;
+      width: 100%;
+      padding: 10px;
     }
     .login-form .btn:hover {
-      background-color: #1e8e5d;
-      border-color: #167349;
+      background-color:rgb(47, 92, 190);
+      border-color: #3358aa;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      text-align: left;
+    }
+    .form-control {
+      height: 40px;
+    }
+
+    /* Footer styling */
+    footer {
+      background-color: #f8f9fa;
+      padding: 20px 0;
+      text-align: center;
+      border-top: 1px solid #e7e7e7;
+      width: 100%;
+    }
+    footer p {
+      margin: 5px 0;
+      color: #555;
+    }
+    footer a {
+      color: #20a967;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .login-separator {
+        display: none;
+      }
+      .login-flex-left, 
+      .login-flex-right {
+        flex: 100%;
+      }
     }
   </style>
 </head>
@@ -130,20 +196,17 @@ if (isset($_POST['login'])) {
   <nav class="navbar navbar-default navbar-fixed-top custom-navbar">
     <div class="container">
       <div class="navbar-header">
-        <!-- Mobile menu toggle button -->
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
           <span class="icon-bar" style="background-color:#fff;"></span>
           <span class="icon-bar" style="background-color:#fff;"></span>
           <span class="icon-bar" style="background-color:#fff;"></span>
         </button>
-        <!-- Logo and title -->
         <a class="navbar-brand" href="index.php">
           <img src="images/logo1.png" alt="Logo">
           TeleConsultations
         </a>
       </div>
 
-      <!-- Right-side links -->
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <li>
@@ -154,59 +217,62 @@ if (isset($_POST['login'])) {
     </div>
   </nav>
 
-  <!-- Space so content isn't hidden under the navbar -->
-  <div class="top-spacing"></div>
+  <!-- Main content with proper spacing -->
+  <div class="main-content">
+    <!-- Spacer for fixed navbar -->
+    <div style="height: 80px;"></div>
+    
+    <!-- Centered login area -->
+    <div class="login-container">
+      <div class="login-card">
+        <div class="login-flex-container">
+          <!-- Logo column -->
+          <div class="login-flex-left">
+            <img src="images/logo2.png" alt="Logo" class="login-logo">
+          </div>
+          
+          <!-- Vertical separator -->
+          <div class="login-separator hidden-xs"></div>
+          
+          <!-- Form column -->
+          <div class="login-flex-right">
+            <div class="login-form">
+              <h2>Login</h2>
+              <form method="post" action="">
+                <div class="form-group">
+                  <label for="username">Username:</label>
+                  <input 
+                    type="text" 
+                    id="username" 
+                    name="username" 
+                    class="form-control"
+                    required
+                  >
+                </div>
+                <div class="form-group">
+                  <label for="password">Password:</label>
+                  <input 
+                    type="password" 
+                    id="password" 
+                    name="password" 
+                    class="form-control"
+                    required
+                  >
+                </div>
+                <button type="submit" name="login" class="btn btn-primary">
+                  Log In
+                </button>
+              </form>
 
-  <!-- Main centered "card" container -->
-  <div class="login-card">
-    <div class="login-flex-container">
-      
-      <!-- Left column: Logo -->
-      <div class="login-flex-left">
-        <img src="images/logo2.png" alt="Logo" class="login-logo">
+              <?php if (isset($error_message)): ?>
+                <p class="text-danger" style="margin-top:15px;"><?php echo $error_message; ?></p>
+              <?php endif; ?>
+            </div>
+          </div>
+        </div>
       </div>
-      
-      <!-- Vertical separator (hidden on extra-small screens) -->
-      <div class="login-separator hidden-xs"></div>
-      
-      <!-- Right column: Form -->
-      <div class="login-flex-right">
-        <div class="login-form">
-          <h2>Login</h2>
-          <form method="post" action="">
-            <div class="form-group">
-              <label for="username">Username:</label>
-              <input 
-                type="text" 
-                id="username" 
-                name="username" 
-                class="form-control"
-                required
-              >
-            </div>
-            <div class="form-group">
-              <label for="password">Password:</label>
-              <input 
-                type="password" 
-                id="password" 
-                name="password" 
-                class="form-control"
-                required
-              >
-            </div>
-            <button type="submit" name="login" class="btn btn-primary">
-              Log In
-            </button>
-          </form>
-
-          <?php if (isset($error_message)): ?>
-            <p class="text-danger" style="margin-top:10px;"><?php echo $error_message; ?></p>
-          <?php endif; ?>
-        </div><!-- .login-form -->
-      </div><!-- .login-flex-right -->
-
-    </div><!-- .login-flex-container -->
-  </div><!-- .login-card -->
+    </div>
+  </div>
 
   <!-- Footer -->
   <?php include 'footer.php'; ?>

@@ -1,18 +1,30 @@
 <?php
-// Enable error reporting
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+// Configuración de sesión segura
+$customSessionPath = '/home1/ats/tmp_sessions';
+if (!file_exists($customSessionPath)) {
+    if (!mkdir($customSessionPath, 0700, true)) {
+        die('Error: No se pudo crear directorio para sesiones');
+    }
+}
 
-// Iniciar sesión y manejar idioma
-session_start();
+ini_set('session.save_path', $customSessionPath);
+ini_set('session.gc_probability', 1);
+ini_set('session.gc_divisor', 100);
+ini_set('session.gc_maxlifetime', 1440);
 
+// Iniciar sesión antes de cualquier salida
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Manejo de idiomas
 $defaultLang = 'es';
 $availableLangs = ['es', 'en'];
 
-// Determinar idioma (prioridad: GET > SESSION > COOKIE > default)
+// Determinar idioma
 if (isset($_GET['lang']) && in_array($_GET['lang'], $availableLangs)) {
     $_SESSION['lang'] = $_GET['lang'];
-    setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/"); // 30 días
+    setcookie('lang', $_GET['lang'], time() + (86400 * 30), "/");
     $currentLang = $_GET['lang'];
 } elseif (isset($_SESSION['lang'])) {
     $currentLang = $_SESSION['lang'];
@@ -31,8 +43,9 @@ $specialty = isset($_GET['specialty']) ? $_GET['specialty'] : '';
 
 // Verificar que todos los datos estén presentes
 if (empty($doctor_id) || empty($appointment_date) || empty($appointment_time)) {
+    // Redirección segura
     header('Location: dashclient.php');
-    exit();
+    exit;
 }
 
 // Traducciones de especialidades
@@ -61,7 +74,6 @@ $doctors = [
 
 $doctor = $doctors[$doctor_id];
 ?>
-
 <!DOCTYPE html>
 <html lang="<?php echo $currentLang; ?>">
 <head>
@@ -348,6 +360,9 @@ $doctor = $doctors[$doctor_id];
 
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+             <li>
+            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> <span data-i18n="global.home">Home</span></a>
+          </li>
           <li>
             <div class="language-selector-container">
               <div class="language-selector">
@@ -356,9 +371,7 @@ $doctor = $doctors[$doctor_id];
               </div>
             </div>
           </li>
-          <li>
-            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> <span data-i18n="global.home">Home</span></a>
-          </li>
+          
         </ul>
       </div>
     </div>

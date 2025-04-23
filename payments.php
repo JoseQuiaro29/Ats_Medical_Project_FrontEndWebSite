@@ -1,11 +1,27 @@
 <?php
-// Enable error reporting (optional for debugging)
+// Configuración de sesión personalizada - DEBE SER LO PRIMERO EN EL ARCHIVO
+$customSessionPath = '/home1/ats/tmp_sessions';
+if (!file_exists($customSessionPath)) {
+    if (!mkdir($customSessionPath, 0700, true)) {
+        die('Error: No se pudo crear directorio para sesiones');
+    }
+}
+
+ini_set('session.save_path', $customSessionPath);
+ini_set('session.gc_probability', 1);
+ini_set('session.gc_divisor', 100);
+ini_set('session.gc_maxlifetime', 1440);
+
+// Iniciar sesión antes de cualquier salida
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Enable error reporting (opcional para depuración)
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Iniciar sesión y manejar idioma
-session_start();
-
+// Manejo de idiomas
 $defaultLang = 'es';
 $availableLangs = ['es', 'en'];
 
@@ -111,7 +127,38 @@ $appointment_total = $appointment_price;
     .custom-navbar .navbar-nav > li > a {
       color: #fff !important;
     }
-    
+
+    /* Language selector styles */
+    .language-selector-container {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      padding: 15px 0;
+    }
+    .language-selector {
+      display: flex;
+      margin-left: 15px;
+      align-items: center;
+    }
+    .language-btn {
+      background: rgba(255,255,255,0.2);
+      border: 1px solid #fff;
+      color: #fff !important;
+      padding: 5px 10px;
+      margin: 0 3px;
+      border-radius: 3px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .language-btn:hover, .language-btn.active {
+      background: #fff;
+      color: #3358aa !important;
+      border-color: rgb(239, 242, 247);
+    }
+
     /* Spacing so the content is not hidden under the fixed navbar */
     .top-spacing {
       margin-top: 80px;
@@ -334,6 +381,9 @@ $appointment_total = $appointment_price;
 
       <div class="collapse navbar-collapse" id="navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> <span data-i18n="global.home">Home</span></a>
+          </li>
           <li>
             <div class="language-selector-container">
               <div class="language-selector">
@@ -342,14 +392,11 @@ $appointment_total = $appointment_price;
               </div>
             </div>
           </li>
-          <li>
-            <a href="index.php" style="color:#fff;"><i class="fas fa-arrow-left"></i> <span data-i18n="global.home">Home</span></a>
-          </li>
+         
         </ul>
       </div>
     </div>
   </nav>
-
   <!-- Space so content isn't hidden under the navbar -->
   <div class="top-spacing"></div>
 

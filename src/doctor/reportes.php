@@ -7,7 +7,7 @@ include 'sidebar.php';
 
 <style>
 :root {
-  --primary-color: #20a967;
+  --primary-color: #3358aa;
   --secondary-color: #2c3e50;
   --bg-color: #f4f7f9;
   --card-bg: #ffffff;
@@ -229,5 +229,4 @@ document.addEventListener("DOMContentLoaded", function () {
     </table>
   </div>
 
-  <?php include 'footer.php'; ?>
 </div>
