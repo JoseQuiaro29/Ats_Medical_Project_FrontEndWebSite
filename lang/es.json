@@ -170,5 +170,36 @@
   "dashboard_button": "Volver al Portal",
   "print_button": "Imprimir Confirmación",
   "print_title": "Confirmación de Cita"
+},
+"about": {
+  "page_title": "Acerca de Nosotros | TeleConsultations",
+  "main_title": "Acerca de TeleConsultations",
+  "main_subtitle": "Proporcionando atención médica accesible a través de soluciones innovadoras de telemedicina",
+  "mission_title": "Nuestra Misión",
+  "mission_text1": "Somos un equipo dedicado de profesionales de la salud comprometidos a brindar atención médica de alta calidad a través de nuestra innovadora plataforma de telemedicina.",
+  "mission_text2": "Nuestra misión es hacer que la atención médica sea accesible para todos, sin importar la ubicación. Con TeleConsultations, puede recibir asesoramiento médico experto desde la comodidad de su hogar.",
+  "mission_text3": "Combinamos tecnología con atención compasiva para ofrecer una experiencia de atención médica sin problemas que pone a los pacientes en primer lugar.",
+  "doctor_section": "Nuestro Médico Principal",
+  "doctor_name": "Dr. Manuel Garcia Estrada",
+  "doctor_specialty": "Especialista en Medicina Interna y Nefrología",
+  "doctor_bio1": "El Dr. Garcia Estrada es un médico certificado con más de 15 años de experiencia en medicina interna y nefrología. Completó su formación médica en instituciones de primer nivel y se dedica a brindar atención personalizada a cada paciente.",
+  "doctor_bio2": "Especializado en el manejo de enfermedades crónicas y atención preventiva, el Dr. Garcia Estrada aporta experiencia y compasión a cada consulta virtual."
+},
+"contact": {
+  "page_title": "Contáctenos | TeleConsultations",
+  "find_us": "Encuéntranos",
+  "intro_text": "¡Nos encantaría saber de usted! Ya sea que tenga una pregunta sobre nuestros servicios o desee programar una teleconsulta, nuestro equipo está listo para ayudarle.",
+  "address": "550 Avenida Suroeste 27, Miami, FL 33135",
+  "first_name": "Nombre *",
+  "first_name_placeholder": "Tu nombre",
+  "last_name": "Apellido",
+  "last_name_placeholder": "Tu apellido",
+  "email": "Correo Electrónico *",
+  "email_placeholder": "tu.correo@ejemplo.com",
+  "phone": "Número de Teléfono",
+  "phone_placeholder": "Tu número de teléfono",
+  "message": "Mensaje *",
+  "message_placeholder": "¿Cómo podemos ayudarte?",
+  "submit_button": "Programar Teleconsulta"
 }
 }

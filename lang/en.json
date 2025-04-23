@@ -169,5 +169,36 @@
   "dashboard_button": "Return to Portal",
   "print_button": "Print Confirmation",
   "print_title": "Appointment Confirmation"
+}, 
+"about": {
+  "page_title": "About Us | TeleConsultations",
+  "main_title": "About TeleConsultations",
+  "main_subtitle": "Providing accessible healthcare through innovative telemedicine solutions",
+  "mission_title": "Our Mission",
+  "mission_text1": "We are a dedicated team of healthcare professionals committed to providing high-quality medical care through our innovative telemedicine platform.",
+  "mission_text2": "Our mission is to make healthcare accessible to everyone, regardless of location. With TeleConsultations, you can receive expert medical advice from the comfort of your home.",
+  "mission_text3": "We combine technology with compassionate care to deliver a seamless healthcare experience that puts patients first.",
+  "doctor_section": "Our Lead Physician",
+  "doctor_name": "Dr. Manuel Garcia Estrada",
+  "doctor_specialty": "Internal Medicine & Nephrology Specialist",
+  "doctor_bio1": "Dr. Garcia Estrada is a board-certified physician with over 15 years of experience in internal medicine and nephrology. He completed his medical training at top institutions and is dedicated to providing personalized care to each patient.",
+  "doctor_bio2": "Specializing in chronic disease management and preventive care, Dr. Garcia Estrada brings expertise and compassion to every virtual consultation."
+},
+"contact": {
+  "page_title": "Contact Us | TeleConsultations",
+  "find_us": "Find Us",
+  "intro_text": "We'd love to hear from you! Whether you have a question about our services or want to schedule a teleconsultation, our team is ready to help.",
+  "address": "550 Southwest 27th Avenue, Miami, FL 33135",
+  "first_name": "First Name *",
+  "first_name_placeholder": "Your first name",
+  "last_name": "Last Name",
+  "last_name_placeholder": "Your last name",
+  "email": "Email Address *",
+  "email_placeholder": "your.email@example.com",
+  "phone": "Mobile Number",
+  "phone_placeholder": "Your phone number",
+  "message": "Message *",
+  "message_placeholder": "How can we help you?",
+  "submit_button": "Schedule Teleconsultation"
 }
 }
